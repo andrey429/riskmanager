@@ -30,8 +30,8 @@ public class Person implements Serializable {
 	@Column(name = "LAST_NAME")
 	private String lastName;
 	
-	@Column(name = "MONEY")
-	private Double money;
+	@Column(name = "SECOND_NAME")
+	private String secondName;
 
 	public Integer getId() {
 		return id;
@@ -57,11 +57,11 @@ public class Person implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Double getMoney() {
-		return money;
-	}
+    public String getSecondName() {
+        return secondName;
+    }
 
-	public void setMoney(Double money) {
-		this.money = money;
-	}
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
 }

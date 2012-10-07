@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Редактирование описания сотрудника завершено</title>
 </head>
 <body>
 
-<h1>Persons</h1>
+<h1>Сотрудники</h1>
 
-<p>You have edited a person with id ${id} at <%= new java.util.Date() %></p>
+<p>Вы отредактировали описание сотрудника с id ${id} , дата редактирования  <%= new java.util.Date() %></p>
 
 <c:url var="mainUrl" value="/riskmanager/main/persons" />
-<p>Return to <a href="${mainUrl}">Main List</a></p>
+<p>Вернуться к <a href="${mainUrl}">списку сотрудников</a></p>
 
 </body>
 </html>

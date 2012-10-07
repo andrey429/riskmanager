@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Завершено удаление сотрудника</title>
 </head>
 <body>
 
-<h1>Persons</h1>
+<h1>Сотрудники</h1>
 
-<p>You have deleted a person with id ${id} at <%= new java.util.Date() %></p>
+<p>Вы удалили сотрудника с id ${id} , дата удаления <%= new java.util.Date() %></p>
 
 <c:url var="mainUrl" value="/riskmanager/main/persons" />
-<p>Return to <a href="${mainUrl}">Main List</a></p>
+<p>Вернуться к <a href="${mainUrl}">списку сотрудников</a></p>
 
 </body>
 </html>

@@ -6,29 +6,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Описание нового сотрудника</title>
 </head>
 <body>
 
-<h1>Create New Person</h1>
+<h1>Описать сотрудника - участника аудита</h1>
 
 <c:url var="saveUrl" value="/riskmanager/main/persons/add" />
 <form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
 	<table>
-		<tr>
-			<td><form:label path="firstName">First Name:</form:label></td>
+        <tr>
+            <td><form:label path="lastName">Фамилия</form:label></td>
+            <td><form:input path="lastName"/></td>
+        </tr>
+
+        <tr>
+			<td><form:label path="firstName">Имя:</form:label></td>
 			<td><form:input path="firstName"/></td>
 		</tr>
 
-		<tr>
-			<td><form:label path="lastName">Last Name</form:label></td>
-			<td><form:input path="lastName"/></td>
-		</tr>
+        <tr>
+            <td><form:label path="secondName">Отчество</form:label></td>
+            <td><form:input path="secondName"/></td>
+        </tr>
+
 		
-		<tr>
-			<td><form:label path="money">Money</form:label></td>
-			<td><form:input path="money"/></td>
-		</tr>
+
 	</table>
 	
 	<input type="submit" value="Save" />

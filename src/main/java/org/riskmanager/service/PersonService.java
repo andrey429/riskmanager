@@ -100,7 +100,7 @@ public class PersonService {
 		// Assign updated values to this person
 		existingPerson.setFirstName(person.getFirstName());
 		existingPerson.setLastName(person.getLastName());
-		existingPerson.setMoney(person.getMoney());
+		existingPerson.setSecondName(person.getSecondName());
 
 		// Save updates
 		session.save(existingPerson);

@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Сотрудники</title>
 </head>
 <body>
-<h1>Persons</h1>
+<h1>Сотрудники</h1>
 
 <c:url var="addUrl" value="/riskmanager/main/persons/add" />
 <table style="border: 1px solid; width: 500px; text-align:center">
 	<thead style="background:#fcf">
 		<tr>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Money</th>
+			<th>Фамилия</th>
+			<th>Имя</th>
+			<th>Отчество</th>
 			<th colspan="3"></th>
 		</tr>
 	</thead>
@@ -25,9 +25,9 @@
 			<c:url var="editUrl" value="/riskmanager/main/persons/edit?id=${person.id}" />
 			<c:url var="deleteUrl" value="/riskmanager/main/persons/delete?id=${person.id}" />
 		<tr>
-			<td><c:out value="${person.firstName}" /></td>
-			<td><c:out value="${person.lastName}" /></td>
-			<td><c:out value="${person.money}" /></td>
+            <td><c:out value="${person.lastName}" /></td>
+            <td><c:out value="${person.firstName}" /></td>
+			<td><c:out value="${person.secondName}" /></td>
 			<td><a href="${editUrl}">Edit</a></td>
 			<td><a href="${deleteUrl}">Delete</a></td>
 			<td><a href="${addUrl}">Add</a></td>
@@ -37,7 +37,7 @@
 </table>
 
 <c:if test="${empty persons}">
-	There are currently no persons in the list. <a href="${addUrl}">Add</a> a person.
+	На данный момент в группу аудита не добавлены сотрудники. <a href="${addUrl}">Добавить описание сотрудника</a>.
 </c:if>
 
 </body>

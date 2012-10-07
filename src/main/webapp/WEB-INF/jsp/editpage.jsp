@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Редактирование описания сотрудника</title>
 </head>
 <body>
 
-<h1>Edit Person</h1>
+<h1>Редактирование описания сотрудника</h1>
 
 <c:url var="saveUrl" value="/riskmanager/main/persons/edit?id=${personAttribute.id}" />
 <form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
@@ -19,20 +19,22 @@
 			<td><form:label path="id">Id:</form:label></td>
 			<td><form:input path="id" disabled="true"/></td>
 		</tr>
-	
+
+        <tr>
+            <td><form:label path="lastName">Фамилия</form:label></td>
+            <td><form:input path="lastName"/></td>
+        </tr>
+
 		<tr>
-			<td><form:label path="firstName">First Name:</form:label></td>
+			<td><form:label path="firstName">Имя:</form:label></td>
 			<td><form:input path="firstName"/></td>
 		</tr>
 
-		<tr>
-			<td><form:label path="lastName">Last Name</form:label></td>
-			<td><form:input path="lastName"/></td>
-		</tr>
+
 		
 		<tr>
-			<td><form:label path="money">Money</form:label></td>
-			<td><form:input path="money"/></td>
+			<td><form:label path="secondName">Отчество</form:label></td>
+			<td><form:input path="secondName"/></td>
 		</tr>
 	</table>
 	
