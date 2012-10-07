@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+//todo was called maincontroller"
 
 /**
  * Handles and retrieves person request
  */
 @Controller
-@RequestMapping("/main")
-public class MainController {
+@RequestMapping("/persons")
+public class PersonEditorController {
 
 	protected static Logger logger = Logger.getLogger("controller");
 	
@@ -32,7 +32,7 @@ public class MainController {
 	 * 
 	 * @return the name of the JSP page
 	 */
-    @RequestMapping(value = "/persons", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String getPersons(Model model) {
     	
     	logger.debug("Received request to show all persons");
@@ -43,8 +43,8 @@ public class MainController {
     	// Attach persons to the Model
     	model.addAttribute("persons", persons);
     	
-    	// This will resolve to /WEB-INF/jsp/personspage.jsp
-    	return "personspage";
+    	// This will resolve to /WEB-INF/jsp/persons_list_page.jsp
+    	return "person_views/persons_list_page";
 	}
     
     /**
@@ -52,7 +52,7 @@ public class MainController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/persons/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAdd(Model model) {
     	logger.debug("Received request to show add page");
     
@@ -60,8 +60,8 @@ public class MainController {
     	// This is the formBackingOBject
     	model.addAttribute("personAttribute", new Person());
 
-    	// This will resolve to /WEB-INF/jsp/addpage.jsp
-    	return "addpage";
+    	// This will resolve to /WEB-INF/jsp/person_addpage.jsp
+    	return "person_views/person_addpage";
 	}
  
     /**
@@ -70,7 +70,7 @@ public class MainController {
      * 
      * @return  the name of the JSP page
      */
-    @RequestMapping(value = "/persons/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@ModelAttribute("personAttribute") Person person) {
 		logger.debug("Received request to add new person");
 		
@@ -80,8 +80,8 @@ public class MainController {
 		// Call PersonService to do the actual adding
 		personService.add(person);
 
-    	// This will resolve to /WEB-INF/jsp/addedpage.jsp
-		return "addedpage";
+    	// This will resolve to /WEB-INF/jsp/person_addedpage.jsp
+ 		return "person_views/person_addedpage";
 	}
     
     /**
@@ -90,7 +90,7 @@ public class MainController {
      * 
      * @return  the name of the JSP page
      */
-    @RequestMapping(value = "/persons/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String delete(@RequestParam(value="id", required=true) Integer id, 
     										Model model) {
    
@@ -102,8 +102,8 @@ public class MainController {
 		// Add id reference to Model
 		model.addAttribute("id", id);
     	
-    	// This will resolve to /WEB-INF/jsp/deletedpage.jsp
-		return "deletedpage";
+    	// This will resolve to /WEB-INF/jsp/person_deletedpage.jsp
+		return "person_views/person_deletedpage";
 	}
     
     /**
@@ -111,7 +111,7 @@ public class MainController {
      * 
      * @return the name of the JSP page
      */
-    @RequestMapping(value = "/persons/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String getEdit(@RequestParam(value="id", required=true) Integer id,  
     										Model model) {
     	logger.debug("Received request to show edit page");
@@ -120,8 +120,8 @@ public class MainController {
     	// This is the formBackingOBject
     	model.addAttribute("personAttribute", personService.get(id));
     	
-    	// This will resolve to /WEB-INF/jsp/editpage.jsp
-    	return "editpage";
+    	// This will resolve to /WEB-INF/jsp/person_editpage.jsp
+    	return "person_views/person_editpage";
 	}
     
     /**
@@ -130,7 +130,7 @@ public class MainController {
      * 
      * @return  the name of the JSP page
      */
-    @RequestMapping(value = "/persons/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String saveEdit(@ModelAttribute("personAttribute") Person person, 
     										   @RequestParam(value="id", required=true) Integer id, 
     												Model model) {
@@ -149,8 +149,8 @@ public class MainController {
     	// Add id reference to Model
 		model.addAttribute("id", id);
 		
-    	// This will resolve to /WEB-INF/jsp/editedpage.jsp
-		return "editedpage";
+    	// This will resolve to /WEB-INF/jsp/person_editedpage.jsp
+		return "person_views/person_editedpage";
 	}
     
 }

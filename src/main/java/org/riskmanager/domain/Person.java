@@ -33,7 +33,19 @@ public class Person implements Serializable {
 	@Column(name = "SECOND_NAME")
 	private String secondName;
 
-	public Integer getId() {
+    @Column(name = "ORGANISATION")
+    private String organisation;
+
+    @Column(name = "DEPARTMENT")
+    private String department;
+
+    @Column(name = "JOB_POSITION")
+    private String jobPosition;
+
+    public Person() {
+    }
+
+    public Integer getId() {
 		return id;
 	}
 
@@ -63,5 +75,29 @@ public class Person implements Serializable {
 
     public void setSecondName(String secondName) {
         this.secondName = secondName;
+    }
+
+    public String getOrganization() {
+        return organisation;
+    }
+
+    public void setOrganization(String organisation) {
+        this.organisation = organisation;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getJobPosition() {
+        return jobPosition;
+    }
+
+    public void setJobPosition(String jobPosition) {
+        this.jobPosition = jobPosition;
     }
 }

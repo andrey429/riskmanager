@@ -47,6 +47,7 @@ public class PersonService {
 	 * Retrieves a single person
 	 */
 	public Person get( Integer id ) {
+        logger.debug("Getting Person id: "+id.toString());
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -101,6 +102,9 @@ public class PersonService {
 		existingPerson.setFirstName(person.getFirstName());
 		existingPerson.setLastName(person.getLastName());
 		existingPerson.setSecondName(person.getSecondName());
+        existingPerson.setJobPosition(person.getJobPosition());
+        existingPerson.setOrganization(person.getOrganization());
+        existingPerson.setDepartment(person.getDepartment());
 
 		// Save updates
 		session.save(existingPerson);
