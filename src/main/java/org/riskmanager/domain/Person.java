@@ -17,7 +17,8 @@ import javax.persistence.Table;
 @Table(name = "PERSON")
 public class Person implements Serializable {
 
-	private static final long serialVersionUID = -5527566248002296042L;
+
+    private static final long serialVersionUID = -5527566248002296042L;
 	
 	@Id
 	@Column(name = "ID")
@@ -41,6 +42,10 @@ public class Person implements Serializable {
 
     @Column(name = "JOB_POSITION")
     private String jobPosition;
+
+
+
+
 
     public Person() {
     }
@@ -100,4 +105,5 @@ public class Person implements Serializable {
     public void setJobPosition(String jobPosition) {
         this.jobPosition = jobPosition;
     }
+
 }

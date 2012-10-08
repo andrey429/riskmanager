@@ -106,6 +106,7 @@ public class PersonService {
         existingPerson.setOrganization(person.getOrganization());
         existingPerson.setDepartment(person.getDepartment());
 
+
 		// Save updates
 		session.save(existingPerson);
 	}
