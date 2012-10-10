@@ -1,14 +1,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
+
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Информационные активы области оценки рисков</title>
+    <title><spring2:message code="label.assetListingPageTitle"></spring2:message></title>
 </head>
 <body>
-<h1>Информационные активы области оценки рисков</h1>
+<h1><spring2:message  code="label.assetListingPageTitle"/></h1>
 
 <c:url var="addUrl" value="/riskmanager/assets/add" />
 
@@ -34,9 +40,11 @@
                 <tr>
                     <td><c:out value="${asset.name}" /></td>
                     <td><c:out value="${asset.description}" /></td>
-                    <td><c:out value="${asset.isRequiresConfidentiality}"></c:out> </td>
-                    <td><c:out value="${asset.isRequiresIntegrity}"></c:out> </td>
-                    <td><c:out value="${asset.isRequiresAvailability}"></c:out> </td>
+                   <!---> <-->
+                    <td><c:if test="${asset.requiresConfidentiality}">C</c:if> </td>
+                    <td><c:if test="${asset.requiresIntegrity}">I</c:if> </td>
+                    <td><c:if test="${asset.requiresAvailability}">A</c:if> </td>
+                    <!---> <-->
                     <td><c:out value="${asset.damageIfConfidentialityLost}"></c:out> </td>
                     <td><c:out value="${asset.damageIfIntegrityLost}"></c:out> </td>
                     <td><c:out value="${asset.damageIfAvailabilityLost}"></c:out> </td>

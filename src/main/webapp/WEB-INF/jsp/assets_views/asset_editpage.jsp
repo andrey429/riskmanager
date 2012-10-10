@@ -6,15 +6,20 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Описание нового актива</title>
+    <title>Редактирование описания актива</title>
 </head>
 <body>
 
-<h1>Описать актив области оценки рисков</h1>
+<h1>Редактирование описания актива</h1>
 
-<c:url var="saveUrl" value="/riskmanager/assets/add" />
+<c:url var="saveUrl" value="/riskmanager/assets/edit?id=${assetAttribute.id}" />
 <form:form modelAttribute="assetAttribute" method="POST" action="${saveUrl}">
     <table>
+        <tr>
+            <td><form:label path="id">Id:</form:label></td>
+            <td><form:input path="id" disabled="true"/></td>
+        </tr>
+
         <tr>
             <td><form:label path="name">Название</form:label></td>
             <td><form:input path="name"/></td>

@@ -29,7 +29,7 @@ public class OrganisationEditorController {
     @Resource(name = "organisationService")
     private OrganisationService organisationService;
 
-    @RequestMapping("/list")
+    @RequestMapping("/")
     public String  getOrganisations(Model model){
         logger.debug("Received request to list organisations");
 
@@ -58,7 +58,7 @@ public class OrganisationEditorController {
         logger.debug("Received request to add organisation");
 
         organisationService.add(organisation);
-        return "organisations_views/organisation_addedpage";
+        return "redirect:/riskmanager/organisations/";
 
     }
 
@@ -89,7 +89,7 @@ public class OrganisationEditorController {
         organisation.setId(id);
         organisationService.edit(organisation);
         model.addAttribute("id", id);//todo it is REALLY UNNECESSARY NOW
-        return "organisations_views/organisation_editedpage";
+        return "redirect:/riskmanager/organisations/";
 
     }
 

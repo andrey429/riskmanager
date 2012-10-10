@@ -25,13 +25,13 @@ public class Asset {
     private String description;
 
     @Column(name = "IS_REQUIRES_CONFIDENTIALITY")
-    private Boolean isRequiresConfidentiality = true;
+    private Boolean requiresConfidentiality;
 
     @Column(name = "IS_REQUIRES_INTEGRITY")
-    private Boolean isRequiresIntegrity = true;
+    private Boolean requiresIntegrity;
 
     @Column(name = "IS_REQUIRES_AVAILABILITY")
-    private Boolean isRequiresAvailability = true;
+    private Boolean requiresAvailability;
 
 
 
@@ -67,7 +67,9 @@ public class Asset {
     }
 
     public String getDescription() {
+
         return description;
+
     }
 
     public void setDescription(String description) {
@@ -75,27 +77,27 @@ public class Asset {
     }
 
     public Boolean getRequiresConfidentiality() {
-        return isRequiresConfidentiality;
+        return requiresConfidentiality;
     }
 
     public void setRequiresConfidentiality(Boolean requiresConfidentiality) {
-        isRequiresConfidentiality = requiresConfidentiality;
+        this.requiresConfidentiality = requiresConfidentiality;
     }
 
     public Boolean getRequiresIntegrity() {
-        return isRequiresIntegrity;
+        return requiresIntegrity;
     }
 
     public void setRequiresIntegrity(Boolean requiresIntegrity) {
-        isRequiresIntegrity = requiresIntegrity;
+        this.requiresIntegrity = requiresIntegrity;
     }
 
     public Boolean getRequiresAvailability() {
-        return isRequiresAvailability;
+        return requiresAvailability;
     }
 
     public void setRequiresAvailability(Boolean requiresAvailability) {
-        isRequiresAvailability = requiresAvailability;
+        this.requiresAvailability = requiresAvailability;
     }
 
     public Double getDamageIfConfidentialityLost() {

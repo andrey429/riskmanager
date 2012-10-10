@@ -32,7 +32,7 @@ public class PersonEditorController {
 	 * 
 	 * @return the name of the JSP page
 	 */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getPersons(Model model) {
     	
     	logger.debug("Received request to show all persons");
@@ -81,7 +81,7 @@ public class PersonEditorController {
 		personService.add(person);
 
     	// This will resolve to /WEB-INF/jsp/person_addedpage.jsp
- 		return "person_views/person_addedpage";
+ 		return "redirect:/riskmanager/persons/";
 	}
     
     /**
@@ -150,7 +150,7 @@ public class PersonEditorController {
 		model.addAttribute("id", id);
 		
     	// This will resolve to /WEB-INF/jsp/person_editedpage.jsp
-		return "person_views/person_editedpage";
+		return "redirect:/riskmanager/persons/";
 	}
     
 }

@@ -32,7 +32,7 @@ public class AssetEditorController {
     @Resource(name = "assetService")
     private AssetService assetService;
 
-    @RequestMapping("/list")
+    @RequestMapping("/")
     public String  getAssets(Model model){
         logger.debug("Received request to list assets");
 
@@ -61,16 +61,16 @@ public class AssetEditorController {
         logger.debug("Received request to add asset");
 
         assetService.add(asset);
-        return "assets_views/asset_addedpage";
+        return "redirect:/riskmanager/assets/";
 
     }
 
-    /*@RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String delete(@RequestParam(value = "id", required = true) Integer id, Model model){
         logger.debug("Received  request to delete organisation");
-        organisationService.delete(id);
+        assetService.delete(id);
         model.addAttribute("id", id);
-        return "organisations_views/organisation_deletedpage";
+        return "redirect:/riskmanager/assets/";
 
     }
 
@@ -78,23 +78,23 @@ public class AssetEditorController {
     public String getEdit(@RequestParam(value = "id", required = true) Integer id, Model model){
         logger.debug("Received request to view edit page");
 
-        model.addAttribute("organisationAttribute", organisationService.get(id));
+        model.addAttribute("assetAttribute", assetService.get(id));
 
-        return "organisations_views/organisation_editpage";
+        return "assets_views/asset_editpage";
 
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@ModelAttribute(value = "organisationAttribute") Organisation organisation,
+    public String edit(@ModelAttribute(value = "assetAttribute") Asset asset,
                        @RequestParam(value = "id", required =true) Integer id, Model model ){
-        logger.debug("Received request to update organisation");
+        logger.debug("Received request to update asset");
 
-        organisation.setId(id);
-        organisationService.edit(organisation);
+        asset.setId(id);
+        assetService.edit(asset);
         model.addAttribute("id", id);//todo it is REALLY UNNECESSARY NOW
-        return "organisations_views/organisation_editedpage";
+        return "redirect:/riskmanager/assets/";
 
     }
-*/
+
 
 }

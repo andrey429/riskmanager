@@ -23,5 +23,10 @@
 	
 	<!-- Load Hibernate related configuration -->
 	<import resource="hibernate-context.xml" />
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
 	
 </beans>
