@@ -1,9 +1,5 @@
 package org.riskmanager.controller;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 import org.riskmanager.domain.Person;
 import org.riskmanager.service.PersonService;
@@ -13,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.annotation.Resource;
+import java.util.List;
 //todo was called maincontroller"
 
 /**
@@ -81,7 +80,7 @@ public class PersonEditorController {
 		personService.add(person);
 
     	// This will resolve to /WEB-INF/jsp/person_addedpage.jsp
- 		return "redirect:/riskmanager/persons/";
+ 		return "person_views/persons_list_page";
 	}
     
     /**
@@ -103,7 +102,7 @@ public class PersonEditorController {
 		model.addAttribute("id", id);
     	
     	// This will resolve to /WEB-INF/jsp/person_deletedpage.jsp
-		return "person_views/person_deletedpage";
+		return "person_views/persons_list_page";
 	}
     
     /**
@@ -150,7 +149,7 @@ public class PersonEditorController {
 		model.addAttribute("id", id);
 		
     	// This will resolve to /WEB-INF/jsp/person_editedpage.jsp
-		return "redirect:/riskmanager/persons/";
+		return "person_views/persons_list_page";
 	}
     
 }

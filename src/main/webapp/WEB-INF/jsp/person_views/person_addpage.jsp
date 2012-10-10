@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -6,42 +7,53 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Описание нового сотрудника</title>
+    <title><spring2:message code="label.addPageTitle"/></title>
 </head>
 <body>
 
-<h1>Описать сотрудника - участника аудита</h1>
+<h1><spring2:message code="label.person"/></h1>
 
 <c:url var="saveUrl" value="/riskmanager/persons/add" />
 <form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
-            <td><form:label path="lastName">Фамилия</form:label></td>
+            <td>
+                <spring2:message code="label.personLastName"/>
+
+            </td>
             <td><form:input path="lastName"/></td>
         </tr>
 
         <tr>
-            <td><form:label path="firstName">Имя:</form:label></td>
+            <td><spring2:message code="label.personFirstName"/></td>
             <td><form:input path="firstName"/></td>
         </tr>
 
         <tr>
-            <td><form:label path="secondName">Отчество</form:label></td>
+            <td>
+                <spring2:message code="label.personSecondName"/>
+            </td>
             <td><form:input path="secondName"/></td>
         </tr>
 
         <tr>
-            <td><form:label path="organization">Организация</form:label></td>
+            <td>
+                <spring2:message code="label.personOrganisation"/>
+            </td>
             <td><form:input path="organization"/></td>
         </tr>
 
         <tr>
-            <td><form:label path="department">Структурное подразделение</form:label></td>
+            <td>
+                <spring2:message code="label.personDepartment"/>
+            </td>
             <td><form:input path="department"/></td>
         </tr>
 
         <tr>
-            <td><form:label path="jobPosition">Должность</form:label></td>
+            <td>
+                <spring2:message code="label.personJobPosition"/>
+            </td>
             <td><form:input path="jobPosition"/></td>
         </tr>
 
@@ -49,7 +61,8 @@
 
     </table>
 
-    <input type="submit" value="Save" />
+    <spring2:message code="label.saveButton" var="saveButton"/>
+    <input type="submit" value="${saveButton}">
 </form:form>
 
 </body>

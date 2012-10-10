@@ -1,14 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Организации области аудита</title>
+    <title><spring2:message code="label.organisationListingPageTitle"/></title>
 </head>
 <body>
-<h1>Организации области аудита</h1>
+<h1><spring2:message code="label.organisationListingPageTitle"/> </h1>
 
 <c:url var="addUrl" value="/riskmanager/organisations/add" />
 
@@ -18,10 +19,10 @@
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead style="background:#fcf">
             <tr>
-                <th>Название</th>
-                <th>Адрес</th>
+                <th><spring2:message code="label.organisationName"/> </th>
+                <th><spring2:message code="label.organisationAddress"/></th>
 
-                <th colspan="3">Опции редактирования</th>
+                <th colspan="3"><spring2:message code="label.editOptionsTitles"/></th>
             </tr>
             </thead>
             <tbody>
@@ -42,7 +43,8 @@
         </table>
     </c:when>
     <c:otherwise>
-        На данный момент в области аудита нет ни одной организации. Вы можете <a href="${addUrl}">добавить описание организации</a>.
+        <spring2:message code="label.organisationsNotPresent"/>
+        <a href="${addUrl}"><spring2:message code="label.youMayAddLabel"/> </a>.
     </c:otherwise>
 </c:choose>
 

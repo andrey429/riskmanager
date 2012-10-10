@@ -61,7 +61,7 @@ public class AssetEditorController {
         logger.debug("Received request to add asset");
 
         assetService.add(asset);
-        return "redirect:/riskmanager/assets/";
+        return "assets_views/assets_list_page";
 
     }
 
@@ -70,7 +70,7 @@ public class AssetEditorController {
         logger.debug("Received  request to delete organisation");
         assetService.delete(id);
         model.addAttribute("id", id);
-        return "redirect:/riskmanager/assets/";
+        return "assets_views/assets_list_page";
 
     }
 
@@ -92,7 +92,7 @@ public class AssetEditorController {
         asset.setId(id);
         assetService.edit(asset);
         model.addAttribute("id", id);//todo it is REALLY UNNECESSARY NOW
-        return "redirect:/riskmanager/assets/";
+        return "assets_views/assets_list_page";
 
     }
 
