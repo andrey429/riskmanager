@@ -17,8 +17,8 @@
 <form:form modelAttribute="assetAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
-            ID:
-            <td><form:input path="id" disabled="true"/></td>
+            <td>ID: <c:out value="${assetAttribute.id}"/> </td>
+
         </tr>
 
         <tr>

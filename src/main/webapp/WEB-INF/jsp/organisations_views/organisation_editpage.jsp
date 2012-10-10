@@ -18,8 +18,8 @@
 <form:form modelAttribute="organisationAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
-            <td>ID:</td>
-            <td><form:input path="id" disabled="true"/></td>
+            <td>ID: <c:out value="${organisationAttribute.id}"/> </td>
+
         </tr>
 
         <tr>

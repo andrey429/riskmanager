@@ -17,8 +17,9 @@
 <form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
-            <td>ID:</td>
-            <td><form:input path="id" disabled="true"/></td>
+            <td>ID: <c:out value="${personAttribute.id}"/> </td>
+
+
         </tr>
 
         <tr>

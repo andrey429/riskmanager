@@ -80,7 +80,7 @@ public class PersonEditorController {
 		personService.add(person);
 
     	// This will resolve to /WEB-INF/jsp/person_addedpage.jsp
- 		return "person_views/persons_list_page";
+ 		return "redirect:/riskmanager/persons/";
 	}
     
     /**
@@ -102,7 +102,7 @@ public class PersonEditorController {
 		model.addAttribute("id", id);
     	
     	// This will resolve to /WEB-INF/jsp/person_deletedpage.jsp
-		return "person_views/persons_list_page";
+        return "redirect:/riskmanager/persons/";
 	}
     
     /**
@@ -145,11 +145,11 @@ public class PersonEditorController {
     	// Delegate to PersonService for editing
     	personService.edit(person);
     	
-    	// Add id reference to Model
-		model.addAttribute("id", id);
+
+
 		
     	// This will resolve to /WEB-INF/jsp/person_editedpage.jsp
-		return "person_views/persons_list_page";
+        return "redirect:/riskmanager/persons/";
 	}
     
 }

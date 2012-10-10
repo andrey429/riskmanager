@@ -34,9 +34,9 @@
                     <td><c:out value="${organisation.organisationAddress}" /></td>
 
 
-                    <td><a href="${editUrl}">Edit</a></td>
-                    <td><a href="${deleteUrl}">Delete</a></td>
-                    <td><a href="${addUrl}">Add</a></td>
+                    <td><a href="${editUrl}"><spring2:message code="label.editButton"/></a></td>
+                    <td><a href="${deleteUrl}"><spring2:message code="label.deleteButton"/></a></td>
+                    <td><a href="${addUrl}"><spring2:message code="label.addButton"/></a></td>
                 </tr>
             </c:forEach>
             </tbody>

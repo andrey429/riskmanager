@@ -58,7 +58,7 @@ public class OrganisationEditorController {
         logger.debug("Received request to add organisation");
 
         organisationService.add(organisation);
-        return "organisations_views/organisations_list_page";
+        return "redirect:/riskmanager/organisations/";
 
     }
 
@@ -67,7 +67,7 @@ public class OrganisationEditorController {
         logger.debug("Received  request to delete organisation");
         organisationService.delete(id);
         model.addAttribute("id", id);
-        return "organisations_views/organisations_list_page";
+        return "redirect:/riskmanager/organisations/";
 
     }
 
@@ -88,8 +88,8 @@ public class OrganisationEditorController {
 
         organisation.setId(id);
         organisationService.edit(organisation);
-        model.addAttribute("id", id);//todo it is REALLY UNNECESSARY NOW
-        return "organisations_views/organisations_list_page";
+
+        return "redirect:/riskmanager/organisations/";
 
     }
 
