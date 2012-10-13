@@ -18,6 +18,8 @@
 <h1><spring2:message code="label.asset"/></h1>
 
 <c:url var="saveUrl" value="/riskmanager/assets/add" />
+
+
 <form:form modelAttribute="assetAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
@@ -33,7 +35,7 @@
 
         <tr>
 
-            <td><form:checkbox path="requiresConfidentiality"/>
+            <td><form:checkbox path="requiresConfidentiality" />
                 <spring2:message code="label.confidentiality"/>
             </td>
 
@@ -45,38 +47,42 @@
         </tr>
 
         <tr>
-            <td><form:checkbox path="requiresAvailability"/>
+            <td><form:checkbox path="requiresAvailability" onchange=""/>
                 <spring2:message code="label.availability"/>
             </td>
         </tr>
 
 
 
-        <tr>
-            <td><spring2:message code="label.damageIfConfidentialityLost"/></td>
-            <td><form:input path="damageIfConfidentialityLost"/></td>
-        </tr>
-
-
-        <tr>
-            <td><spring2:message code="label.damageIfIntegrityLost"/></td>
-            <td><form:input path="damageIfIntegrityLost"/></td>
-        </tr>
-
-        <tr>
-            <td><spring2:message code="label.damageIfAvailabilityLost"/></td>
-            <td><form:input path="damageIfAvailabilityLost"/></td>
-        </tr>
 
         <tr>
             <td><spring2:message code="label.assetBusinessProcessType"/></td>
             <td>
                 <form:select path="businessProcessType">
+                    <spring2:message code="label.optionMenuValueNotSelected" var="optionMenuValueNotSelected"/>
+                    <form:option value="${null}" label="${optionMenuValueNotSelected}"/>
                     <form:option value="1"><spring2:message code="label.assetPaymentBusinessProcess"/></form:option>
                     <form:option value="2"><spring2:message code="label.assetInformationBusinessProcess"/></form:option>
                 </form:select>
             </td>
 
+
+        </tr>
+
+        <tr>
+            <td>
+                <spring2:message code="label.assetOwner"/>
+
+            </td>
+
+            <td><form:select path="personOwner">
+                <spring2:message code="label.optionMenuValueNotSelected" var="optionMenuValueNotSelected"/>
+                <form:option value="${null}" label="${optionMenuValueNotSelected}"/>
+                <c:forEach items="${existingPersons}" var="existingPerson">
+                    <form:option value="${existingPerson.id}" label="${existingPerson}"/>
+                </c:forEach>
+            </form:select>
+            </td>
 
         </tr>
 
@@ -91,7 +97,12 @@
     <spring2:message code="label.saveButton" var="saveButton"/>
     <input type="submit" value="${saveButton}">
 
+
 </form:form>
 
+<c:url var="mainUrl" value="/riskmanager/ "/>
+<p>
+<a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
+</p>
 </body>
 </html>

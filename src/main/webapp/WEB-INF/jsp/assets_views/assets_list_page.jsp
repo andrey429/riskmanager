@@ -21,13 +21,17 @@
 
 <c:choose>
     <c:when test="${not empty assets}">
+        <p>
+            <a href="${addUrl}"><spring2:message code="label.addButton"/></a>
+        </p>
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead style="background:#fcf">
             <tr>
                 <th><spring2:message code="label.assetName"/></th>
                 <th><spring2:message code="label.assetDescription"/></th>
+                <th><spring2:message code="label.assetOwner"/></th>
                 <th colspan="3"><spring2:message code="label.assetRequirements"/></th>
-                <th colspan="3"><spring2:message code="label.assetDamage"/></th>
+
                 <th><spring2:message code="label.assetBusinessProcessType"/></th>
                 <th><spring2:message code="label.assetLocation"/></th>
 
@@ -43,13 +47,13 @@
                     <td><c:out value="${asset.name}" /></td>
                     <td><c:out value="${asset.description}" /></td>
 
+                    <td><c:out value="${asset.personOwner}"/></td>
+
                     <td><c:if test="${asset.requiresConfidentiality}">C</c:if> </td>
                     <td><c:if test="${asset.requiresIntegrity}">I</c:if> </td>
                     <td><c:if test="${asset.requiresAvailability}">A</c:if> </td>
 
-                    <td><c:out value="${asset.damageIfConfidentialityLost}"></c:out> </td>
-                    <td><c:out value="${asset.damageIfIntegrityLost}"></c:out> </td>
-                    <td><c:out value="${asset.damageIfAvailabilityLost}"></c:out> </td>
+
 
                     <td>
                         <c:choose>
@@ -68,7 +72,7 @@
 
                     <td><a href="${editUrl}"><spring2:message code="label.editButton"/></a></td>
                     <td><a href="${deleteUrl}"><spring2:message code="label.deleteButton"/></a></td>
-                    <td><a href="${addUrl}"><spring2:message code="label.addButton"/></a></td>
+
                 </tr>
             </c:forEach>
             </tbody>
@@ -80,6 +84,10 @@
     </c:otherwise>
 </c:choose>
 
+<c:url var="mainUrl" value="/riskmanager/ "/>
+<p>
+    <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
+</p>
 
 </body>
 </html>

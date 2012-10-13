@@ -17,9 +17,7 @@
 <form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
-            <td>ID: <c:out value="${personAttribute.id}"/> </td>
-
-
+            <td>ID: <c:out value="${personAttribute.id}"/></td>
         </tr>
 
         <tr>
@@ -46,7 +44,14 @@
             <td>
                 <spring2:message code="label.personOrganisation"/>
             </td>
-            <td><form:input path="organisation"/></td>
+            <td><form:select path="organisation">
+                <spring2:message code="label.optionMenuValueNotSelected" var="optionMenuValueNotSelected"/>
+                <form:option value="${null}" label="${optionMenuValueNotSelected}"/>
+                <c:forEach items="${existingOrganisations}" var="existingOrganisation">
+                    <form:option value="${existingOrganisation.id}" label="${existingOrganisation.organisationName}"/>
+                </c:forEach>
+            </form:select>
+            </td>
         </tr>
 
         <tr>
@@ -71,7 +76,10 @@
     <input type="submit" value="${saveButton}">
 </form:form>
 
-
+<c:url var="mainUrl" value="/riskmanager/ "/>
+<p>
+    <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
+</p>
 
 
 </body>

@@ -1,16 +1,15 @@
 package org.riskmanager.controller;
 
 import org.apache.log4j.Logger;
-
+import org.riskmanager.converters.PersonPropertyEditor;
 import org.riskmanager.domain.Asset;
+import org.riskmanager.domain.Person;
 import org.riskmanager.service.AssetService;
-
+import org.riskmanager.service.PersonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,6 +30,10 @@ public class AssetEditorController {
 
     @Resource(name = "assetService")
     private AssetService assetService;
+
+    @Resource(name = "personService")
+    private PersonService personService;
+
 
     @RequestMapping("/")
     public String  getAssets(Model model){
@@ -95,6 +98,20 @@ public class AssetEditorController {
         return "redirect:/riskmanager/assets/";
 
     }
+
+    @ModelAttribute("existingPersons")
+    public List<Person> getExistingPersons(){
+        return personService.getAll();
+
+    }
+
+    @InitBinder
+    public void initPersonPropertyEditorBinder(WebDataBinder webDataBinder){
+        webDataBinder.registerCustomEditor(Person.class, new PersonPropertyEditor(this.personService));
+    }
+
+
+
 
 
 }

@@ -11,24 +11,25 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>RiskManager v. 0.1</title>
+    <title><spring2:message code="label.appName"/></title>
 </head>
 <body>
-<h1>RiskManager v. 0.1</h1>
+<h1><spring2:message code="label.appName"/></h1>
 
 <c:url var="assetsUrl" value="/riskmanager/assets/" />
 <c:url var="personsUrl" value="/riskmanager/persons/" />
 <c:url var="organisationsUrl" value="/riskmanager/organisations/" />
 
 
-        <h2>Область оценки рисков</h2>
+
+        <h2><spring2:message code="label.appRiskEvaluationScope"/></h2>
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead style="background:#fcf">
             <tr>
 
-                <th><a href="${assetsUrl}">Активы</a></th>
-                <th><a href="${personsUrl}">Организации</a></th>
-                <th><a href="${organisationsUrl}">Сотрудники</a></th>
+                <th><a href="${assetsUrl}"><spring2:message code="label.appAssetsTabLabel"/> </a></th>
+                <th><a href="${personsUrl}"><spring2:message code="label.appPersonsTabLabel"/></a></th>
+                <th><a href="${organisationsUrl}"><spring2:message code="label.appOrganisationsTabLabel"/></a></th>
 
             </tr>
             </thead>

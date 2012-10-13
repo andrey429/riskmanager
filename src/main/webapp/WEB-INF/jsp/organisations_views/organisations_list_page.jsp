@@ -16,6 +16,9 @@
 
 <c:choose>
     <c:when test="${not empty organisations}">
+        <p>
+            <a href="${addUrl}"><spring2:message code="label.addButton"/></a>
+        </p>
         <table style="border: 1px solid; width: 500px; text-align:center">
             <thead style="background:#fcf">
             <tr>
@@ -36,7 +39,7 @@
 
                     <td><a href="${editUrl}"><spring2:message code="label.editButton"/></a></td>
                     <td><a href="${deleteUrl}"><spring2:message code="label.deleteButton"/></a></td>
-                    <td><a href="${addUrl}"><spring2:message code="label.addButton"/></a></td>
+
                 </tr>
             </c:forEach>
             </tbody>
@@ -48,6 +51,11 @@
     </c:otherwise>
 </c:choose>
 
+
+<c:url var="mainUrl" value="/riskmanager/ "/>
+<p>
+    <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
+</p>
 
 </body>
 </html>

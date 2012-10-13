@@ -36,9 +36,11 @@ public class Asset implements Serializable {
     @Column(name = "IS_REQUIRES_AVAILABILITY")
     private Boolean requiresAvailability;
 
+    @ManyToOne(targetEntity = Person.class)
+    private Person personOwner;
 
 
-    @Column(name = "DAMAGE__IF_CONF_LOST")
+    /*@Column(name = "DAMAGE__IF_CONF_LOST")
     private Double damageIfConfidentialityLost;
 
     @Column(name = "DAMAGE_IF_INT_LOST")
@@ -46,6 +48,8 @@ public class Asset implements Serializable {
 
     @Column(name = "DAMAGE_IF_AVL_LOST")
     private Double damageIfAvailabilityLost;
+      */
+
 
     @Column(name = "BUSINESS_PROCESS_TYPE")
     private Integer businessProcessType;
@@ -117,7 +121,7 @@ public class Asset implements Serializable {
         this.requiresAvailability = requiresAvailability;
     }
 
-    public Double getDamageIfConfidentialityLost() {
+    /*public Double getDamageIfConfidentialityLost() {
         return damageIfConfidentialityLost;
     }
 
@@ -140,7 +144,7 @@ public class Asset implements Serializable {
     public void setDamageIfAvailabilityLost(Double damageIfAvailabilityLost) {
         this.damageIfAvailabilityLost = damageIfAvailabilityLost;
     }
-
+*/
     public Integer getBusinessProcessType() {
         return businessProcessType;
     }
@@ -155,6 +159,14 @@ public class Asset implements Serializable {
 
     public void setAssetLocation(String assetLocation) {
         this.assetLocation = assetLocation;
+    }
+
+    public Person getPersonOwner() {
+        return personOwner;
+    }
+
+    public void setPersonOwner(Person personOwner) {
+        this.personOwner = personOwner;
     }
 
     @Override

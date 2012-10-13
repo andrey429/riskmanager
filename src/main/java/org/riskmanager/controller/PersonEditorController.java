@@ -161,7 +161,7 @@ public class PersonEditorController {
     }
 
     @InitBinder
-    public void initStringToOrganisationConverterBinder(WebDataBinder webDataBinder){
+    public void initOrganisationPropertyEditorBinder(WebDataBinder webDataBinder){
         webDataBinder.registerCustomEditor(Organisation.class,new OrganisationPropertyEditor(this.organisationService));
     }
 

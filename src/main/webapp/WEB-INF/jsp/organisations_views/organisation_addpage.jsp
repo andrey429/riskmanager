@@ -39,5 +39,11 @@
 
 </form:form>
 
+
+<c:url var="mainUrl" value="/riskmanager/ "/>
+<p>
+    <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
+</p>
+
 </body>
 </html>

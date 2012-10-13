@@ -29,8 +29,6 @@ public class Person implements Serializable {
     @Column(name = "SECOND_NAME")
     private String secondName;
 
-    /*@Column(name = "ORGANISATION")
-    private String organisation;*/
 
     @Column(name = "DEPARTMENT")
     private String department;
@@ -103,6 +101,6 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return lastName + " " + firstName + ": " + jobPosition;
+        return lastName + " " + firstName + ": " + jobPosition +" ("+department+")";
     }
 }

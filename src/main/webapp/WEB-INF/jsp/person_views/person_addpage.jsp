@@ -41,6 +41,8 @@
                 <spring2:message code="label.personOrganisation"/>
             </td>
             <td><form:select path="organisation">
+                <spring2:message code="label.optionMenuValueNotSelected" var="optionMenuValueNotSelected"/>
+                <form:option value="${null}" label="${optionMenuValueNotSelected}"/>
                 <c:forEach items="${existingOrganisations}" var="existingOrganisation">
                     <form:option value="${existingOrganisation.id}" label="${existingOrganisation.organisationName}"/>
                 </c:forEach>
@@ -69,6 +71,11 @@
     <spring2:message code="label.saveButton" var="saveButton"/>
     <input type="submit" value="${saveButton}">
 </form:form>
+
+<c:url var="mainUrl" value="/riskmanager/ "/>
+<p>
+    <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
+</p>
 
 </body>
 </html>

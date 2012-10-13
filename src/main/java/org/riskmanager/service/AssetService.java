@@ -5,7 +5,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.riskmanager.domain.Asset;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -85,9 +84,9 @@ public class AssetService {
         Asset existingAsset = (Asset) session.get(Asset.class, asset.getId());
 
         // Assign updated values to this Asset
-        existingAsset.setDamageIfAvailabilityLost(asset.getDamageIfAvailabilityLost());
+        /*existingAsset.setDamageIfAvailabilityLost(asset.getDamageIfAvailabilityLost());
         existingAsset.setDamageIfConfidentialityLost(asset.getDamageIfConfidentialityLost());
-        existingAsset.setDamageIfIntegrityLost(asset.getDamageIfIntegrityLost());
+        existingAsset.setDamageIfIntegrityLost(asset.getDamageIfIntegrityLost());*/
         existingAsset.setDescription(asset.getDescription());
         existingAsset.setId(asset.getId());
         existingAsset.setName(asset.getName());
@@ -96,7 +95,7 @@ public class AssetService {
         existingAsset.setRequiresConfidentiality(asset.getRequiresConfidentiality());
         existingAsset.setAssetLocation(asset.getAssetLocation());
         existingAsset.setBusinessProcessType(asset.getBusinessProcessType());
-
+        existingAsset.setPersonOwner(asset.getPersonOwner());
 
 
         // Save updates
