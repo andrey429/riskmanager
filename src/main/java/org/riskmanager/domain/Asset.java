@@ -21,6 +21,7 @@ public class Asset implements Serializable {
     @Column(name = "ID")
     private Integer id;
 
+
     @Column(name = "NAME")
     private String name;
 
