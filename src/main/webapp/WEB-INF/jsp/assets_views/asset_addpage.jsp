@@ -68,6 +68,24 @@
             <td><form:input path="damageIfAvailabilityLost"/></td>
         </tr>
 
+        <tr>
+            <td><spring2:message code="label.assetBusinessProcessType"/></td>
+            <td>
+                <form:select path="businessProcessType">
+                    <form:option value="1"><spring2:message code="label.assetPaymentBusinessProcess"/></form:option>
+                    <form:option value="2"><spring2:message code="label.assetInformationBusinessProcess"/></form:option>
+                </form:select>
+            </td>
+
+
+        </tr>
+
+
+        <tr>
+            <td><spring2:message code="label.assetLocation"/></td>
+            <td><form:input path="assetLocation"/></td>
+        </tr>
+
     </table>
 
     <spring2:message code="label.saveButton" var="saveButton"/>

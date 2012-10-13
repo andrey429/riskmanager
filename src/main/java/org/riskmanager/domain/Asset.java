@@ -1,6 +1,7 @@
 package org.riskmanager.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,8 +12,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ASSET")
-public class Asset {
+public class Asset implements Serializable {
 
+
+    private static final long serialVersionUID = 7306985946511236081L;
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -44,6 +47,15 @@ public class Asset {
     @Column(name = "DAMAGE_IF_AVL_LOST")
     private Double damageIfAvailabilityLost;
 
+    @Column(name = "BUSINESS_PROCESS_TYPE")
+    private Integer businessProcessType;
+
+    @Column(name = "ASSET_LOCATION")
+    private String assetLocation;
+/////////////////////////////////TODO
+    //////@OneToMany
+    ////Person personOwner;
+//////////////////////////////////////
     //todo add owner(one asset to many owners), organisation(one asset to many orgs)
 
 
@@ -122,5 +134,29 @@ public class Asset {
 
     public void setDamageIfAvailabilityLost(Double damageIfAvailabilityLost) {
         this.damageIfAvailabilityLost = damageIfAvailabilityLost;
+    }
+
+    public Integer getBusinessProcessType() {
+        return businessProcessType;
+    }
+
+    public void setBusinessProcessType(Integer businessProcessType) {
+        this.businessProcessType = businessProcessType;
+    }
+
+    public String getAssetLocation() {
+        return assetLocation;
+    }
+
+    public void setAssetLocation(String assetLocation) {
+        this.assetLocation = assetLocation;
+    }
+
+    @Override
+    public String toString() {
+        return "Asset{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

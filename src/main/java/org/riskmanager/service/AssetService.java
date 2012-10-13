@@ -94,7 +94,8 @@ public class AssetService {
         existingAsset.setRequiresAvailability(asset.getRequiresAvailability());
         existingAsset.setRequiresIntegrity(asset.getRequiresIntegrity());
         existingAsset.setRequiresConfidentiality(asset.getRequiresConfidentiality());
-
+        existingAsset.setAssetLocation(asset.getAssetLocation());
+        existingAsset.setBusinessProcessType(asset.getBusinessProcessType());
 
 
 

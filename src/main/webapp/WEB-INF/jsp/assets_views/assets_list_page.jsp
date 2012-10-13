@@ -28,6 +28,8 @@
                 <th><spring2:message code="label.assetDescription"/></th>
                 <th colspan="3"><spring2:message code="label.assetRequirements"/></th>
                 <th colspan="3"><spring2:message code="label.assetDamage"/></th>
+                <th><spring2:message code="label.assetBusinessProcessType"/></th>
+                <th><spring2:message code="label.assetLocation"/></th>
 
 
                 <th colspan="3"><spring2:message code="label.editOptionsTitles"/></th>
@@ -49,7 +51,20 @@
                     <td><c:out value="${asset.damageIfIntegrityLost}"></c:out> </td>
                     <td><c:out value="${asset.damageIfAvailabilityLost}"></c:out> </td>
 
+                    <td>
+                        <c:choose>
+                            <c:when test="${asset.businessProcessType == 1}">
+                                <spring2:message code="label.assetPaymentBusinessProcess"/>
+                            </c:when>
+                            <c:when test="${asset.businessProcessType == 2}">
+                                <spring2:message code="label.assetInformationBusinessProcess"/>
+                            </c:when>
+                        </c:choose>
+                    </td>
 
+                    <td>
+                        <c:out value="${asset.assetLocation}"/>
+                    </td>
 
                     <td><a href="${editUrl}"><spring2:message code="label.editButton"/></a></td>
                     <td><a href="${deleteUrl}"><spring2:message code="label.deleteButton"/></a></td>

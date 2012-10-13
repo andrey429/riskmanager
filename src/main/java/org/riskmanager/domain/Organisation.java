@@ -11,7 +11,7 @@ import java.io.Serializable;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-@Table(name = "ORGANISATIONS")
+@Table(name = "ORGANISATION")
 public class Organisation implements Serializable {
 
 
@@ -54,5 +54,13 @@ public class Organisation implements Serializable {
 
     public void setOrganisationAddress(String organisationAddress) {
         this.organisationAddress = organisationAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "Organisation{" +
+                "id=" + id +
+                ", organisationName='" + organisationName + '\'' +
+                '}';
     }
 }
