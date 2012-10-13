@@ -3,11 +3,11 @@
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
-    <http access-denied-page="/error403.jsp" >
+    <http access-denied-page="/WEB-INF/jsp/denied.jsp" >
         <intercept-url pattern="/assets*" access="ROLE_USER,ROLE_ANONYMOUS"/>
         <intercept-url pattern="/add*" access="ROLE_USER"/>
         <intercept-url pattern="/delete*" access="ROLE_ADMIN"/>
-        <form-login login-page="/login.jsp" default-target-url="/" authentication-failure-url="/login.jsp?error=true"/>
+        <form-login login-page="/WEB-INF/jsp/login.jsp" default-target-url="/" authentication-failure-url="/login.jsp?error=true"/>
         <!--<logout logout-url="/logout" logout-success-url="/"/>-->
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
         <remember-me/>
