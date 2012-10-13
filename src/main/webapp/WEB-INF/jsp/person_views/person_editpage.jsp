@@ -46,7 +46,7 @@
             <td>
                 <spring2:message code="label.personOrganisation"/>
             </td>
-            <td><form:input path="organization"/></td>
+            <td><form:input path="organisation"/></td>
         </tr>
 
         <tr>

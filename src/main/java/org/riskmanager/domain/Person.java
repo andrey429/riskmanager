@@ -1,15 +1,10 @@
 package org.riskmanager.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
- * For a complete reference see 
+ * For a complete reference see
  * <a href="http://docs.jboss.org/hibernate/stable/annotations/reference/en/html_single/">
  * Hibernate Annotations Communit Documentations</a>
  */
@@ -19,23 +14,23 @@ public class Person implements Serializable {
 
 
     private static final long serialVersionUID = -5527566248002296042L;
-	
-	@Id
-	@Column(name = "ID")
-	@GeneratedValue
-	private Integer id;
-	
-	@Column(name = "FIRST_NAME")
-	private String firstName;
-	
-	@Column(name = "LAST_NAME")
-	private String lastName;
-	
-	@Column(name = "SECOND_NAME")
-	private String secondName;
 
-    @Column(name = "ORGANISATION")
-    private String organisation;
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue
+    private Integer id;
+
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+
+    @Column(name = "LAST_NAME")
+    private String lastName;
+
+    @Column(name = "SECOND_NAME")
+    private String secondName;
+
+    /*@Column(name = "ORGANISATION")
+    private String organisation;*/
 
     @Column(name = "DEPARTMENT")
     private String department;
@@ -43,36 +38,35 @@ public class Person implements Serializable {
     @Column(name = "JOB_POSITION")
     private String jobPosition;
 
-
-
-
+    @ManyToOne(targetEntity = Organisation.class)
+    private Organisation organisation;
 
     public Person() {
     }
 
     public Integer getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getSecondName() {
         return secondName;
@@ -82,13 +76,14 @@ public class Person implements Serializable {
         this.secondName = secondName;
     }
 
-    public String getOrganization() {
+    public Organisation getOrganisation() {
         return organisation;
     }
 
-    public void setOrganization(String organisation) {
+    public void setOrganisation(Organisation organisation) {
         this.organisation = organisation;
     }
+
 
     public String getDepartment() {
         return department;
@@ -108,11 +103,6 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                '}';
+        return lastName + " " + firstName + ": " + jobPosition;
     }
 }

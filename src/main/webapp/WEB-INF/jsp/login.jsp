@@ -16,7 +16,7 @@
         <spring2:message code="label.loginPageTitle"/>
     </h1>
 
-    <div id="login-error">$error</div>
+    <div id="login-error">${error}</div>
     <form action="../../j_spring_security_check" method="post" >
 
         <p>

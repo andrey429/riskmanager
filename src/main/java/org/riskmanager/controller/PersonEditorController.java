@@ -1,14 +1,15 @@
 package org.riskmanager.controller;
 
 import org.apache.log4j.Logger;
+import org.riskmanager.converters.OrganisationPropertyEditor;
+import org.riskmanager.domain.Organisation;
 import org.riskmanager.domain.Person;
+import org.riskmanager.service.OrganisationService;
 import org.riskmanager.service.PersonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,6 +26,8 @@ public class PersonEditorController {
 	
 	@Resource(name="personService")
 	private PersonService personService;
+    @Resource(name="organisationService")
+    OrganisationService organisationService;
 	
 	/**
 	 * Handles and retrieves all persons and show it in a JSP page
@@ -33,7 +36,7 @@ public class PersonEditorController {
 	 */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getPersons(Model model) {
-    	
+
     	logger.debug("Received request to show all persons");
     	
     	// Retrieve all persons by delegating the call to PersonService
@@ -151,5 +154,17 @@ public class PersonEditorController {
     	// This will resolve to /WEB-INF/jsp/person_editedpage.jsp
         return "redirect:/riskmanager/persons/";
 	}
-    
+
+    @ModelAttribute("existingOrganisations")
+    public List<Organisation> getExistingOrganisations(){
+        return organisationService.getAll();
+    }
+
+    @InitBinder
+    public void initStringToOrganisationConverterBinder(WebDataBinder webDataBinder){
+        webDataBinder.registerCustomEditor(Organisation.class,new OrganisationPropertyEditor(this.organisationService));
+    }
+
+
+
 }

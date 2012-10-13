@@ -1,9 +1,5 @@
 package org.riskmanager.service;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -11,6 +7,9 @@ import org.hibernate.SessionFactory;
 import org.riskmanager.domain.Person;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Service for processing Persons
@@ -103,7 +102,7 @@ public class PersonService {
 		existingPerson.setLastName(person.getLastName());
 		existingPerson.setSecondName(person.getSecondName());
         existingPerson.setJobPosition(person.getJobPosition());
-        existingPerson.setOrganization(person.getOrganization());
+        existingPerson.setOrganisation(person.getOrganisation());
         existingPerson.setDepartment(person.getDepartment());
 
 

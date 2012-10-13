@@ -58,9 +58,6 @@ public class Organisation implements Serializable {
 
     @Override
     public String toString() {
-        return "Organisation{" +
-                "id=" + id +
-                ", organisationName='" + organisationName + '\'' +
-                '}';
+        return organisationName;
     }
 }

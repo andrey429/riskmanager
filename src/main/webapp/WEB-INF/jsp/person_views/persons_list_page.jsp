@@ -37,7 +37,7 @@
                     <td><c:out value="${person.lastName}" /></td>
                     <td><c:out value="${person.firstName}" /></td>
                     <td><c:out value="${person.secondName}" /></td>
-                    <td><c:out value="${person.organization}"/></td>
+                    <td><c:out value="${person.organisation}"/></td>
                     <td><c:out value="${person.department}" /></td>
                     <td><c:out value="${person.jobPosition}"/></td>
 

@@ -40,7 +40,12 @@
             <td>
                 <spring2:message code="label.personOrganisation"/>
             </td>
-            <td><form:input path="organization"/></td>
+            <td><form:select path="organisation">
+                <c:forEach items="${existingOrganisations}" var="existingOrganisation">
+                    <form:option value="${existingOrganisation.id}" label="${existingOrganisation.organisationName}"/>
+                </c:forEach>
+            </form:select>
+            </td>
         </tr>
 
         <tr>
