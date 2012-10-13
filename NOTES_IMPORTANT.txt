@@ -71,3 +71,7 @@ SELECT * FROM ASSET WHERE ASSET.USER.ORGANISATION.ID = USER1.ORGANISATION.ID
 ==============================================
 Это просто TODO :) для меня
 Пока даже не знаю, что сюда включить
+
+=============================================
+TODO toggle connfidentiality, integrity values based on checkbox values
+=============================================
