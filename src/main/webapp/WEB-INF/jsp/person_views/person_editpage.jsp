@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +13,7 @@
 
 <h1><spring2:message code="label.person"/></h1>
 
-<c:url var="saveUrl" value="/riskmanager/persons/edit?id=${personAttribute.id}" />
+<c:url var="saveUrl" value="/riskmanager/persons/edit?id=${personAttribute.id}"/>
 <form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
@@ -68,7 +68,33 @@
             <td><form:input path="jobPosition"/></td>
         </tr>
 
+        <tr>
+            <td>
+                <spring2:message code="label.loginUsername"/>
+                <form:input path="login"/>
+            </td>
+            <td>
+                <spring2:message code="label.loginPassword"/>
+                <form:password path="passwordHash" />
+            </td>
 
+        </tr>
+        <tr>
+            <td>
+                <spring2:message code="label.accessRights"/>
+                <form:select path="accessLevel">
+                    <form:option value="1">
+                        <spring2:message code="label.accessRightsAdmin"/>
+                    </form:option>
+                    <form:option value="2">
+                        <spring2:message code="label.accessRightsUser"/>
+                    </form:option>
+
+                </form:select>
+
+
+            </td>
+        </tr>
 
     </table>
 
@@ -80,7 +106,10 @@
 <p>
     <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
 </p>
-
+<p>
+    <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
+    <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
+</p>
 
 </body>
 </html>

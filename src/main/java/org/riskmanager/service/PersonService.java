@@ -58,6 +58,7 @@ public class PersonService {
 	/**
 	 * Adds a new person
 	 */
+
 	public void add(Person person) {
 		logger.debug("Adding new person");
 		
@@ -104,9 +105,22 @@ public class PersonService {
         existingPerson.setJobPosition(person.getJobPosition());
         existingPerson.setOrganisation(person.getOrganisation());
         existingPerson.setDepartment(person.getDepartment());
-
+        existingPerson.setLogin(person.getLogin());
+        existingPerson.setPasswordHash(person.getPasswordHash());
+        existingPerson.setAccessLevel(person.getAccessLevel());
 
 		// Save updates
 		session.save(existingPerson);
 	}
+
+    public Person getPersonByLogin(String login){
+        logger.debug("getting user by login: "+ login);
+
+        Session session = sessionFactory.getCurrentSession();
+
+        Query query = session.createQuery("FROM Person p where p.login LIKE \'"+login+"\'");
+        return (Person) query.uniqueResult();
+
+    }
+
 }

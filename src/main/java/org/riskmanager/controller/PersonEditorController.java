@@ -2,6 +2,7 @@ package org.riskmanager.controller;
 
 import org.apache.log4j.Logger;
 import org.riskmanager.converters.OrganisationPropertyEditor;
+import org.riskmanager.converters.PersonPasswordPropertyEditor;
 import org.riskmanager.domain.Organisation;
 import org.riskmanager.domain.Person;
 import org.riskmanager.service.OrganisationService;
@@ -163,6 +164,12 @@ public class PersonEditorController {
     @InitBinder
     public void initOrganisationPropertyEditorBinder(WebDataBinder webDataBinder){
         webDataBinder.registerCustomEditor(Organisation.class,new OrganisationPropertyEditor(this.organisationService));
+
+    }
+
+    @InitBinder
+    public void initPersonPasswordPropertyEditorBinder(WebDataBinder webDataBinder){
+        webDataBinder.registerCustomEditor(String.class, "passwordHash", new PersonPasswordPropertyEditor());
     }
 
 

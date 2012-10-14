@@ -39,7 +39,44 @@ public class Person implements Serializable {
     @ManyToOne(targetEntity = Organisation.class)
     private Organisation organisation;
 
+
+//TODO !!!!    @UniqueConstraint()
+    @Column(name = "LOGIN")
+    private String login;
+
+    @Column(name = "PASSWORD_HASH")
+    private String passwordHash;
+
+    @Column(name = "ACCESS_LEVEL")
+    private Integer accessLevel;
+
+
     public Person() {
+    }
+
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public Integer getAccessLevel() {
+        return accessLevel;
+    }
+
+    public void setAccessLevel(Integer accessLevel) {
+        this.accessLevel = accessLevel;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passHash) {
+        this.passwordHash = passHash;
     }
 
     public Integer getId() {

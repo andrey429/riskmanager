@@ -64,6 +64,33 @@
             <td><form:input path="jobPosition"/></td>
         </tr>
 
+        <tr>
+            <td>
+                <spring2:message code="label.loginUsername"/>
+                <form:input path="login"/>
+            </td>
+            <td>
+                <spring2:message code="label.loginPassword"/>
+                <form:password path="passwordHash"/>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <spring2:message code="label.accessRights"/>
+                <form:select path="accessLevel">
+                    <form:option value="1">
+                        <spring2:message code="label.accessRightsAdmin"/>
+                    </form:option>
+                    <form:option value="2">
+                        <spring2:message code="label.accessRightsUser"/>
+                    </form:option>
+
+                </form:select>
+
+
+            </td>
+        </tr>
 
 
     </table>
@@ -75,6 +102,10 @@
 <c:url var="mainUrl" value="/riskmanager/ "/>
 <p>
     <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
+</p>
+<p>
+    <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
+    <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
 </p>
 
 </body>

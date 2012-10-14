@@ -45,5 +45,10 @@
     <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
 </p>
 
+<p>
+    <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
+    <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
+</p>
+
 </body>
 </html>

@@ -4,9 +4,12 @@
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 
 
+<!--security-->
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,29 +19,34 @@
 <body>
 <h1><spring2:message code="label.appName"/></h1>
 
-<c:url var="assetsUrl" value="/riskmanager/assets/" />
-<c:url var="personsUrl" value="/riskmanager/persons/" />
-<c:url var="organisationsUrl" value="/riskmanager/organisations/" />
+<c:url var="assetsUrl" value="/riskmanager/assets/"/>
+<c:url var="personsUrl" value="/riskmanager/persons/"/>
+<c:url var="organisationsUrl" value="/riskmanager/organisations/"/>
 
 
+<h2><spring2:message code="label.appRiskEvaluationScope"/></h2>
+<table style="border: 1px solid; width: 500px; text-align:center">
+    <thead style="background:#fcf">
+    <tr>
 
-        <h2><spring2:message code="label.appRiskEvaluationScope"/></h2>
-        <table style="border: 1px solid; width: 500px; text-align:center">
-            <thead style="background:#fcf">
-            <tr>
-
-                <th><a href="${assetsUrl}"><spring2:message code="label.appAssetsTabLabel"/> </a></th>
-                <th><a href="${personsUrl}"><spring2:message code="label.appPersonsTabLabel"/></a></th>
-                <th><a href="${organisationsUrl}"><spring2:message code="label.appOrganisationsTabLabel"/></a></th>
-
-            </tr>
-            </thead>
-
-        </table>
+        <th><a href="${assetsUrl}"><spring2:message code="label.appAssetsTabLabel"/> </a></th>
 
 
+        <!--only admins can add persons or organisations-->
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <th><a href="${personsUrl}"><spring2:message code="label.appPersonsTabLabel"/></a></th>
+            <th><a href="${organisationsUrl}"><spring2:message code="label.appOrganisationsTabLabel"/></a></th>
 
+        </sec:authorize>
 
+    </tr>
+    </thead>
+
+</table>
+<p>
+    <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
+    <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
+</p>
 
 
 </body>
