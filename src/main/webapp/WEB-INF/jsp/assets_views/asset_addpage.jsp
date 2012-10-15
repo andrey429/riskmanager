@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -76,11 +76,20 @@
             </td>
 
             <td><form:select path="personOwner">
-                <spring2:message code="label.optionMenuValueNotSelected" var="optionMenuValueNotSelected"/>
-                <form:option value="${null}" label="${optionMenuValueNotSelected}"/>
-                <c:forEach items="${existingPersons}" var="existingPerson">
-                    <form:option value="${existingPerson.id}" label="${existingPerson}"/>
-                </c:forEach>
+
+                    <sec:authorize access="hasRole('ROLE_ADMIN')" >
+                        <c:set var="isAdminUser" value="${true}"/>
+                        <spring2:message code="label.optionMenuValueNotSelected" var="optionMenuValueNotSelected"/>
+                        <form:option value="${loggedInAuthority.id}" label="${loggedInAuthority}"/>
+                        <c:forEach items="${existingPersons}" var="existingPerson">
+                            <form:option value="${existingPerson.id}" label="${existingPerson}"/>
+                        </c:forEach>
+
+                    </sec:authorize>
+                        <c:if test="${not isAdminUser}">
+                        <form:option value="${loggedInAuthority.id}" label="${loggedInAuthority}"/>
+                        </c:if>
+
             </form:select>
             </td>
 

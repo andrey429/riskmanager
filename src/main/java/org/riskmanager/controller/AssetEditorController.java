@@ -6,6 +6,8 @@ import org.riskmanager.domain.Asset;
 import org.riskmanager.domain.Person;
 import org.riskmanager.service.AssetService;
 import org.riskmanager.service.PersonService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -111,6 +113,12 @@ public class AssetEditorController {
     }
 
 
+    @ModelAttribute("loggedInAuthority")
+    public Person getLoggedInAuthority(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String authorityLogin = auth.getName();
+        return personService.getPersonByLogin(authorityLogin);
+    }
 
 
 

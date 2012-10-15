@@ -1,7 +1,15 @@
 package org.riskmanager.controller;
 
+import org.riskmanager.domain.Person;
+import org.riskmanager.service.PersonService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.annotation.Resource;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,11 +24,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class MainController {
 
-    @RequestMapping(value = "/")
+    @Resource
+    private PersonService service;
+
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showMainPage(){
+
         return "main_views/main_view";
     }
 
+    @ModelAttribute("loggedInUsername")
+    public String getLoggedInUsername(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return  auth.getName();
+    }
 
+    @ModelAttribute("loggedInFullName")
+    public String getLoggedInFullName(){
+        Person loggedInUser =  service.getPersonByLogin(getLoggedInUsername());
+        return loggedInUser.getLastName() +" "+ loggedInUser.getFirstName();
+    }
 
 }

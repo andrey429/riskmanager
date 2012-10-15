@@ -43,6 +43,10 @@
     </thead>
 
 </table>
+
+<p>
+    <spring2:message code="label.youHaveSignedInAsMessage"/> <b>${loggedInUsername}</b> ( ${loggedInFullName} )
+</p>
 <p>
     <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
     <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>

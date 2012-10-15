@@ -41,7 +41,8 @@ public class Person implements Serializable {
 
 
 //TODO !!!!    @UniqueConstraint()
-    @Column(name = "LOGIN")
+
+    @Column(name = "LOGIN", unique = true)
     private String login;
 
     @Column(name = "PASSWORD_HASH")

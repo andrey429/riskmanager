@@ -59,16 +59,6 @@ public class Asset implements Serializable {
     private String assetLocation;
 
 
-
-/////////////////////////////////TODO
-    //////@OneToMany
-    ////Person personOwner;
-//////////////////////////////////////
-
-
-    //todo add owner(one asset to many owners), organisation(one asset to many orgs)
-
-
     public Asset() {
     }
 

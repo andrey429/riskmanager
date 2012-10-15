@@ -11,7 +11,9 @@
     <security:http auto-config="true" use-expressions="true" access-denied-page="/riskmanager/auth/denied">
 
         <security:intercept-url pattern="/riskmanager/auth/login" access="permitAll"/>
-        <!--<security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/>-->
+        <security:intercept-url pattern="/riskmanager/persons/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/riskmanager/organisations/**" access="hasRole('ROLE_ADMIN')"/>
+
         <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 
         <security:form-login

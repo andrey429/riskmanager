@@ -30,6 +30,8 @@ public class AuthController {
         else {
             modelMap.put("error", "");
         }
+
+
         return "login";
     }
 
