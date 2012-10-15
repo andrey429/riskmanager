@@ -4,9 +4,8 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,13 +14,13 @@
 </head>
 <body>
 
-<h1><spring2:message code="label.asset"/> </h1>
+<h1><spring2:message code="label.asset"/></h1>
 
-<c:url var="saveUrl" value="/riskmanager/assets/edit?id=${assetAttribute.id}" />
+<c:url var="saveUrl" value="/riskmanager/assets/edit?id=${assetAttribute.id}"/>
 <form:form modelAttribute="assetAttribute" method="POST" action="${saveUrl}">
     <table>
         <tr>
-            <td>ID: <c:out value="${assetAttribute.id}"/> </td>
+            <td>ID: <c:out value="${assetAttribute.id}"/></td>
 
         </tr>
 
@@ -34,7 +33,7 @@
         </tr>
 
         <tr>
-            <td><spring2:message code="label.assetDescription"/> </td>
+            <td><spring2:message code="label.assetDescription"/></td>
             <td><form:input path="description"/></td>
         </tr>
 
@@ -59,9 +58,6 @@
         </tr>
 
 
-
-
-
         <tr>
             <td><spring2:message code="label.assetBusinessProcessType"/></td>
             <td>
@@ -82,21 +78,26 @@
 
             </td>
 
-            <td><form:select path="personOwner">
+            <td>
+                <form:select path="personOwner">
 
-                <sec:authorize access="hasRole('ROLE_ADMIN')" >
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <c:set var="isAdminUser" value="${true}"/>
+
                     <spring2:message code="label.optionMenuValueNotSelected" var="optionMenuValueNotSelected"/>
                     <form:option value="${loggedInAuthority.id}" label="${loggedInAuthority}"/>
-                    <c:forEach items="${existingPersons}" var="existingPerson">
-                        <form:option value="${existingPerson.id}" label="${existingPerson}"/>
-                    </c:forEach>
+                <c:forEach items="${existingPersons}" var="existingPerson">
+                    <form:option value="${existingPerson.id}" label="${existingPerson}"/>
+
+                </c:forEach>
 
                 </sec:authorize>
-                <c:if test="${not isAdminUser}">
-                    <form:option value="${loggedInAuthority.id}" label="${loggedInAuthority}"/>
-                </c:if>
 
+                <sec:authorize access="!hasRole('ROLE_ADMIN')">
+
+                    <form:option value="${loggedInAuthority.id}" label="${loggedInAuthority}"/>
+
+                </sec:authorize>
                 </form:select>
 
         </tr>
@@ -117,6 +118,7 @@
 <p>
     <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
 </p>
+
 <p>
     <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
     <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>

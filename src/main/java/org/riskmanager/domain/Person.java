@@ -137,8 +137,13 @@ public class Person implements Serializable {
         this.jobPosition = jobPosition;
     }
 
+
+    public boolean isAdmin(){
+        return accessLevel == 1;
+    }
+
     @Override
     public String toString() {
-        return lastName + " " + firstName + ": " + jobPosition +" ("+department+")";
+        return lastName + " " + firstName;
     }
 }

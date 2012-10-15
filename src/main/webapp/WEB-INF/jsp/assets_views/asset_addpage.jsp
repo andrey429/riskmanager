@@ -75,20 +75,26 @@
 
             </td>
 
-            <td><form:select path="personOwner">
+            <td>
+                <form:select path="personOwner">
 
                     <sec:authorize access="hasRole('ROLE_ADMIN')" >
                         <c:set var="isAdminUser" value="${true}"/>
+
                         <spring2:message code="label.optionMenuValueNotSelected" var="optionMenuValueNotSelected"/>
-                        <form:option value="${loggedInAuthority.id}" label="${loggedInAuthority}"/>
+                        <form:option value="${loggedInAuthority.id}" label="${loggedInAuthority}" />
                         <c:forEach items="${existingPersons}" var="existingPerson">
                             <form:option value="${existingPerson.id}" label="${existingPerson}"/>
+
                         </c:forEach>
 
                     </sec:authorize>
-                        <c:if test="${not isAdminUser}">
+
+                    <sec:authorize access="!hasRole('ROLE_ADMIN')">
+
                         <form:option value="${loggedInAuthority.id}" label="${loggedInAuthority}"/>
-                        </c:if>
+
+                    </sec:authorize>
 
             </form:select>
             </td>

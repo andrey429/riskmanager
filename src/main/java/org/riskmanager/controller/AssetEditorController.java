@@ -38,10 +38,19 @@ public class AssetEditorController {
 
 
     @RequestMapping("/")
-    public String  getAssets(Model model){
+    public String getAssets(Model model) {
         logger.debug("Received request to list assets");
 
-        List<Asset> assets = assetService.getAll();
+        Person currentUser = getLoggedInAuthority();
+
+        List<Asset> assets;
+
+        if (currentUser.isAdmin()) {
+            assets = assetService.getAll();
+        } else {
+            assets = assetService.getAllByPersonOrganisation(currentUser);
+        }
+
 
         model.addAttribute("assets", assets);
 
@@ -50,7 +59,7 @@ public class AssetEditorController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String getAdd(Model model){
+    public String getAdd(Model model) {
         logger.debug("Received request to view add page");
 
         model.addAttribute("assetAttribute", new Asset());
@@ -61,8 +70,7 @@ public class AssetEditorController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("assetAttribute") Asset asset)
-    {
+    public String add(@ModelAttribute("assetAttribute") Asset asset) {
         logger.debug("Received request to add asset");
 
         assetService.add(asset);
@@ -71,7 +79,7 @@ public class AssetEditorController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String delete(@RequestParam(value = "id", required = true) Integer id, Model model){
+    public String delete(@RequestParam(value = "id", required = true) Integer id, Model model) {
         logger.debug("Received  request to delete organisation");
         assetService.delete(id);
         model.addAttribute("id", id);
@@ -80,7 +88,7 @@ public class AssetEditorController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String getEdit(@RequestParam(value = "id", required = true) Integer id, Model model){
+    public String getEdit(@RequestParam(value = "id", required = true) Integer id, Model model) {
         logger.debug("Received request to view edit page");
 
         model.addAttribute("assetAttribute", assetService.get(id));
@@ -91,7 +99,7 @@ public class AssetEditorController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@ModelAttribute(value = "assetAttribute") Asset asset,
-                       @RequestParam(value = "id", required =true) Integer id, Model model ){
+                       @RequestParam(value = "id", required = true) Integer id, Model model) {
         logger.debug("Received request to update asset");
 
         asset.setId(id);
@@ -102,24 +110,24 @@ public class AssetEditorController {
     }
 
     @ModelAttribute("existingPersons")
-    public List<Person> getExistingPersons(){
+    public List<Person> getExistingPersons() {
         return personService.getAll();
 
     }
 
     @InitBinder
-    public void initPersonPropertyEditorBinder(WebDataBinder webDataBinder){
+    public void initPersonPropertyEditorBinder(WebDataBinder webDataBinder) {
         webDataBinder.registerCustomEditor(Person.class, new PersonPropertyEditor(this.personService));
     }
 
 
     @ModelAttribute("loggedInAuthority")
-    public Person getLoggedInAuthority(){
+    public Person getLoggedInAuthority() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         String authorityLogin = auth.getName();
         return personService.getPersonByLogin(authorityLogin);
     }
-
 
 
 }

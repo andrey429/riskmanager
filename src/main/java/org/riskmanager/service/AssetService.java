@@ -5,6 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.riskmanager.domain.Asset;
+import org.riskmanager.domain.Person;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,40 +22,52 @@ import java.util.List;
 @Service("assetService")
 @Transactional
 public class AssetService {
-    
+
     Logger logger = Logger.getLogger("service");
-    
+
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
-    
-    public List<Asset> getAll(){
+
+
+    public List<Asset> getAll() {
         logger.debug("request to list all assets");
 
         Session session = sessionFactory.getCurrentSession();
 
         Query query = session.createQuery("FROM Asset");
-        
+
         return query.list();
-        
+
     }
-    
-    public Asset get(Integer id){
-        logger.debug("request to get asset id: "+id);
+
+    public List<Asset> getAllByPersonOrganisation(Person loggedInPerson) {
+        logger.debug("listing all assets of user's organisation");
 
         Session session = sessionFactory.getCurrentSession();
-        Asset asset = (Asset)  session.get(Asset.class, id);
-        
-        return asset; 
+
+        Query query = session.createQuery("FROM Asset a where a.personOwner.organisation.id = "
+                + loggedInPerson.getOrganisation().getId());
+
+        return query.list();
     }
-    
-    public void add(Asset asset){
+
+    public Asset get(Integer id) {
+        logger.debug("request to get asset id: " + id);
+
+        Session session = sessionFactory.getCurrentSession();
+        Asset asset = (Asset) session.get(Asset.class, id);
+
+        return asset;
+    }
+
+    public void add(Asset asset) {
 
         logger.debug("request to add asset ");
 
         Session session = sessionFactory.getCurrentSession();
-        
+
         session.save(asset);
-        
+
     }
 
 
@@ -101,5 +114,5 @@ public class AssetService {
         // Save updates
         session.save(existingAsset);
     }
-    
+
 }
