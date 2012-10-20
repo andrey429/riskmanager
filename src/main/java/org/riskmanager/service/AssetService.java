@@ -115,4 +115,12 @@ public class AssetService {
         session.save(existingAsset);
     }
 
+
+    public List<Asset> executeCustomQuery(String customQueryString) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Query query = session.createQuery(customQueryString);
+        return query.list();
+    }
+
 }

@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("/organisations")
 public class OrganisationEditorController {
 
-    protected static Logger logger = Logger.getLogger("service");
+    protected static Logger logger = Logger.getLogger("controller");
 
     @Resource(name = "organisationService")
     private OrganisationService organisationService;

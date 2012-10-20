@@ -28,7 +28,7 @@ import java.util.List;
 @RequestMapping("/assets")
 public class AssetEditorController {
 
-    protected static Logger logger = Logger.getLogger("service");
+    protected static Logger logger = Logger.getLogger("controller");
 
     @Resource(name = "assetService")
     private AssetService assetService;
@@ -108,6 +108,11 @@ public class AssetEditorController {
         return "redirect:/riskmanager/assets/";
 
     }
+
+
+
+
+
 
     @ModelAttribute("existingPersons")
     public List<Person> getExistingPersons() {
