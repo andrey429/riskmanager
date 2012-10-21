@@ -119,10 +119,6 @@ public class AssetQueryController {
 
         this.queriedAssetsList = queriedAssetsList;
 
-        RiskEvaluationReportBuilder f = new RiskEvaluationReportBuilder();
-        f.exportAssetsToDocxFile(queriedAssetsList, getLoggedInAuthority(), "D:/filema.docx");
-
-
         model.addAttribute("queriedAssetsList", queriedAssetsList);
 
         return "redirect:/riskmanager/query";

@@ -87,13 +87,20 @@
             <version>3.0.0.RELEASE</version>
         </dependency>
 
-        <!--<dependency>
+
+        <!---dannnnnnger-->
+
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>-->
+            <scope>provided</scope>
+
+        </dependency>
+
+
+        <!---/-dannnnnnger-->
+
         <!--hibernate and persistence specific-->
         <dependency>
             <groupId>org.hibernate</groupId>
