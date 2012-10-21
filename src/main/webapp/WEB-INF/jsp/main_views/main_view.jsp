@@ -23,7 +23,7 @@
 <c:url var="personsUrl" value="/riskmanager/persons/"/>
 <c:url var="organisationsUrl" value="/riskmanager/organisations/"/>
 <c:url var="queryURL" value="/riskmanager/query"/>
-
+<c:url var="downloadReportURL" value="/riskmanager/report/"/>
 
 <h2><spring2:message code="label.appRiskEvaluationScope"/></h2>
 <table style="border: 1px solid; width: 500px; text-align:center">
@@ -38,6 +38,7 @@
             <th><a href="${personsUrl}"><spring2:message code="label.appPersonsTabLabel"/></a></th>
             <th><a href="${organisationsUrl}"><spring2:message code="label.appOrganisationsTabLabel"/></a></th>
             <th><a href="${queryURL}"><spring2:message code="label.queryPageTitle"/> </a></th>
+            <th><a href ="${downloadReportURL}"><spring2:message code="label.appDownloadReport"/> </a></th>
         </sec:authorize>
 
     </tr>

@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <title><spring:message code="label.loginPageTitle" /></title>
+    <title><spring2:message code="label.loginPageTitle" /></title>
 </head>
 <body>
     <h1>

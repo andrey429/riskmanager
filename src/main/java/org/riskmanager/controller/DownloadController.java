@@ -31,7 +31,7 @@ public class DownloadController {
     AssetService assetService;
 
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView getFile(
 
             HttpServletResponse response) {
