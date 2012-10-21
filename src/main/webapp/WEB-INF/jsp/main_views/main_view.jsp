@@ -22,6 +22,7 @@
 <c:url var="assetsUrl" value="/riskmanager/assets/"/>
 <c:url var="personsUrl" value="/riskmanager/persons/"/>
 <c:url var="organisationsUrl" value="/riskmanager/organisations/"/>
+<c:url var="queryURL" value="/riskmanager/query"/>
 
 
 <h2><spring2:message code="label.appRiskEvaluationScope"/></h2>
@@ -36,7 +37,7 @@
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <th><a href="${personsUrl}"><spring2:message code="label.appPersonsTabLabel"/></a></th>
             <th><a href="${organisationsUrl}"><spring2:message code="label.appOrganisationsTabLabel"/></a></th>
-
+            <th><a href="${queryURL}"><spring2:message code="label.queryPageTitle"/> </a></th>
         </sec:authorize>
 
     </tr>

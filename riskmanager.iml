@@ -34,7 +34,6 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
-    <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" isTestSource="false" />
@@ -86,6 +85,26 @@
     <orderEntry type="library" name="Maven: org.hibernate:ejb3-persistence:1.0.2.GA" level="project" />
     <orderEntry type="library" name="Maven: jboss:javassist:3.7.ga" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.14" level="project" />
+    <orderEntry type="library" name="Maven: org.docx4j:docx4j:2.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.docx4j:xhtmlrenderer:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: com.lowagie:itext:2.1.7" level="project" />
+    <orderEntry type="library" name="Maven: org.plutext:jaxb-svg11:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.plutext:jaxb-xslfo:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.plutext:jaxb-xmldsig-core:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:xmlgraphics-commons:1.4" level="project" />
+    <orderEntry type="library" name="Maven: commons-io:commons-io:1.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.xmlgraphics:fop:1.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.avalon.framework:avalon-framework-api:4.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.avalon.framework:avalon-framework-impl:4.3.1" level="project" />
+    <orderEntry type="library" name="Maven: xalan:xalan:2.7.1" level="project" />
+    <orderEntry type="library" name="Maven: xalan:serializer:2.7.1" level="project" />
+    <orderEntry type="library" name="Maven: net.arnx:wmf2svg:0.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi-scratchpad:3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi:3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:antlr-runtime:3.3" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:stringtemplate:3.2.1" level="project" />
   </component>
 </module>
 

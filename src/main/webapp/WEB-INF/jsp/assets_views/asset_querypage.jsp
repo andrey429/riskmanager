@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<h1><spring2:message code="label.assetListingPageTitle"/></h1>
+<h1><spring2:message code="label.queryFilter"/></h1>
 
 
 <spring2:message code="label.optionMenuValueNotSelected" var="optionMenuValueNotSelected"/>
@@ -24,33 +24,53 @@
 <spring2:message code="label.integrity" var="integrityLabel"/>
 <spring2:message code="label.availability" var="availabilityLabel"/>
 <spring2:message code="label.assetRequirements" var="assetRequirementsLabel"/>
-
-<%--<c:url var="makeQueryURL">
-    /riskmanager/assets/query?organisation=${queryAttribute.organisation}&
-    requiresConfidentiality=${queryAttribute.requiresConfidentiality}&
-    requiresIntegrity=${queryAttribute.requiresIntegrity}&
-    requiresAvailability=${queryAttribute.requiresAvailability}&
-    businessProcessType=${queryAttribute.businessProcessType}&
-    person=${queryAttribute.person}
-</c:url>--%>
+<spring2:message code="label.queryFilter" var="queryFilter"/>
 
 <c:url var="processRequest" value="/riskmanager/query"/>
+<c:url var="resetURL" value="/riskmanager/query/reset"/>
 <form:form method="post" action="${processRequest}" modelAttribute="queryAttribute">
     <table>
         <tr>
+            <td><spring2:message code="label.queryOrganisationFilter"/></td>
             <td>
+
                 <form:select path="organisation">
-                    <form:option value="${null}" label="${optionMenuValueNotSelected}"/>
-                    <form:options items="${existingOrganisations}" var="existingOrganisation"/>
+                    <form:option value="${assetQuery.organisation.id}">
+                        <c:choose>
+                            <c:when test="${assetQuery.organisation != null}">
+                                ${assetQuery.organisation.organisationName}
+                            </c:when>
+                            <c:otherwise>
+                                <spring2:message code="label.optionMenuValueNotSelected"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </form:option>
+                    <c:forEach items="${existingOrganisations}" var="existingOrganisation">
+                        <form:option value="${existingOrganisation.id}"
+                                     label="${existingOrganisation.organisationName}"/>
+                    </c:forEach>
                 </form:select>
             </td>
         </tr>
         <tr>
             <td>
+                <spring2:message code="label.queryPersonFilter"/>
+            </td>
+            <td>
                 <form:select path="person">
-                    <form:option value="${null}" label="${optionMenuValueNotSelected}"/>
+                    <form:option value="${assetQuery.person.id}">
+                        <c:choose>
+                            <c:when test="${assetQuery.person != null}">
+                                ${assetQuery.person}
+                            </c:when>
+                            <c:otherwise>
+                                <spring2:message code="label.optionMenuValueNotSelected"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </form:option>
                     <c:forEach items="${existingPersons}" var="existingPerson">
-                        <form:option value="${existingPerson.id}" label="${existingPerson}"/>
+                        <form:option value="${existingPerson.id}"
+                                     label="${existingPerson}"/>
                     </c:forEach>
                 </form:select>
             </td>
@@ -58,6 +78,9 @@
         <tr>
             <td>
 
+                <spring2:message code="label.queryBusinessProcessFilter"/>
+            </td>
+            <td>
                 <form:select path="businessProcessType">
                     <form:option value="${null}" label="${optionMenuValueNotSelected}"/>
                     <form:option value="${1}" label="${paymentProcessLabel}"/>
@@ -67,25 +90,89 @@
         </tr>
         <tr>
             <td>
+
                 <form:checkbox path="requiresConfidentiality" label="${confidentialityLabel}"/>
             </td>
             <td>
-        </tr>
-        <tr>
-            <td>
+
                 <form:checkbox path="requiresIntegrity" label="${integrityLabel}"/>
             </td>
-
-        </tr>
-        <tr>
             <td>
+
                 <form:checkbox path="requiresAvailability" label="${availabilityLabel}"/>
             </td>
         </tr>
+        <tr>
+
+
+        </tr>
+        <tr>
+
+        </tr>
     </table>
-    <input type="submit"/>
+    <input type="submit" value="${queryFilter}"/>
+    <a href="${resetURL}"><spring2:message code="label.queryReset"/> </a>
+
 
 </form:form>
+
+<%--query results--%>
+
+
+<h2><spring2:message code="label.queryResults"/></h2>
+
+<h3></h3>
+<table style="border: 1px solid; width: 500px; text-align:center" >
+    <thead style="background:#fcf">
+    <tr>
+        <th><spring2:message code="label.assetName"/></th>
+        <th><spring2:message code="label.assetDescription"/></th>
+        <th><spring2:message code="label.assetOwner"/></th>
+        <th colspan="3"><spring2:message code="label.assetRequirements"/></th>
+
+        <th><spring2:message code="label.assetBusinessProcessType"/></th>
+        <th><spring2:message code="label.assetLocation"/></th>
+
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${queriedAssetsList}" var="asset">
+
+    <tr>
+        <td><c:out value="${asset.name}"/></td>
+        <td><c:out value="${asset.description}"/></td>
+
+        <td><c:out value="${asset.personOwner}"/></td>
+
+        <td><c:if test="${asset.requiresConfidentiality}">C</c:if></td>
+        <td><c:if test="${asset.requiresIntegrity}">I</c:if></td>
+        <td><c:if test="${asset.requiresAvailability}">A</c:if></td>
+
+
+        <td>
+            <c:choose>
+                <c:when test="${asset.businessProcessType == 1}">
+                    <spring2:message code="label.assetPaymentBusinessProcess"/>
+                </c:when>
+                <c:when test="${asset.businessProcessType == 2}">
+                    <spring2:message code="label.assetInformationBusinessProcess"/>
+                </c:when>
+            </c:choose>
+        </td>
+
+        <td>
+            <c:out value="${asset.assetLocation}"/>
+        </td>
+    </tr>
+
+
+
+        </c:forEach>
+    </tbody>
+</table>
+
 
 <c:url var="mainUrl" value="/riskmanager/ "/>
 <p>

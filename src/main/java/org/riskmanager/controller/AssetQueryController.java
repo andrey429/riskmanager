@@ -39,6 +39,9 @@ public class AssetQueryController {
     private OrganisationService organisationService;
     @Resource(name = "assetService")
     private AssetService assetService;
+    private List<Asset> queriedAssetsList;
+
+    private AssetQuery assetQuery = new AssetQuery();
 
     @RequestMapping(value = "/query", method = RequestMethod.GET)
     public String getQuery(Model model) {
@@ -46,13 +49,23 @@ public class AssetQueryController {
 
         //
         //
-        model.addAttribute("queryAttribute", new AssetQuery());
+
+        model.addAttribute("queryAttribute", assetQuery != null ? assetQuery : new AssetQuery());//todo change to new AQ()
         model.addAttribute("existingPersons", getExistingPersons());
         model.addAttribute("existingOrganisations", getExistingOrganisations());
+        model.addAttribute("queriedAssetsList", queriedAssetsList);
 
         return "assets_views/asset_querypage";
     }
 
+    @RequestMapping(value = "/query/reset", method = RequestMethod.GET)
+    public String resetQuery(Model model) {
+        assetQuery = null;
+        queriedAssetsList = null;
+
+        return "redirect:/riskmanager/query";
+
+    }
 
     @RequestMapping(value = "/query", method = RequestMethod.POST)
     public String postQueryResults(@ModelAttribute("queryAttribute") AssetQuery assetQuery, Model model) {
@@ -60,28 +73,11 @@ public class AssetQueryController {
         logger.debug("ASSET PERSON: " + assetQuery.getPerson());
         logger.debug("ASSET fds: " + assetQuery.getRequiresAvailability());
         logger.debug("query object" + assetQuery);
-        /*StringBuffer queryURLString = new StringBuffer("redirect:/riskmanager/query/results?");
 
-        queryURLString.append("organisation_id=" +
-                (assetQuery.getOrganisation() == null ? "0" :
-                        assetQuery.getOrganisation().getId())
-        );
-
-        queryURLString.append("&person_id=" +
-                (assetQuery.getPerson() == null ? "0" :
-                        assetQuery.getPerson().getId())
-        );
-        queryURLString.append("&processType=" +
-                (assetQuery.getBusinessProcessType() == null ? "0" :
-                        assetQuery.getBusinessProcessType())
-        );
+        this.assetQuery = assetQuery;
 
 
-        queryURLString.append("&confidentiality=" + (assetQuery.getRequiresConfidentiality() ? "1" : "0"));
-        queryURLString.append("&integrity=" + (assetQuery.getRequiresIntegrity() ? "1" : "0"));
-        queryURLString.append("&availability=" + (assetQuery.getRequiresAvailability() ? "1" : "0"));
-        logger.debug("query:::::" + queryURLString);
-*/
+
         StringBuffer customQuery = new StringBuffer("FROM Asset");
         ArrayList<String> conditions = new ArrayList<String>();//gather conditions together
 
@@ -106,11 +102,11 @@ public class AssetQueryController {
             conditions.add("a.requiresAvailability = 1");
         }
 
-        if(conditions.size() != 0){
+        if (conditions.size() != 0) {
             customQuery.append(" a WHERE ");
-            for(int i = 0; i < conditions.size(); i++){
+            for (int i = 0; i < conditions.size(); i++) {
                 customQuery.append(conditions.get(i));
-                if(i != conditions.size() - 1){
+                if (i != conditions.size() - 1) {
                     customQuery.append(" AND ");
                 }
             }
@@ -121,28 +117,16 @@ public class AssetQueryController {
 
         List<Asset> queriedAssetsList = assetService.executeCustomQuery(customQuery.toString());
 
+        this.queriedAssetsList = queriedAssetsList;
+
+
         model.addAttribute("queriedAssetsList", queriedAssetsList);
 
-        return "assets_views/asset_show_query_result_page";
+        return "redirect:/riskmanager/query";
 
     }
 
 
-    /*@RequestMapping(value = "/query/results", method = RequestMethod.GET)
-    public String showQueryResults(@RequestParam(value = "organisation_id") Integer organisation_id,
-                                   @RequestParam(value = "person_id") Integer person_id,
-                                   @RequestParam(value = "processType") Integer processType,
-                                   @RequestParam(value = "confidentiality") Integer confidentiality,
-                                   @RequestParam(value = "integrity") Integer integrity,
-                                   @RequestParam(value = "availability") Integer availability) {
-
-        String custom
-        //List<Asset> queryResults = assetService.executeCustomQuery()
-
-
-        return "assets_views/asset_show_query_result_page";
-
-    }*/
 
 
     @ModelAttribute("existingPersons")
@@ -155,6 +139,15 @@ public class AssetQueryController {
     public List<Organisation> getExistingOrganisations() {
         return organisationService.getAll();
 
+    }
+
+    @ModelAttribute("queriedAssetsList")
+    public List<Asset> getQueriedAssetsList() {
+        return queriedAssetsList;
+    }
+
+    @ModelAttribute AssetQuery getAssetQuery(){
+        return assetQuery;
     }
 
     @InitBinder

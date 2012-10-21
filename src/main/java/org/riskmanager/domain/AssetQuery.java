@@ -17,6 +17,7 @@ public class AssetQuery {
     private boolean requiresAvailability;
 
     public AssetQuery() {
+
     }
 
     public Organisation getOrganisation() {
@@ -66,4 +67,7 @@ public class AssetQuery {
     public void setRequiresAvailability(boolean requiresAvailability) {
         this.requiresAvailability = requiresAvailability;
     }
+
+
+
 }
