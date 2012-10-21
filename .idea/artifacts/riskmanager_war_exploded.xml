@@ -30,6 +30,7 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.0.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:3.0.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:3.0.0.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:3.3.2.GA" />
           <element id="library" level="project" name="Maven: antlr:antlr:2.7.6" />
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />

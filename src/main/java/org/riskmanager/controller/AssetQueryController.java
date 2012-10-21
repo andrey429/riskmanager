@@ -7,6 +7,7 @@ import org.riskmanager.domain.Asset;
 import org.riskmanager.domain.AssetQuery;
 import org.riskmanager.domain.Organisation;
 import org.riskmanager.domain.Person;
+import org.riskmanager.reports.RiskEvaluationReportBuilder;
 import org.riskmanager.service.AssetService;
 import org.riskmanager.service.OrganisationService;
 import org.riskmanager.service.PersonService;
@@ -77,7 +78,6 @@ public class AssetQueryController {
         this.assetQuery = assetQuery;
 
 
-
         StringBuffer customQuery = new StringBuffer("FROM Asset");
         ArrayList<String> conditions = new ArrayList<String>();//gather conditions together
 
@@ -119,14 +119,15 @@ public class AssetQueryController {
 
         this.queriedAssetsList = queriedAssetsList;
 
+        RiskEvaluationReportBuilder f = new RiskEvaluationReportBuilder();
+        f.exportAssetsToDocxFile(queriedAssetsList, getLoggedInAuthority(), "D:/filema.docx");
+
 
         model.addAttribute("queriedAssetsList", queriedAssetsList);
 
         return "redirect:/riskmanager/query";
 
     }
-
-
 
 
     @ModelAttribute("existingPersons")
@@ -146,7 +147,8 @@ public class AssetQueryController {
         return queriedAssetsList;
     }
 
-    @ModelAttribute AssetQuery getAssetQuery(){
+    @ModelAttribute
+    AssetQuery getAssetQuery() {
         return assetQuery;
     }
 
