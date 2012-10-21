@@ -12,21 +12,26 @@
     <title><spring2:message code="label.loginPageTitle" /></title>
 </head>
 <body>
+
+
     <h1>
         <spring2:message code="label.loginPageTitle"/>
     </h1>
+
 
     <div id="login-error">${error}</div>
     <form action="../../j_spring_security_check" method="post" >
 
         <p>
-            <label for="j_username"><spring2:message code="label.loginUsername"/> </label>
+            <label for="j_username">
+                <spring2:message code="label.loginUsername"/>
+            </label>
             <input id="j_username" name="j_username" type="text" />
         </p>
         <p>
             <label for="j_password"><spring2:message code="label.loginPassword"/></label>
             <input id="j_password" name="j_password" type="password" />
-        </p>
+          </p>
         <spring2:message code="label.loginSubmit" var="loginSubmit"/>
         <input  type="submit" value="${loginSubmit}"/>
 

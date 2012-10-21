@@ -7,7 +7,14 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>riskmanager Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+
+
+
     <dependencies>
+
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

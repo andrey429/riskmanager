@@ -20,8 +20,9 @@
             <a href="${addUrl}"><spring2:message code="label.addButton"/></a>
         </p>
         <table style="border: 1px solid; width: 500px; text-align:center">
-            <thead style="background:#fcf">
+            <thead style="background:#f1edff">
             <tr>
+                <th>№</th>
                 <th><spring2:message code="label.organisationName"/> </th>
                 <th><spring2:message code="label.organisationAddress"/></th>
 
@@ -33,6 +34,7 @@
                 <c:url var="editUrl" value="/riskmanager/organisations/edit?id=${organisation.id}" />
                 <c:url var="deleteUrl" value="/riskmanager/organisations/delete?id=${organisation.id}" /><!--main/persons-->
                 <tr>
+                    <td><c:out value="${organisation.id}"/></td>
                     <td><c:out value="${organisation.organisationName}" /></td>
                     <td><c:out value="${organisation.organisationAddress}" /></td>
 

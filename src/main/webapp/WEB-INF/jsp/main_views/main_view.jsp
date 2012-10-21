@@ -8,11 +8,20 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
+
+
+
+
+
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="label.appName"/></title>
 </head>
@@ -27,8 +36,9 @@
 
 <h2><spring2:message code="label.appRiskEvaluationScope"/></h2>
 <table style="border: 1px solid; width: 500px; text-align:center">
-    <thead style="background:#fcf">
+    <thead style="background:#f1edff">
     <tr>
+
 
         <th><a href="${assetsUrl}"><spring2:message code="label.appAssetsTabLabel"/> </a></th>
 

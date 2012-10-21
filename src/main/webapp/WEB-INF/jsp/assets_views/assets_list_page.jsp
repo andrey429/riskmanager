@@ -25,8 +25,9 @@
             <a href="${addUrl}"><spring2:message code="label.addButton"/></a>
         </p>
         <table style="border: 1px solid; width: 500px; text-align:center">
-            <thead style="background:#fcf">
+            <thead style="background:#f1edff">
             <tr>
+                <th>№</th>
                 <th><spring2:message code="label.assetName"/></th>
                 <th><spring2:message code="label.assetDescription"/></th>
                 <th><spring2:message code="label.assetOwner"/></th>
@@ -44,6 +45,7 @@
                 <c:url var="editUrl" value="/riskmanager/assets/edit?id=${asset.id}" />
                 <c:url var="deleteUrl" value="/riskmanager/assets/delete?id=${asset.id}" />
                 <tr>
+                    <td><c:out value="${asset.id}"/></td>
                     <td><c:out value="${asset.name}" /></td>
                     <td><c:out value="${asset.description}" /></td>
 
