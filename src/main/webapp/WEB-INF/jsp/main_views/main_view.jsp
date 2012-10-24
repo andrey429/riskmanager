@@ -27,12 +27,14 @@
     <title><spring2:message code="label.appName"/></title>
 </head>
 <body>
+<%--
 <div id="boundary"><div id="header">
 <h1><spring2:message code="label.appName"/></h1>
     <div id="intro">
         <h2><spring2:message code="label.appRiskEvaluationScope"/></h2>
         </div>
     </div></div>
+--%>
 
 
 <c:url var="assetsUrl" value="/riskmanager/assets/"/>
@@ -42,7 +44,10 @@
 <c:url var="downloadReportURL" value="/riskmanager/report/"/>
 
 <div id="dough">
+    <%--dummy--%>
 </div>
+
+
 <div id="content"><div id="itsthetable">
 <table style="border: 1px solid; width: 500px; text-align:center">
     <caption>
