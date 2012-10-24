@@ -112,30 +112,6 @@ public class Asset implements Serializable {
         this.requiresAvailability = requiresAvailability;
     }
 
-    /*public Double getDamageIfConfidentialityLost() {
-        return damageIfConfidentialityLost;
-    }
-
-    public void setDamageIfConfidentialityLost(Double damageIfConfidentialityLost) {
-        this.damageIfConfidentialityLost = damageIfConfidentialityLost;
-    }
-
-    public Double getDamageIfIntegrityLost() {
-        return damageIfIntegrityLost;
-    }
-
-    public void setDamageIfIntegrityLost(Double damageIfIntegrityLost) {
-        this.damageIfIntegrityLost = damageIfIntegrityLost;
-    }
-
-    public Double getDamageIfAvailabilityLost() {
-        return damageIfAvailabilityLost;
-    }
-
-    public void setDamageIfAvailabilityLost(Double damageIfAvailabilityLost) {
-        this.damageIfAvailabilityLost = damageIfAvailabilityLost;
-    }
-*/
     public Integer getBusinessProcessType() {
         return businessProcessType;
     }
