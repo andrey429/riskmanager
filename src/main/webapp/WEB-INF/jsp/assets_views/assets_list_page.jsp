@@ -13,11 +13,24 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="label.assetListingPageTitle"></spring2:message></title>
+    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $(".btn-slide").click(function(){
+                $("#panel").slideToggle("slow");
+                $(this).toggleClass("active"); return false;
+            });
+
+
+        });
+    </script>--%>
 </head>
 <body>
 
 
 <c:url var="addUrl" value="/riskmanager/assets/add"/>
+
 
 
 <div id="dough"></div>

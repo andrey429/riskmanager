@@ -1,24 +1,63 @@
-tbody /*tr:hover td, tr:hover td a, tr.odd:hover td, tr.odd:hover td a*/ {
-    background: #800000;
-    color: #ffffff;	 }
+body {
+    margin: 10px auto;
+    width: 570px;
+    font: 75%/120% Arial, Helvetica, sans-serif;
+}
+.accordion {
+    width: 480px;
+    border-bottom: solid 1px #c4c4c4;
+}
+.accordion h3 {
+    background: #e9e7e7 url(../images/arrow-square.gif) no-repeat right -51px;
+    padding: 7px 15px;
+    margin: 0;
+    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    border: solid 1px #c4c4c4;
+    border-bottom: none;
+    cursor: pointer;
+}
+.accordion h3:hover {
+    background-color: #e3e2e2;
+}
+.accordion h3.active {
+    background-position: right 5px;
+}
+.accordion p {
+    background: #f7f7f7;
+    margin: 0;
+    padding:  10px 15px 20px;
+    border-left: solid 1px #c4c4c4;
+    border-right: solid 1px #c4c4c4;
+}
 
-table caption {
-    font-size: 1.8em;
-    text-align: left;
-    text-indent: 100px;
-    background: url(../images/bg_caption.gif) left top;
-    height: 40px;
-    color: #FFFFFF;
-    border:1px solid #000000; }
 
-thead th {
-
-    background:#000;
-    height: 21px;
-    color: #FFFFFF;
-    font-size: 0.8em;
-    font-family: Arial;
-    font-weight: bold;
-    padding: 0px 7px;
-    margin: 20px 0px 0px;
-    text-align: left; }
+.accordion h2 {
+    background: #e3e2a0 url(../images/arrow-square.gif) no-repeat right -51px;
+    padding: 7px 15px;
+    margin: 0;
+    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    border: solid 1px #c4c4c4;
+    border-bottom: none;
+    cursor: pointer;
+}
+.accordion h2:hover {
+    background-color: #e3e2a0;
+}
+.accordion h2.active {
+    background-position: right 5px;
+}
+.accordion h1 {
+    background: #e3e2a0 url(../images/arrow-square.gif) no-repeat right -51px;
+    padding: 7px 15px;
+    margin: 0;
+    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    border: solid 1px #c4c4c4;
+    border-bottom: none;
+    cursor: pointer;
+}
+.accordion h1:hover {
+    background-color: #e3e2a0;
+}
+.accordion h1.active {
+    background-position: right 5px;
+}
