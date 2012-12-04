@@ -30,8 +30,6 @@ public class PersonCredentialsService implements UserDetailsService {
 
     protected static Logger logger = Logger.getLogger("service");
 
-
-
     @Resource
     private PersonService personService;
 
@@ -51,11 +49,9 @@ public class PersonCredentialsService implements UserDetailsService {
             // Or use JDBC to access your database
             // DbUser is our custom domain user. This is not the same as Spring's User
             Person person = personService.getPersonByLogin(login);
-
             // Populate the Spring User object with details from the person
             // Here we just pass the login, password, and access level
             // getAuthorities() will translate the access level to the correct role type
-
             user =  new User(
                     person.getLogin(),
                     person.getPasswordHash().toLowerCase(),
@@ -89,12 +85,10 @@ public class PersonCredentialsService implements UserDetailsService {
 
         // Create a list of grants for this user
         List<GrantedAuthority> authList = new ArrayList<GrantedAuthority>(2);
-
         // All users are granted with ROLE_USER access
         // Therefore this user gets a ROLE_USER by default
         logger.debug("Grant ROLE_USER to this user");
         authList.add(new GrantedAuthorityImpl("ROLE_USER"));
-
         // Check if this user has admin access
         // We interpret Integer(1) as an admin user
         if ( access.compareTo(1) == 0) {

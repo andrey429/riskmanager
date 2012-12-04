@@ -24,63 +24,47 @@ import java.util.List;
 public class AssetService {
 
     Logger logger = Logger.getLogger("service");
-
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
 
     public List<Asset> getAll() {
+
         logger.debug("request to list all assets");
-
         Session session = sessionFactory.getCurrentSession();
-
         Query query = session.createQuery("FROM Asset");
-
         return query.list();
-
     }
 
     public List<Asset> getAllByPersonOrganisation(Person loggedInPerson) {
+
         logger.debug("listing all assets of user's organisation");
-
         Session session = sessionFactory.getCurrentSession();
-
         Query query = session.createQuery("FROM Asset a where a.personOwner.organisation.id = "
                 + loggedInPerson.getOrganisation().getId());
-
         return query.list();
     }
 
     public Asset get(Integer id) {
-        logger.debug("request to get asset id: " + id);
 
+        logger.debug("request to get asset id: " + id);
         Session session = sessionFactory.getCurrentSession();
         Asset asset = (Asset) session.get(Asset.class, id);
-
         return asset;
     }
 
     public void add(Asset asset) {
 
         logger.debug("request to add asset ");
-
         Session session = sessionFactory.getCurrentSession();
-
         session.save(asset);
-
     }
 
 
     public void delete(Integer id) {
         logger.debug("Deleting existing asset");
-
-        // Retrieve session from Hibernate
         Session session = sessionFactory.getCurrentSession();
-
-        // Retrieve existing Asset first
         Asset asset = (Asset) session.get(Asset.class, id);
-
-        // Delete 
         session.delete(asset);
     }
 
@@ -89,17 +73,9 @@ public class AssetService {
      */
     public void edit(Asset asset) {
         logger.debug("Editing existing Asset");
-
-        // Retrieve session from Hibernate
         Session session = sessionFactory.getCurrentSession();
-
-        // Retrieve existing Asset via id
         Asset existingAsset = (Asset) session.get(Asset.class, asset.getId());
 
-        // Assign updated values to this Asset
-        /*existingAsset.setDamageIfAvailabilityLost(asset.getDamageIfAvailabilityLost());
-        existingAsset.setDamageIfConfidentialityLost(asset.getDamageIfConfidentialityLost());
-        existingAsset.setDamageIfIntegrityLost(asset.getDamageIfIntegrityLost());*/
         existingAsset.setDescription(asset.getDescription());
         existingAsset.setId(asset.getId());
         existingAsset.setName(asset.getName());
@@ -110,8 +86,6 @@ public class AssetService {
         existingAsset.setBusinessProcessType(asset.getBusinessProcessType());
         existingAsset.setPersonOwner(asset.getPersonOwner());
 
-
-        // Save updates
         session.save(existingAsset);
     }
 

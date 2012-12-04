@@ -31,13 +31,11 @@ public class PersonService {
 	 */
 	public List<Person> getAll() {
 		logger.debug("Retrieving all persons");
-		
+
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
-		
 		// Create a Hibernate query (HQL)
 		Query query = session.createQuery("FROM  Person");
-		
 		// Retrieve all
 		return  query.list();
 	}
@@ -46,13 +44,12 @@ public class PersonService {
 	 * Retrieves a single person
 	 */
 	public Person get( Integer id ) {
+
         logger.debug("Getting Person id: "+id.toString());
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
-		
 		// Retrieve existing person first
 		Person person = (Person) session.get(Person.class, id);
-		
 		return person;
 	}
 	/**
@@ -60,11 +57,10 @@ public class PersonService {
 	 */
 
 	public void add(Person person) {
-		logger.debug("Adding new person");
-		
+
+        logger.debug("Adding new person");
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
-		
 		// Save
 		session.save(person);
 	}
@@ -74,14 +70,12 @@ public class PersonService {
 	 * @param id the id of the existing person
 	 */
 	public void delete(Integer id) {
-		logger.debug("Deleting existing person");
-		
+
+        logger.debug("Deleting existing person");
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
-		
 		// Retrieve existing person first
 		Person person = (Person) session.get(Person.class, id);
-		
 		// Delete 
 		session.delete(person);
 	}
@@ -90,14 +84,12 @@ public class PersonService {
 	 * Edits an existing person
 	 */
 	public void edit(Person person) {
-		logger.debug("Editing existing person");
-		
+
+        logger.debug("Editing existing person");
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
-		
 		// Retrieve existing person via id
 		Person existingPerson = (Person) session.get(Person.class, person.getId());
-		
 		// Assign updated values to this person
 		existingPerson.setFirstName(person.getFirstName());
 		existingPerson.setLastName(person.getLastName());
@@ -114,13 +106,11 @@ public class PersonService {
 	}
 
     public Person getPersonByLogin(String login){
+
         logger.debug("getting user by login: "+ login);
-
         Session session = sessionFactory.getCurrentSession();
-
         Query query = session.createQuery("FROM Person p where p.login LIKE \'"+login+"\'");
         return (Person) query.uniqueResult();
-
     }
 
 }
