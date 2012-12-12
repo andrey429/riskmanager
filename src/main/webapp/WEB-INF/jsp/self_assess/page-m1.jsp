@@ -42,43 +42,28 @@
     </p>
 </div>
 
-<%--<c:url var="saveUrl" value="/riskmanager/persons/add"/>--%>
+<c:url var="saveUrl" value="/riskmanager/self-assessment/m1"/>
 <%--<form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">--%>
 <div class="accordion">
 
-    <h3><spring2:message code="self.mainPage.welcome"/></h3>
-
-    <p>
-        <spring2:message code="self.mainPage.help.welcome"/>
-    </p>
-
-    <h3><spring2:message code="self.mainPage.createNew"/>
-        <%--            <form:input path="lastName"/>--%>
-    </h3>
-
-    <p>
-        <spring2:message code="self.mainPage.help.createNew"/>
-    </p>
-
-
+    <form:form modelAttribute="m1ChapterModel" method="POST" action="${saveUrl}">
     <h3>
-        <spring2:message code="self.mainPage.editExisting"/>
-        <%--<td>
-       <form:input path="firstName"/></h3>--%>
+        <b>M1.1</b>
+        Определены ли в документах организации роли ее работников?
     </h3>
     <p>
-        <spring2:message code="self.mainPage.help.editExisting"/>
+
+        <form:select path="${}">
+            <form:option value="0"/>
+            <form:option value="0.25"/>
+            <form:option value="0.5"/>
+            <form:option value="0.75"/>
+            <form:option value="1"/>
+        </form:select>
+        <input type="submit">
     </p>
 
-
-
-
-    <%--<h3>
-       <spring2:message code="label.saveButton" var="saveButton"/>
-       &lt;%&ndash;<input type="submit" value="${saveButton}">&ndash;%&gt;
-   </h3>
-
-   <p><spring2:message code="help.saveDescription"/></p>--%>
+    </form:form>
 </div>
 <%--</form:form>--%>
 
