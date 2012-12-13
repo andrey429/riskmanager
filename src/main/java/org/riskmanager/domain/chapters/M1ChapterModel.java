@@ -11,7 +11,16 @@ import java.util.HashMap;
  */
 public class M1ChapterModel {
 
-    private HashMap<Integer, Double> map = new HashMap<Integer, Double>();
+    private HashMap<Integer, Double> map;
+
+    public M1ChapterModel(){
+
+        map = new HashMap<Integer, Double>();
+        for (int i = 1; i <= 20; i++){
+            map.put(Integer.valueOf(i), Double.valueOf(0));
+        }
+
+    }
 
     public HashMap<Integer, Double> getMap() {
         return map;

@@ -48,7 +48,10 @@ public class SelfAssessmentController  {
 
 
         // This will resolve to /WEB-INF/jsp/person_addedpage.jsp
-        logger.debug("is : : :: " + m1ChapterModel.getMap().get(0));
+        /*for(int i = 0; i < 20; i++){
+            logger.debug("M1."+i+": "+m1ChapterModel.getMap().get(Integer.valueOf(i)));
+        }*/
+
 
         return "redirect:/riskmanager/self-assessment/";
     }

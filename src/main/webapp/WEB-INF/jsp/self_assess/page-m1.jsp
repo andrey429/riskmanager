@@ -46,20 +46,27 @@
 <%--<form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">--%>
 <div class="accordion">
 
-    <form:form modelAttribute="m1ChapterModel" method="POST" action="${saveUrl}">
-    <h3>
-        <b>M1.1</b>
-        Определены ли в документах организации роли ее работников?
-    </h3>
-    <p>
+    <form:form modelAttribute="m1ChapterModel"  method="POST" action="${saveUrl}">
 
-        <form:select path="${}">
-            <form:option value="0"/>
-            <form:option value="0.25"/>
-            <form:option value="0.5"/>
-            <form:option value="0.75"/>
-            <form:option value="1"/>
-        </form:select>
+
+        <c:forEach items="${m1ChapterModel.map}" var="m1_parameter_i">
+            <h3>
+                <b>
+                    M1.${m1_parameter_i.key}
+                </b>
+            </h3>
+            <p>
+                <spring2:message code="M1.${m1_parameter_i.key}.label"/>
+                <form:select path="map[${m1_parameter_i.key}]">
+                    <form:option value="0"/>
+                    <form:option value="0.25"/>
+                    <form:option value="0.5"/>
+                    <form:option value="0.75"/>
+                    <form:option value="1"/>
+                </form:select>
+            </p>
+        </c:forEach>
+
         <input type="submit">
     </p>
 
