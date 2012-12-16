@@ -2,9 +2,12 @@ package org.riskmanager.controller;
 
 
 import org.apache.log4j.Logger;
-import org.riskmanager.domain.chapters.M1ChapterModel;
+import org.riskmanager.converters.GroupParameterPropertyEditor;
+import org.riskmanager.domain.chapters.M1Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,26 +35,17 @@ public class SelfAssessmentController  {
 
     @RequestMapping(value = "/m1", method = RequestMethod.GET)
     public String getM1Page(Model model){
-        M1ChapterModel m1ChapterModel = new M1ChapterModel();
-        model.addAttribute("m1ChapterModel", m1ChapterModel);
+        M1Model m1 = new M1Model();
+        model.addAttribute("m1Model", m1);
         return "self_assess/page-m1";
     }
 
     @RequestMapping(value = "/m1", method = RequestMethod.POST)
-    public String add(@ModelAttribute("m1ChapterModel") M1ChapterModel m1ChapterModel) {
+    public String add(@ModelAttribute("m1Model") M1Model m1) {
 
 
-        // The "personAttribute" model has been passed to the controller from the JSP
-        // We use the name "personAttribute" because the JSP uses that name
 
-        // Call PersonService to do the actual adding
-
-
-        // This will resolve to /WEB-INF/jsp/person_addedpage.jsp
-        /*for(int i = 0; i < 20; i++){
-            logger.debug("M1."+i+": "+m1ChapterModel.getMap().get(Integer.valueOf(i)));
-        }*/
-
+        //todo: stub
 
         return "redirect:/riskmanager/self-assessment/";
     }
@@ -59,5 +53,8 @@ public class SelfAssessmentController  {
 
     //recuest parameter - saved or new self-assessment
     //@RequestMapping("/page-m1")
+
+
+
 
 }
