@@ -2,12 +2,10 @@ package org.riskmanager.controller;
 
 
 import org.apache.log4j.Logger;
-import org.riskmanager.converters.GroupParameterPropertyEditor;
-import org.riskmanager.domain.chapters.M1Model;
+import org.riskmanager.domain.chapters.EV1Model;
+import org.riskmanager.service.EV1ValueFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +21,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/self-assessment")
 public class SelfAssessmentController  {
 
+
     Logger logger = Logger.getLogger("controller");
+
+
+    @ModelAttribute("ev1ValueFactory")
+    public EV1ValueFactory getEV1ValueFactory(){
+        return new EV1ValueFactory();
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getSelfAssessmentMainPage(Model model){
@@ -33,16 +38,16 @@ public class SelfAssessmentController  {
     }
 
 
-    @RequestMapping(value = "/m1", method = RequestMethod.GET)
-    public String getM1Page(Model model){
-        M1Model m1 = new M1Model();
-        model.addAttribute("m1Model", m1);
-        return "self_assess/page-m1";
+    @RequestMapping(value = "/ev1", method = RequestMethod.GET)
+    public String getEV1Page(Model model){
+        EV1Model ev1Model = new EV1Model();
+        model.addAttribute("ev1Model", ev1Model);
+
+        return "self_assess/ev1_page";
     }
 
-    @RequestMapping(value = "/m1", method = RequestMethod.POST)
-    public String add(@ModelAttribute("m1Model") M1Model m1) {
-
+    @RequestMapping(value = "/ev1", method = RequestMethod.POST)
+    public String add(@ModelAttribute("ev1Model") EV1Model ev1Model) {
 
 
         //todo: stub
