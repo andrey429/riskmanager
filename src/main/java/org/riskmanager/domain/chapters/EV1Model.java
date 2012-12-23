@@ -8,24 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/*@Entity
-@Table(name = "EV1_EVALUATIONS")*/
+@Entity
+@Table(name = "EV1_EVALUATIONS")
 public class EV1Model {
 
 
-    /*@Id
+    @Id
     @Column(name = "ID")
     @GeneratedValue
-    private Integer id;*/
+    private Integer id;
 
 
-    /*private Integer parameterCount = Integer.valueOf(20);*/
-    private ArrayList<Double> mGroupValues;
+    @CollectionOfElements
+    private List<Double> mGroupValues;
+
+    @Column(name = "EV1_VALUE")
     private Double ev1value;
 
 
     @CollectionOfElements
-    private ArrayList<ArrayList<Double>> parameterValues;//priority todo make a [][] array
+    private List<ArrayList<Double>> parameterValues;
 
     public EV1Model() {
 
@@ -43,22 +45,20 @@ public class EV1Model {
     }
 
 
-    public ArrayList<ArrayList<Double>> getParameterValues() {
+    public List<ArrayList<Double>> getParameterValues() {
         return parameterValues;
     }
 
-    public void setParameterValues(ArrayList<ArrayList<Double>> parameterValues) {
+    public void setParameterValues(List<ArrayList<Double>> parameterValues) {
         this.parameterValues = parameterValues;
     }
 
-    private String id;
 
-    @Id
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -66,7 +66,7 @@ public class EV1Model {
         return mGroupValues;
     }
 
-    public void setmGroupValues(ArrayList<Double> mGroupValues) {
+    public void setmGroupValues(List<Double> mGroupValues) {
         this.mGroupValues = mGroupValues;
     }
 
@@ -77,4 +77,7 @@ public class EV1Model {
     public void setEv1value(Double ev1value) {
         this.ev1value = ev1value;
     }
+
+
+
 }

@@ -50,7 +50,7 @@
             }
 
             var denominator = (1 - sumOfNotEvaluatedParamWeights);
-            /*var testsum = 0.0;//used to check the normalising condition*/
+
             if ((sumOfNotEvaluatedParamWeights != 0) && (denominator != 0)) {
                 //recalculate every weight, but on page to be displayed
                 for (j = 0; j < count; j++) {
@@ -66,6 +66,37 @@
 
         }
         ;
+        /*
+         * */
+        function updateM9Value() {
+            var m9idx = 8;
+            var count = m_counts[m9idx];
+            /*M9*/
+            var resultVal = 1.0;
+            /*searchin minimum in [0.0, 1.0]*/
+            var groupParamValue = 0, j = 0;
+            var sumOfNotEvaluatedParamWeights = 0.0;
+
+            var parameter_weights = m_weights[m9idx];
+            var parameter_requirement = m_required[m9idx];
+
+            for (j = 0; j < count; j++) {
+                var element = (document).getElementById("M9." + (j + 1));
+
+                if (element.value != -1) { //use only evaluated parameters
+                    resultVal = Math.min(resultVal, element.value);
+                }
+            }
+            document.getElementById("m9GroupParam").value = (roundToFourDigits(resultVal));
+        }
+
+        /*        var k;
+         for(k = 1; k < 9; k++){
+         updateGroupValue(k);
+         }
+         updateGroupValue(10);
+         updateM9Value();*/
+
 
     </script>
 
@@ -97,12 +128,15 @@
 
 
         <c:forEach var="groupIdx" begin="${1}" end="${10}" step="${1}">
-            <c:forEach var="idx" begin="${0}" end="${ev1Model.parameterCount - 1}" step="${1}">
+
+            <%--<c:set var="parameterValuesArray" value="${ev1Model.parameterValues[groupIdx]}"/>--%>
+
+            <c:forEach var="idx" begin="${0}" end="${countArray[groupIdx - 1] - 1}" step="${1}">
                 <c:set var="requirement" value="${requirementArray[idx]}"/>
                 <%--"${ev1Model.parameterRequirements[idx]}"/>--%>
                 <h3>
                     <b>
-                        M1.${idx + 1}.
+                        M${groupIdx}.${idx + 1}.
                     </b>
 
                 </h3>
@@ -110,15 +144,20 @@
 
                 <p>
 
-                    <spring2:message code="M1.${idx + 1}.label"/>
+                    <spring2:message code="M${groupIdx}.${idx + 1}.label"/>
                     <br>
                     <br>
-                    <form:select path="parameterValues[${idx}]" id="M1.${idx + 1}"
-                                 onchange="updateGroupValue(1)">
+                    <form:select path="parameterValues[${groupIdx - 1}][${idx}]" id="M${groupIdx}.${idx + 1}"
+
+                                 onchange="${groupIdx != 9 ? 'updateGroupValue(${groupIdx})' : 'updateM9Value()'}"
+
+                            >
+
                         <c:choose>
                             <c:when test="${requirement == 1}">
                                 <form:option value="0">
-                                    <spring2:message code="self.label.rating.zero"/>
+
+
                                 </form:option>
                                 <form:option value="0.25">
                                     <spring2:message code="self.label.rating.partlyLow"/>
@@ -165,24 +204,24 @@
                 </p>
             </c:forEach>
             <h3>
-                <spring2:message code="self.label.actionsOnPage"/> M1:
+                <spring2:message code="self.label.actionsOnPage"/> M${groupIdx}:
             </h3>
 
             <p>
-                <spring2:message code="self.label.evaluatedGroupParameter"/> M1 :
+                <spring2:message code="self.label.evaluatedGroupParameter"/> M${groupIdx} :
 
 
-                <form:input path="${}" id="m1GroupParam" disabled="true"></form:input>
+                <form:input path="${ev1Model.mGroupValues[groupIdx - 1]}" id="m${groupIdx}GroupParam"
+                            disabled="true"></form:input>
 
                 <br><%--<c:set var="submit"><spring2:message code="self.label.submitValues"/> </c:set>--%>
                 <c:set var="discard"><spring2:message code="self.label.discardValues"/> </c:set>
                 <c:set var="evaluate"><spring2:message code="self.label.evaluateGroupParameter"/> </c:set>
-                <input type="submit" title="${submit}"/>
 
             </p>
-
-
         </c:forEach>
+
+        <input type="submit" title="${submit}"/>
     </form:form>
 
 </div>
