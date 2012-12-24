@@ -44,6 +44,7 @@ public class EV1ModelService  {
 
         logger.debug("request to add ev1Model ");
         Session session = sessionFactory.getCurrentSession();
+        logger.debug("ev1:");
         session.save(ev1Model);
     }
 

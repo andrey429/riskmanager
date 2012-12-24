@@ -33,13 +33,17 @@ public class EV1Model {
 
         EV1ValueFactory ev1ValueFactory = new EV1ValueFactory();
         parameterValues = new ArrayList<ArrayList<Double>>();
+        mGroupValues = new ArrayList<Double>();
         for (int i = 0; i < 10; i++) {
             ArrayList<Double> mIdxValues = new ArrayList<Double>();
             for (int j = 0; j < ev1ValueFactory.getCounts()[i]; j++) {
                 mIdxValues.add(j, Double.valueOf(0));
 
             }
+            mGroupValues.add(i, Double.valueOf(0));
+
             parameterValues.add(i, mIdxValues);
+            ev1value = new Double(0);
 
         }
     }
@@ -78,6 +82,8 @@ public class EV1Model {
         this.ev1value = ev1value;
     }
 
-
+    public String toString() {
+        return "id:" + id + "\nev1Val:" + ev1value + "\nmGroup" + mGroupValues + "\nparamVal" + parameterValues;
+    }
 
 }
