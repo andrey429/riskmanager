@@ -211,7 +211,7 @@
                 <spring2:message code="self.label.evaluatedGroupParameter"/> M${groupIdx} :
 
 
-                <form:input path="${ev1Model.mGroupValues[groupIdx - 1]}" id="m${groupIdx}GroupParam"
+                <form:input path="mGroupValues[${groupIdx - 1}]" id="m${groupIdx}GroupParam"
                             disabled="true"></form:input>
 
                 <br><%--<c:set var="submit"><spring2:message code="self.label.submitValues"/> </c:set>--%>

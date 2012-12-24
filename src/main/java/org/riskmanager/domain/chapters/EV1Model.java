@@ -43,7 +43,7 @@ public class EV1Model {
             mGroupValues.add(i, Double.valueOf(0));
 
             parameterValues.add(i, mIdxValues);
-            ev1value = new Double(0);
+            ev1value =  Double.valueOf(0);
 
         }
     }
