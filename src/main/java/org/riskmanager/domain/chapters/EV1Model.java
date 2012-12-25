@@ -19,14 +19,16 @@ public class EV1Model {
     private Integer id;
 
 
-    @CollectionOfElements
+    @ElementCollection
+    @CollectionTable(name = "EV1_GROUP_VALUES", joinColumns = "ID")
     private List<Double> mGroupValues;
 
     @Column(name = "EV1_VALUE")
     private Double ev1value;
 
 
-    @CollectionOfElements
+    @ElementCollection
+    @CollectionTable(name = "EV1_PARAM_VALUES", joinColumns = "ID")
     private List<ArrayList<Double>> parameterValues;
 
     public EV1Model() {
