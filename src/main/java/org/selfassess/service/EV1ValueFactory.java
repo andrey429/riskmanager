@@ -1,4 +1,4 @@
-package org.riskmanager.service;
+package org.selfassess.service;
 
 import java.util.Arrays;
 
@@ -70,7 +70,7 @@ public class EV1ValueFactory {
                     1.0, 1.0, 1.0, 1.0, 1.0,
                     1.0, 1.0, 1.0, 1.0, 1.0,
                     1.0, 1.0, 1.0, 1.0, 1.0,
-                    1.0, 1.0
+                    1.0, 1.0, 1.0
             }, //M9. No value for M9 is set in truth; EV_m9 is defined by minimum
             {
                     0.2, 0.2, 0.2, 0.2, 0.2

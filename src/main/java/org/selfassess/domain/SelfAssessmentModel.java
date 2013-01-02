@@ -1,4 +1,4 @@
-package org.riskmanager.domain;
+package org.selfassess.domain;
 
 import javax.persistence.*;
 

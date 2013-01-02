@@ -1,10 +1,12 @@
-package org.riskmanager.controller;
+package org.selfassess.controller;
 
 
 import org.apache.log4j.Logger;
-import org.riskmanager.domain.chapters.EV1Model;
-import org.riskmanager.service.EV1ModelService;
-import org.riskmanager.service.EV1ValueFactory;
+import org.selfassess.domain.EV1Model;
+import org.selfassess.fbo.DomainToFboIO;
+import org.selfassess.fbo.EV1FormBackingObject;
+import org.selfassess.service.EV1ModelService;
+import org.selfassess.service.EV1ValueFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,7 +41,7 @@ public class SelfAssessmentController  {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getSelfAssessmentMainPage(Model model){
 
-        //priority todo show select saved EVALUATION page
+
         return "self_assess/main_page";
     }
 
@@ -47,21 +49,29 @@ public class SelfAssessmentController  {
     @RequestMapping(value = "/ev1", method = RequestMethod.GET)
     public String getEV1Page(Model model){
 
-        model.addAttribute("ev1Model", new EV1Model());
+        EV1FormBackingObject ev1FBO = new EV1FormBackingObject();
+        model.addAttribute("ev1FBO", ev1FBO);
 
         return "self_assess/ev1_page";
     }
 
     @RequestMapping(value = "/ev1", method = RequestMethod.POST)
-    public String add(@ModelAttribute("ev1Model") EV1Model ev1Model) {
+    public String add(@ModelAttribute("ev1FBO") EV1FormBackingObject ev1FBO) {
 
 
-        //todo: priority it is now known, that it can't save null ev1GroupParameter
-        //priority: you should update everyting on submit
+        DomainToFboIO io = new DomainToFboIO();
+        EV1Model ev1Model = io.convertToDomainObject(ev1FBO);
 
-        logger.debug("ev1MODEL::::"+ev1Model.getEv1value()+ev1Model.getmGroupValues());
+        /*logger.debug("ev1MODEL::::"+ ev1Model.getmGroupValues());*/
+        logger.debug("EV1: "+ev1FBO.getmGroupValues());
+        logger.debug("EV1: "+ev1FBO.getEv1Value());
+        logger.debug("PARAML: "+ev1FBO.getParameterValues());
 
         ev1ModelService.add(ev1Model);
+
+
+
+
 
         return "redirect:/riskmanager/self-assessment/";
     }

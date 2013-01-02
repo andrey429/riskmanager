@@ -1,4 +1,4 @@
-package org.riskmanager.functions;
+package org.selfassess.functions;
 
 import java.util.ArrayList;
 import java.util.Arrays;

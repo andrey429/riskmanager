@@ -5,13 +5,13 @@
     <uri>http://www.site.com/myTlds</uri>
     <function>
         <name>toDoubleArrayString</name>
-        <function-class>org.riskmanager.functions.Functions</function-class>
+        <function-class>org.selfassess.functions.Functions</function-class>
         <function-signature>java.lang.String toDoubleArrayString(java.lang.Object[][])</function-signature>
 
     </function>
     <function>
         <name>toSingleArrayString</name>
-        <function-class>org.riskmanager.functions.Functions</function-class>
+        <function-class>org.selfassess.functions.Functions</function-class>
         <function-signature>java.lang.String toSingleArrayString(java.lang.Object[])</function-signature>
 
     </function>

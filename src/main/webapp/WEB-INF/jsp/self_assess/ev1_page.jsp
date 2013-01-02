@@ -65,9 +65,8 @@
             document.getElementById("m" + m_idx + "GroupParam").value = (roundToFourDigits(resultVal));
 
         }
-        ;
-        /*
-         * */
+
+
         function updateM9Value() {
             var m9idx = 8;
             var count = m_counts[m9idx];
@@ -90,13 +89,6 @@
             document.getElementById("m9GroupParam").value = (roundToFourDigits(resultVal));
         }
 
-        /*        var k;
-         for(k = 1; k < 9; k++){
-         updateGroupValue(k);
-         }
-         updateGroupValue(10);
-         updateM9Value();*/
-
 
     </script>
 
@@ -105,10 +97,11 @@
 <body>
 
 
-<%--<c:url var="saveUrl" value="/riskmanager/self-assessment/m1"/>--%>
+<c:url var="saveurl" value="/riskmanager/self-assessment/ev1"/>
 
 <div class="accordion">
-    <form:form modelAttribute="ev1Model" method="POST" action="${saveUrl}">
+
+    <form:form modelAttribute="ev1FBO" method="POST" action="${saveurl}">
 
 
         <div id="intro">
@@ -127,16 +120,16 @@
         <c:set var="countArray" value="${ev1ValueFactory.counts}"/>
 
 
-        <c:forEach var="groupIdx" begin="${1}" end="${10}" step="${1}">
+        <c:forEach var="groupIdx" begin="${0}" end="${9}" step="${1}">
 
-            <%--<c:set var="parameterValuesArray" value="${ev1Model.parameterValues[groupIdx]}"/>--%>
+            <%--<c:set var="parameterValuesArray" value="${ev1FBO.parameterValues[groupIdx]}"/>--%>
 
-            <c:forEach var="idx" begin="${0}" end="${countArray[groupIdx - 1] - 1}" step="${1}">
+            <c:forEach var="idx" begin="${0}" end="${countArray[groupIdx] - 1}" step="${1}">
                 <c:set var="requirement" value="${requirementArray[idx]}"/>
-                <%--"${ev1Model.parameterRequirements[idx]}"/>--%>
+                <%--"${ev1FBO.parameterRequirements[idx]}"/>--%>
                 <h3>
                     <b>
-                        M${groupIdx}.${idx + 1}.
+                        M${groupIdx + 1}.${idx + 1}.
                     </b>
 
                 </h3>
@@ -144,12 +137,12 @@
 
                 <p>
 
-                    <spring2:message code="M${groupIdx}.${idx + 1}.label"/>
+                    <spring2:message code="M${groupIdx + 1}.${idx + 1}.label"/>
                     <br>
                     <br>
-                    <form:select path="parameterValues[${groupIdx - 1}][${idx}]" id="M${groupIdx}.${idx + 1}"
+                    <form:select path="parameterValues[${groupIdx}][${idx}]" id="M${groupIdx + 1}.${idx + 1}"
 
-                                 onchange="${groupIdx != 9 ? 'updateGroupValue(${groupIdx})' : 'updateM9Value()'}"
+                                 onchange="${groupIdx != 8 ? 'updateGroupValue(${groupIdx + 1})' : 'updateM9Value()'}"
 
                             >
 
@@ -204,14 +197,14 @@
                 </p>
             </c:forEach>
             <h3>
-                <spring2:message code="self.label.actionsOnPage"/> M${groupIdx}:
+                <spring2:message code="self.label.actionsOnPage"/> M${groupIdx + 1}:
             </h3>
 
             <p>
-                <spring2:message code="self.label.evaluatedGroupParameter"/> M${groupIdx} :
+                <spring2:message code="self.label.evaluatedGroupParameter"/> M${groupIdx + 1} :
 
 
-                <form:input path="mGroupValues[${groupIdx - 1}]" id="m${groupIdx}GroupParam"
+                <form:input path="mGroupValues[${groupIdx}]" id="m${groupIdx + 1}GroupParam"
                             disabled="true"></form:input>
 
                 <br><%--<c:set var="submit"><spring2:message code="self.label.submitValues"/> </c:set>--%>
@@ -221,8 +214,17 @@
             </p>
         </c:forEach>
 
-        <input type="submit" title="${submit}"/>
+
+        <h3>EV1</h3>
+
+        <p>
+            <form:input path="ev1Value" id="ev1Value"
+                        disabled="true"></form:input>
+        </p>
+
+        <input type="submit"/>
     </form:form>
+
 
 </div>
 

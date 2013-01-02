@@ -23,7 +23,7 @@
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
 				 p:dataSource-ref="dataSource"
 				 p:configLocation="${hibernate.config}"
-				 p:packagesToScan="org.riskmanager"/>
+				 p:packagesToScan="org.*"/>
 
 
 
