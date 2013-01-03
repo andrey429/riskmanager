@@ -26,7 +26,7 @@ public class ListOfListEntry {
     private Integer entryOrder;
 
     @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @OneToOne
+    @OneToOne()
     private NumbersList numbersList;
 
 

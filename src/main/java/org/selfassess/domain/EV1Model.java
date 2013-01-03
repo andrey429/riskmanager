@@ -3,27 +3,29 @@ package org.selfassess.domain;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 
 @Entity
 @Table
+public class EV1Model implements Serializable {
 
-public class EV1Model {
 
-
+    private static final long serialVersionUID = 5651402584668511524L;
     @Id
     @Column
     @GeneratedValue
     private Integer id;
 
     @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @OneToOne
+    @OneToOne()
     private NumbersList mGroupValues;
 
     @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ListOfList mParamValues;
 
 

@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 import java.util.List;
 
 
 @Service("ev1ModelService")
 @Transactional
-public class EV1ModelService  {
+public class EV1ModelService{
+
+
 
 
     Logger logger = Logger.getLogger("service");
@@ -59,34 +62,7 @@ public class EV1ModelService  {
         session.delete(ev1Model);
     }
 
-    /**
-     * Edits an existing Asset
-     */
-    /*public void edit(Asset asset) {
-        logger.debug("Editing existing Asset");
-        Session session = sessionFactory.getCurrentSession();
-        Asset existingAsset = (Asset) session.get(Asset.class, asset.getId());
 
-        existingAsset.setDescription(asset.getDescription());
-        existingAsset.setId(asset.getId());
-        existingAsset.setName(asset.getName());
-        existingAsset.setRequiresAvailability(asset.getRequiresAvailability());
-        existingAsset.setRequiresIntegrity(asset.getRequiresIntegrity());
-        existingAsset.setRequiresConfidentiality(asset.getRequiresConfidentiality());
-        existingAsset.setAssetLocation(asset.getAssetLocation());
-        existingAsset.setBusinessProcessType(asset.getBusinessProcessType());
-        existingAsset.setPersonOwner(asset.getPersonOwner());
-
-        session.save(existingAsset);
-    }
-*/
-
-    /*public List<EV1Model> executeCustomQuery(String customQueryString) {
-        Session session = sessionFactory.getCurrentSession();
-
-        Query query = session.createQuery(customQueryString);
-        return query.list();
-    }*/
 
 
 }

@@ -42,31 +42,42 @@
     </p>
 </div>
 
-<%--<c:url var="saveUrl" value="/riskmanager/persons/add"/>--%>
-<%--<form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">--%>
-<c:url var="createNewUrl" value="/riskmanager/self-assessment/new/"/>
+
 <div class="accordion">
 
-    <h3><spring2:message code="self.mainPage.welcome"/></h3>
+    <form:form modelAttribute="selfAssessmentModel" action="/riskmanager/riskmanager/self-assessment/new" id="thisform">
 
-    <p>
-        <spring2:message code="self.mainPage.help.welcome"/>
-    </p>
+        <h3><spring2:message code="self.newAssessment.name"/></h3>
 
-    <h3 onclick="location.href='${createNewUrl}'"><spring2:message code="self.mainPage.createNew"/>
-        <%--            <form:input path="lastName"/>--%>
-    </h3>
+        <p>
+            <form:input path="selfAssessmentName"/>
+        </p>
 
+        <h3><spring2:message code="self.newAssessment.description"/>
+        </h3>
 
-    <h3>
-        <spring2:message code="self.mainPage.editExisting"/>
-    </h3>
+        <p>
+            <form:input path="description"/>
+        </p>
 
-    <h3>
-        <spring2:message code="self.mainPage.showExisting"/>
-    </h3>
+        <h3><spring2:message code="self.newAssessment.auditor"/>
+        </h3>
 
+        <p>
+            <form:input path="auditors"/>
+        </p>
 
+        <h3><spring2:message code="self.newAssessment.author"/>
+        </h3>
+
+        <p>
+            <form:input path="creator"/>
+        </p>
+
+        <h3 onclick="document.forms['thisform'].submit()">
+            <spring2:message code="self.newAssessment.submit"/>
+        </h3>
+    </form:form>
 </div>
 
 

@@ -42,28 +42,30 @@
     </p>
 </div>
 
-<%--<c:url var="saveUrl" value="/riskmanager/persons/add"/>--%>
-<%--<form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">--%>
-<c:url var="createNewUrl" value="/riskmanager/self-assessment/new/"/>
+
+<c:url var="ev1URL" value="/riskmanager/self-assessment/new/menu/ev1"/>
+<c:url var="ev2URL" value="/riskmanager/self-assessment/new/menu/ev2"/>
+<c:url var="ev3URL" value="/riskmanager/self-assessment/new/menu/ev3"/>
+
 <div class="accordion">
 
-    <h3><spring2:message code="self.mainPage.welcome"/></h3>
+    <h3><spring2:message code="self.menuPage.currentAssessment"/>: <i><c:out
+            value="${currentAssessment.selfAssessmentName}"/></i></h3>
 
     <p>
-        <spring2:message code="self.mainPage.help.welcome"/>
+        <spring2:message code="self.mainpage.createDescription"/>
+        <br>
+
     </p>
 
-    <h3 onclick="location.href='${createNewUrl}'"><spring2:message code="self.mainPage.createNew"/>
-        <%--            <form:input path="lastName"/>--%>
+
+    <h3 onclick="location.href='${ev1URL}'"><spring2:message code="self.mainpage.createEV1description"/>
     </h3>
 
-
-    <h3>
-        <spring2:message code="self.mainPage.editExisting"/>
+    <h3 onclick="location.href='${ev2URL}'"><spring2:message code="self.mainpage.createEV2description"/>
     </h3>
 
-    <h3>
-        <spring2:message code="self.mainPage.showExisting"/>
+    <h3 onclick="location.href='${ev3URL}'"><spring2:message code="self.mainpage.createEV3description"/>
     </h3>
 
 

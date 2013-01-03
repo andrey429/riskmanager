@@ -23,7 +23,7 @@ public class NumbersList {
     private Integer id;
 
     @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @OneToMany
+    @OneToMany()
     private List<NumbersListEntry> numbersListEntries;
 
 

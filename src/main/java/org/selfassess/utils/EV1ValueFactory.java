@@ -1,4 +1,4 @@
-package org.selfassess.service;
+package org.selfassess.utils;
 
 import java.util.Arrays;
 

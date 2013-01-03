@@ -8,24 +8,32 @@ Class for associating self assessment  with something...To store, to save, to lo
 * */
 
 @Entity
-@Table(name = "SELF_ASSESSMENT_MODEL")
+@Table()
 public class SelfAssessmentModel {
 
-    //todo serialversionuid
-    //todo connect with domain model
 
 
     @Id
-    @Column(name = "ID")
+    @Column()
     @GeneratedValue
     private Integer id;
 
 
-    @Column(name = "SELF_ASSESSMENT_NAME")
+    @Column()
     private String selfAssessmentName;
 
-    @Column(name = "DESCRIPTION")
+    @Column()
     private String description;
+
+    @Column
+    private String auditors;
+
+    @Column
+    private String creator;
+
+
+    @OneToOne
+    EV1Model ev1Model;
 
 
     public SelfAssessmentModel() {
@@ -38,6 +46,14 @@ public class SelfAssessmentModel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public EV1Model getEv1Model() {
+        return ev1Model;
+    }
+
+    public void setEv1Model(EV1Model ev1Model) {
+        this.ev1Model = ev1Model;
     }
 
     public String getSelfAssessmentName() {
@@ -54,5 +70,22 @@ public class SelfAssessmentModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public String getAuditors() {
+        return auditors;
+    }
+
+    public void setAuditors(String auditors) {
+        this.auditors = auditors;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 }

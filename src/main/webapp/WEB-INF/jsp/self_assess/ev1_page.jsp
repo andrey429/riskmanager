@@ -36,13 +36,13 @@
 
             var count = m_counts[m_idx - 1];
             var resultVal = 0.0;
-            var groupParamValue = 0, j = 0;
+            var groupParamValue = 0;
             var sumOfNotEvaluatedParamWeights = 0.0;
 
             var parameter_weights = m_weights[m_idx - 1];
-            var parameter_requirement = m_required[m_idx - 1];
 
-            for (j = 0; j < count/*weights.length*/; j++) {
+
+            for (var j = 0; j < count/*weights.length*/; j++) {
                 var element = (document).getElementById("M" + m_idx + "." + (j + 1));
                 if (element.value == -1) {
                     sumOfNotEvaluatedParamWeights += parameter_weights[j];
@@ -51,7 +51,7 @@
 
             var denominator = (1 - sumOfNotEvaluatedParamWeights);
 
-            if ((sumOfNotEvaluatedParamWeights != 0) && (denominator != 0)) {
+            if (denominator != 0) {
                 //recalculate every weight, but on page to be displayed
                 for (j = 0; j < count; j++) {
                     var element = (document).getElementById("M" + m_idx + "." + (j + 1));
@@ -68,18 +68,15 @@
 
 
         function updateM9Value() {
-            var m9idx = 8;
-            var count = m_counts[m9idx];
+            var count = m_counts[8];
             /*M9*/
             var resultVal = 1.0;
             /*searchin minimum in [0.0, 1.0]*/
-            var groupParamValue = 0, j = 0;
-            var sumOfNotEvaluatedParamWeights = 0.0;
+            var groupParamValue = 0;
+            var parameter_weights = m_weights[8];
 
-            var parameter_weights = m_weights[m9idx];
-            var parameter_requirement = m_required[m9idx];
 
-            for (j = 0; j < count; j++) {
+            for (var j = 0; j < count; j++) {
                 var element = (document).getElementById("M9." + (j + 1));
 
                 if (element.value != -1) { //use only evaluated parameters
@@ -97,11 +94,11 @@
 <body>
 
 
-<c:url var="saveurl" value="/riskmanager/self-assessment/ev1"/>
+<%--<c:url var="saveurl" value="/riskmanager/self-assessment/ev1"/>--%>
 
 <div class="accordion">
 
-    <form:form modelAttribute="ev1FBO" method="POST" action="${saveurl}">
+    <form:form modelAttribute="ev1FBO" method="POST">
 
 
         <div id="intro">
@@ -116,17 +113,16 @@
             </p>
         </div>
 
-        <c:set var="requirementArray" value="${ev1ValueFactory.requirement[0]}"/>
+
         <c:set var="countArray" value="${ev1ValueFactory.counts}"/>
 
-
         <c:forEach var="groupIdx" begin="${0}" end="${9}" step="${1}">
-
+            <c:set var="requirementArray" value="${ev1ValueFactory.requirement[groupIdx]}"/>
             <%--<c:set var="parameterValuesArray" value="${ev1FBO.parameterValues[groupIdx]}"/>--%>
 
             <c:forEach var="idx" begin="${0}" end="${countArray[groupIdx] - 1}" step="${1}">
                 <c:set var="requirement" value="${requirementArray[idx]}"/>
-                <%--"${ev1FBO.parameterRequirements[idx]}"/>--%>
+
                 <h3>
                     <b>
                         M${groupIdx + 1}.${idx + 1}.

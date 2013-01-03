@@ -23,7 +23,7 @@ public class ListOfList {
 
 
     @Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @OneToMany
+    @OneToMany()
     private List<ListOfListEntry> listOfListEntries;
 
     public ListOfList() {

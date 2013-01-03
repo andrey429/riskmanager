@@ -1,6 +1,6 @@
 package org.selfassess.fbo;
 
-import org.selfassess.service.EV1ValueFactory;
+import org.selfassess.utils.EV1ValueFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,9 @@ public class EV1FormBackingObject {
         ev1Value = new Double(0);
     }
 
+    public EV1FormBackingObject(boolean createEmpty){
 
+    }
 
     public List<ArrayList<Double>> getParameterValues() {
         return parameterValues;
