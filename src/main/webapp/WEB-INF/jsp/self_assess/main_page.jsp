@@ -44,7 +44,9 @@
 
 <%--<c:url var="saveUrl" value="/riskmanager/persons/add"/>--%>
 <%--<form:form modelAttribute="personAttribute" method="POST" action="${saveUrl}">--%>
-<c:url var="createNewUrl" value="/riskmanager/self-assessment/new/"/>
+<c:url var="createNewUrl" value="/riskmanager/self-assessment/new"/>
+
+
 <div class="accordion">
 
     <h3><spring2:message code="self.mainPage.welcome"/></h3>
@@ -58,14 +60,54 @@
     </h3>
 
 
-    <h3>
+    <h3 <%--onclick="location.href='${editURL}'"--%>>
         <spring2:message code="self.mainPage.editExisting"/>
     </h3>
+
+    <p>
+        <c:choose>
+            <c:when test="${not empty storedAssessments }">
+                <select size="4">
+
+                    <c:forEach var="selfAssessment" items="${storedAssessments}">
+                        <c:url var="editAssessmentURL"
+                               value="/riskmanager/self-assessment/edit?assessmentID=${selfAssessment.id}"/>
+                        <option onclick="location.href='${editAssessmentURL}'">
+                                ${selfAssessment.selfAssessmentName}
+                        </option>
+                    </c:forEach>
+                </select>
+            </c:when>
+            <c:otherwise>
+                <spring2:message code="self.mainpage.noAssessmentStored"/>
+            </c:otherwise>
+        </c:choose>
+    </p>
+
 
     <h3>
         <spring2:message code="self.mainPage.showExisting"/>
     </h3>
 
+    <p>
+        <c:choose>
+            <c:when test="${not empty storedAssessments }">
+                <select size="4">
+
+                    <c:forEach var="selfAssessment" items="${storedAssessments}">
+                        <c:url var="showAssessmentURL"
+                               value="/riskmanager/self-assessment/show?assessmentID=${selfAssessment.id}"/>
+                        <option onclick="location.href='${showAssessmentURL}'">
+                                ${selfAssessment.selfAssessmentName}
+                        </option>
+                    </c:forEach>
+                </select>
+            </c:when>
+            <c:otherwise>
+                <spring2:message code="self.mainpage.noAssessmentStored"/>
+            </c:otherwise>
+        </c:choose>
+    </p>
 
 </div>
 

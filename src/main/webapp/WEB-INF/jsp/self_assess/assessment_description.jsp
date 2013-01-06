@@ -45,7 +45,9 @@
 
 <div class="accordion">
 
-    <form:form modelAttribute="selfAssessmentModel" action="/riskmanager/riskmanager/self-assessment/new" id="thisform">
+
+    <form:form modelAttribute="selfAssessmentModel"
+               id="thisform">
 
         <h3><spring2:message code="self.newAssessment.name"/></h3>
 
@@ -77,6 +79,7 @@
         <h3 onclick="document.forms['thisform'].submit()">
             <spring2:message code="self.newAssessment.submit"/>
         </h3>
+
     </form:form>
 </div>
 

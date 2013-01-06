@@ -100,7 +100,7 @@ public class AssetEditorController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@ModelAttribute(value = "assetAttribute") Asset asset,
                        @RequestParam(value = "id", required = true) Integer id, Model model) {
-        logger.debug("Received request to update asset");
+        logger.debug("Received request to saveOrUpdate asset");
 
         asset.setId(id);
         assetService.edit(asset);

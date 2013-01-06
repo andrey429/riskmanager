@@ -1,6 +1,6 @@
 package org.selfassess.utils;
 
-import org.apache.log4j.Logger;
+
 import org.selfassess.domain.*;
 import org.selfassess.fbo.EV1FormBackingObject;
 import org.selfassess.utils.EV1ValueFactory;
@@ -97,7 +97,7 @@ public class POJO2FBOConverter {
 
         //fill the group values
 
-        Logger logger = Logger.getLogger("controller");
+
 
 
         for (int i = 0; i < 10; i++) {
@@ -105,7 +105,7 @@ public class POJO2FBOConverter {
             nle.setEntry(i);
             nle.setValue(ev1FormBackingObject.getmGroupValues().get(i));
 
-            logger.debug("M" + (i + 1) + " val :" + ev1FormBackingObject.getmGroupValues().get(i));
+
 
             listOfGroupVal.add(i, nle);
         }

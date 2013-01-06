@@ -43,29 +43,30 @@
 </div>
 
 
-<c:url var="ev1URL" value="/riskmanager/self-assessment/new/menu/ev1"/>
-<c:url var="ev2URL" value="/riskmanager/self-assessment/new/menu/ev2"/>
-<c:url var="ev3URL" value="/riskmanager/self-assessment/new/menu/ev3"/>
+<c:url var="ev1URL" value="/riskmanager/self-assessment/menu/ev1?assessmentID=${selfAssessmentModel.id}"/>
+<c:url var="ev2URL" value="/riskmanager/self-assessment/menu/ev2?assessmentID=${selfAssessmentModel.id}"/>
+<c:url var="ev3URL" value="/riskmanager/self-assessment/menu/ev3?assessmentID=${selfAssessmentModel.id}"/>
+
 
 <div class="accordion">
 
     <h3><spring2:message code="self.menuPage.currentAssessment"/>: <i><c:out
-            value="${currentAssessment.selfAssessmentName}"/></i></h3>
+            value="${selfAssessmentModel.selfAssessmentName}"/></i></h3>
 
     <p>
-        <spring2:message code="self.mainpage.createDescription"/>
+        <spring2:message code="self.menupage.actionDescription"/>
         <br>
 
     </p>
 
 
-    <h3 onclick="location.href='${ev1URL}'"><spring2:message code="self.mainpage.createEV1description"/>
+    <h3 onclick="location.href='${ev1URL}'"><spring2:message code="self.menupage.EV1description"/>
     </h3>
 
-    <h3 onclick="location.href='${ev2URL}'"><spring2:message code="self.mainpage.createEV2description"/>
+    <h3 onclick="location.href='${ev2URL}'"><spring2:message code="self.menupage.EV2description"/>
     </h3>
 
-    <h3 onclick="location.href='${ev3URL}'"><spring2:message code="self.mainpage.createEV3description"/>
+    <h3 onclick="location.href='${ev3URL}'"><spring2:message code="self.menupage.EV3description"/>
     </h3>
 
 

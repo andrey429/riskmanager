@@ -94,11 +94,11 @@
 <body>
 
 
-<%--<c:url var="saveurl" value="/riskmanager/self-assessment/ev1"/>--%>
+<c:url var="saveURL" value="/riskmanager/self-assessment/menu/ev1?assessmentID=${assessmentID}"/>
 
 <div class="accordion">
 
-    <form:form modelAttribute="ev1FBO" method="POST">
+    <form:form modelAttribute="ev1FBO" method="POST" action="${saveURL}">
 
 
         <div id="intro">

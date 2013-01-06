@@ -4,6 +4,7 @@ package org.selfassess.controller;
 import org.apache.log4j.Logger;
 import org.selfassess.domain.EV1Model;
 import org.selfassess.domain.SelfAssessmentModel;
+import org.selfassess.reports.SelfAssessmentReportBuilder;
 import org.selfassess.service.SelfAssessmentModelService;
 import org.selfassess.utils.POJO2FBOConverter;
 import org.selfassess.fbo.EV1FormBackingObject;
@@ -14,8 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,8 +31,12 @@ import javax.annotation.Resource;
 @RequestMapping("/self-assessment")
 public class SelfAssessmentController {
 
-    private SelfAssessmentModel currentAssessment;//thing to store parent assessment object
+    /*private SelfAssessmentModel currentAssessment;*///todo stub for storing current assessment
+    //todo: works when 1 user edits assessment, guess. Use WebFlow instead
 
+
+    private final Integer CREATE_NEW_FLAG = 1;
+    private final Integer UPDATE_EXISTING_FLAG = 0;
 
     @Resource(name = "ev1ModelService")
     EV1ModelService ev1ModelService;
@@ -39,11 +46,10 @@ public class SelfAssessmentController {
 
     Logger logger = Logger.getLogger("controller");
 
-    @ModelAttribute("currentAssessment")
-    public SelfAssessmentModel getCurrentAssessment() {
-        return currentAssessment;
+    @ModelAttribute("storedAssessments")
+    public List<SelfAssessmentModel> getStoredAssessments() {
+        return selfAssessmentModelService.getAll();
     }
-
 
     @ModelAttribute("ev1ValueFactory")
     public EV1ValueFactory getEV1ValueFactory() {
@@ -61,60 +67,144 @@ public class SelfAssessmentController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String getNewPage(Model model) {
         model.addAttribute("selfAssessmentModel", new SelfAssessmentModel());
-        return "self_assess/new_assessment_page";
+        return "self_assess/assessment_description";
     }
 
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String continueFromNewToMenuPage(Model model, @ModelAttribute("selfAssessmentModel")
     SelfAssessmentModel currentAssessment) {
-
-        this.currentAssessment = currentAssessment;
-        return "redirect:new/menu";
+        selfAssessmentModelService.add(currentAssessment);
+        return "redirect:/riskmanager/self-assessment/menu?assessmentID=" + currentAssessment.getId();
     }
 
     //after /new -> post a form with selfAssessmentModel -> /new/menu
 
 
-    @RequestMapping(value = "/new/menu", method = RequestMethod.GET)
-    public String showMenuPage(Model model) {
-        return "self_assess/new_assessment_menu";
+    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    public String showMenuPage(Model model, @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
+        SelfAssessmentModel currentAssessment = selfAssessmentModelService.get(assessmentID);
+
+        logger.debug("currentassessment is " + currentAssessment);
+
+        model.addAttribute("selfAssessmentModel", currentAssessment);
+
+        return "self_assess/assessment_menu";
     }
 
 
-    @RequestMapping(value = "/new/menu/ev1", method = RequestMethod.GET)
-    public String getEV1Page(Model model) {
+    @RequestMapping(value = "/menu/ev1", method = RequestMethod.GET)
+    public String getEV1Page(Model model,
+                             @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
 
-        EV1FormBackingObject ev1FBO = new EV1FormBackingObject();
+        EV1FormBackingObject ev1FBO;
+
+        EV1Model ev1Model = ev1ModelService.getBySelfAssessmentID(assessmentID);
+
+        if (ev1Model == null) {
+            ev1FBO = new EV1FormBackingObject();
+        } else {
+            ev1FBO = new POJO2FBOConverter().convertToFormBackingObject(ev1Model);
+        }
+
+        /*logger.debug("new model is "+ev1Model.toString());*/
+
         model.addAttribute("ev1FBO", ev1FBO);
+        model.addAttribute("assessmentID", assessmentID);
 
-        return "self_assess/ev1_page";
+        return "self_assess/ev1pages/ev1_page";
     }
 
-    @RequestMapping(value = "/new/menu/ev1", method = RequestMethod.POST)
-    public String add(@ModelAttribute("ev1FBO") EV1FormBackingObject ev1FBO) {
-
+    @RequestMapping(value = "/menu/ev1", method = RequestMethod.POST)
+    public String add(@ModelAttribute("ev1FBO") EV1FormBackingObject ev1FBO,
+                      @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
 
         POJO2FBOConverter io = new POJO2FBOConverter();
         EV1Model ev1Model = io.convertToDomainObject(ev1FBO);
-        getCurrentAssessment().setEv1Model(ev1Model);
-        ev1ModelService.add(ev1Model);
-        selfAssessmentModelService.add(getCurrentAssessment());
+        SelfAssessmentModel currentAssessment = selfAssessmentModelService.get(assessmentID);
 
-        /*EV1Model test = ev1ModelService.get(1);
 
-        EV1FormBackingObject fbo = io.convertToFormBackingObject(ev1Model);
-        logger.debug("EV1 group: " + fbo.getmGroupValues());
-        logger.debug("EV1 param: " + fbo.getParameterValues());
-        logger.debug("EV1 val: " + fbo.getEv1Value());*/
+        EV1Model storedInDBModel = ev1ModelService.getBySelfAssessmentID(assessmentID);
 
+        if (storedInDBModel != null) {
+            ev1Model.setId(storedInDBModel.getId());//replace ID
+            ev1ModelService.edit(ev1Model);
+        } else {
+            ev1ModelService.add(ev1Model);
+
+        }
+
+        currentAssessment.setEv1Model(ev1Model);
+        selfAssessmentModelService.edit(currentAssessment);
 
         return "redirect:/riskmanager/self-assessment/";
     }
 
 
-    //recuest parameter - saved or new self-assessment
-    //@RequestMapping("/page-m1")
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String getEditExistingAssessment(@RequestParam(value = "assessmentID", required = true) Integer assessmentID,
+                                            Model model) {
+        SelfAssessmentModel selfAssessmentModel = selfAssessmentModelService.get(assessmentID);
+        if (selfAssessmentModel == null) {
+            return "errorpage";
+        }
+        model.addAttribute("selfAssessmentModel", selfAssessmentModel);
+        return "self_assess/assessment_description";
 
+    }
+
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String continueFromEditToMenuPage(Model model,
+                                             @ModelAttribute("selfAssessmentModel") SelfAssessmentModel currentAssessment,
+                                             @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
+
+        currentAssessment.setId(assessmentID);
+        selfAssessmentModelService.edit(currentAssessment);
+
+        return "redirect:/riskmanager/self-assessment/menu?assessmentID=" + currentAssessment.getId();
+    }
+
+    @RequestMapping(value = "/show", method = RequestMethod.GET)
+    public String getShowPage(Model model,
+                              @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
+
+        SelfAssessmentModel selfAssessmentModel = selfAssessmentModelService.get(assessmentID);
+        if (selfAssessmentModel == null) {
+            return "redirect:/riskmanager/self-assessment/error?code=1";
+        }
+
+        EV1Model ev1Model = selfAssessmentModel.getEv1Model();
+        if (ev1Model == null) {
+            return "redirect:/riskmanager/self-assessment/error?code=1";
+        }
+        EV1FormBackingObject ev1FBO = new POJO2FBOConverter().convertToFormBackingObject(ev1Model);
+
+        model.addAttribute("selfAssessmentModel", selfAssessmentModel);
+        model.addAttribute("ev1FBO", ev1FBO);
+
+        return "self_assess/diagram";
+    }
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String getErrorPage(Model model, @RequestParam(value = "code", required = true) Integer code) {
+
+        model.addAttribute("code", code);
+
+
+        return "errorpage";
+    }
+
+    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    public String getDownload(Model model, @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
+        SelfAssessmentModel selfAssessmentModel = selfAssessmentModelService.get(assessmentID);
+        if (selfAssessmentModel == null)
+            return "redirect:/riskmanager/self-assessment/error?code=1";
+
+        SelfAssessmentReportBuilder reportBuilder = new SelfAssessmentReportBuilder();
+        reportBuilder.exportSelfAssessmentToDocxFile(selfAssessmentModel, null, "file.docx");
+
+        return "redirect:/riskmanager/self-assessment/";
+    }
 
 }

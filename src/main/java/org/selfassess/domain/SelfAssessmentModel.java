@@ -1,6 +1,10 @@
 package org.selfassess.domain;
 
+
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 
 /*
@@ -32,7 +36,8 @@ public class SelfAssessmentModel {
     private String creator;
 
 
-    @OneToOne
+
+    @OneToOne()
     EV1Model ev1Model;
 
 
@@ -87,5 +92,11 @@ public class SelfAssessmentModel {
 
     public void setCreator(String creator) {
         this.creator = creator;
+    }
+
+
+    @Override
+    public String toString() {
+        return selfAssessmentName;
     }
 }

@@ -137,7 +137,7 @@ public class PersonEditorController {
     public String saveEdit(@ModelAttribute("personAttribute") Person person, 
     										   @RequestParam(value="id", required=true) Integer id, 
     												Model model) {
-    	logger.debug("Received request to update person");
+    	logger.debug("Received request to saveOrUpdate person");
     
     	// The "personAttribute" model has been passed to the controller from the JSP
     	// We use the name "personAttribute" because the JSP uses that name

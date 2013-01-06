@@ -84,7 +84,7 @@ public class OrganisationEditorController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@ModelAttribute(value = "organisationAttribute") Organisation organisation,
                        @RequestParam(value = "id", required =true) Integer id, Model model ){
-        logger.debug("Received request to update organisation");
+        logger.debug("Received request to saveOrUpdate organisation");
 
         organisation.setId(id);
         organisationService.edit(organisation);
