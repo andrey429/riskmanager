@@ -272,11 +272,11 @@
     </p>
 
     <p>
-        <spring2:message code="self.showpage.auditors"/>:${selfAssessmentModel.auditors}
+        <spring2:message code="self.showpage.auditors"/>: ${selfAssessmentModel.auditors}
     </p>
 
     <p>
-        <spring2:message code="self.showpage.creator"/>:${selfAssessmentModel.creator}
+        <spring2:message code="self.showpage.creator"/>: ${selfAssessmentModel.creator}
     </p>
 
     <div id="values_block" class="blocks">

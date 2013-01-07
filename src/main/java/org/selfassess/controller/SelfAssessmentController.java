@@ -14,12 +14,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,10 +40,6 @@ import java.util.Locale;
 @Controller
 @RequestMapping("/self-assessment")
 public class SelfAssessmentController {
-
-    /*private SelfAssessmentModel currentAssessment;*///todo stub for storing current assessment
-    //todo: works when 1 user edits assessment, guess. Use WebFlow instead
-
 
     @Autowired
     ReloadableResourceBundleMessageSource messageSource;
@@ -61,8 +64,6 @@ public class SelfAssessmentController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getSelfAssessmentMainPage(Model model) {
-
-
         return "self_assess/main_page";
     }
 
@@ -86,12 +87,9 @@ public class SelfAssessmentController {
 
     @RequestMapping(value = "/menu", method = RequestMethod.GET)
     public String showMenuPage(Model model, @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
+
         SelfAssessmentModel currentAssessment = selfAssessmentModelService.get(assessmentID);
-
-        logger.debug("currentassessment is " + currentAssessment);
-
         model.addAttribute("selfAssessmentModel", currentAssessment);
-
         return "self_assess/assessment_menu";
     }
 
@@ -99,22 +97,16 @@ public class SelfAssessmentController {
     @RequestMapping(value = "/menu/ev1", method = RequestMethod.GET)
     public String getEV1Page(Model model,
                              @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
-
         EV1FormBackingObject ev1FBO;
-
         EV1Model ev1Model = ev1ModelService.getBySelfAssessmentID(assessmentID);
-
         if (ev1Model == null) {
             ev1FBO = new EV1FormBackingObject();
         } else {
             ev1FBO = new POJO2FBOConverter().convertToFormBackingObject(ev1Model);
         }
 
-        /*logger.debug("new model is "+ev1Model.toString());*/
-
         model.addAttribute("ev1FBO", ev1FBO);
         model.addAttribute("assessmentID", assessmentID);
-
         return "self_assess/ev1pages/ev1_page";
     }
 
@@ -198,18 +190,49 @@ public class SelfAssessmentController {
         return "errorpage";
     }
 
+
+
     @RequestMapping(value = "/export", method = RequestMethod.GET)
-    public String getDownload(Model model, @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
-        SelfAssessmentModel selfAssessmentModel = selfAssessmentModelService.get(assessmentID);
-        if (selfAssessmentModel == null)
-            return "redirect:/riskmanager/self-assessment/error?code=1";
+    public ModelAndView getFile(
+            @RequestParam(value = "assessmentID", required = true) Integer assessmentID,
+            HttpServletResponse response) {
+        try {
+            // get your file as InputStream
 
-        SelfAssessmentReportBuilder reportBuilder = new SelfAssessmentReportBuilder(messageSource);
-        reportBuilder.exportSelfAssessmentToDocxFile(selfAssessmentModel, null, "file.docx");
+            SelfAssessmentModel selfAssessmentModel = selfAssessmentModelService.get(assessmentID);
+            if (selfAssessmentModel == null) {
+                throw new Error("object with such ID not exists: assessmentID");
+                /*return null;*/
+            }
 
-        /*logger.debug("meessage sors: " + messageSource.getMessage("report.title", null, Locale.getDefault()));*/
+            SelfAssessmentReportBuilder reportBuilder = new SelfAssessmentReportBuilder(messageSource);
 
-        return "redirect:/riskmanager/self-assessment/";
+            String reportName = "report.docx";
+            reportBuilder.exportSelfAssessmentToDocxFile(selfAssessmentModel, null, reportName);
+            /*exportAssetsToDocxFile(assetService.getAll(), null, reportName);*/
+
+            //open file, open input stream
+            File reportFile = new File(reportName);
+            InputStream reportInputStream = new FileInputStream(reportFile);
+            //set response header to download file
+
+            response.setContentType("application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            response.setHeader("Content-Disposition", "attachment; filename = \"" + reportName + "\"");
+
+            //copy to response output stream
+            FileCopyUtils.copy(reportInputStream, response.getOutputStream());
+            response.flushBuffer();
+            //close stream, delete file
+            reportInputStream.close();
+            reportFile.delete();
+
+        } catch (IOException ex) {
+            throw new RuntimeException("IOError writing file to output stream");
+        }
+
+        return null;
+
     }
+
 
 }

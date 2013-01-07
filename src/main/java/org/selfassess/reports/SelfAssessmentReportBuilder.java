@@ -37,20 +37,23 @@ public class SelfAssessmentReportBuilder extends TableGenerator {
     private String pageHeight = "11906";
     private String tableFontSize = "16";
     private String headerTitleStyle = "Title";
+    private String subtitle = "Subtitle";
 
     private String largeCellWidth;
+    private String littleCellWidth;
 
 
     public SelfAssessmentReportBuilder(ReloadableResourceBundleMessageSource messageSource) {
         super();
         logger = Logger.getLogger("controller");
         this.messageSource = messageSource;
-        largeCellWidth = new BigInteger(columnWidths[0]).add(new BigInteger(columnWidths[1]))
+        largeCellWidth = new BigInteger(columnWidths[0])
+                .add(new BigInteger(columnWidths[1]))
                 .add(new BigInteger(columnWidths[2]))
                 .add(new BigInteger(columnWidths[3]))
                 .add(new BigInteger(columnWidths[4]))
                 .toString();
-
+        littleCellWidth = new BigInteger(columnWidths[3]).divide(new BigInteger("6")).toString();
     }
 
     protected String getResourceMessage(String resourceString) {
@@ -72,6 +75,33 @@ public class SelfAssessmentReportBuilder extends TableGenerator {
 
             wordprocessingMLPackage.getMainDocumentPart().addStyledParagraphOfText(headerTitleStyle,
                     getResourceMessage("report.title"));
+
+            wordprocessingMLPackage.getMainDocumentPart().addStyledParagraphOfText(subtitle,
+                    getResourceMessage("self.newAssessment.name") + ": "
+                            + (selfAssessment.getSelfAssessmentName() == null ?
+                            getResourceMessage("report.values.NULL") :
+                            selfAssessment.getSelfAssessmentName())
+            );
+
+            wordprocessingMLPackage.getMainDocumentPart().addStyledParagraphOfText(subtitle,
+                    getResourceMessage("self.newAssessment.description") + ": "
+                            + (selfAssessment.getDescription() == null ?
+                            getResourceMessage("report.values.NULL") :
+                            selfAssessment.getDescription())
+            );
+
+            wordprocessingMLPackage.getMainDocumentPart().addStyledParagraphOfText(subtitle,
+                    getResourceMessage("self.newAssessment.auditor") + ": "
+                            + (selfAssessment.getAuditors() == null ?
+                            getResourceMessage("report.values.NULL") :
+                            selfAssessment.getAuditors())
+            );
+            wordprocessingMLPackage.getMainDocumentPart().addStyledParagraphOfText(subtitle,
+                    getResourceMessage("self.newAssessment.author") + ": "
+                            + (selfAssessment.getCreator() == null ?
+                            getResourceMessage("report.values.NULL") :
+                            selfAssessment.getCreator())
+            );
 
 
             wordprocessingMLPackage.getMainDocumentPart().getContent().add(createBlankPage());
@@ -101,15 +131,9 @@ public class SelfAssessmentReportBuilder extends TableGenerator {
 
 
     protected void addEV1Part(WordprocessingMLPackage packMlPackage, EV1FormBackingObject ev1FBO) {
-        //add title
-        /*packMlPackage.getMainDocumentPart().addStyledParagraphOfText("Subtitle",
-                getResourceMessage("report.EV1Title"));*/
 
-        /*Tbl docTable = createTable();*/
-        /*groupTable.getContent().addAll(tableHead);*/
         EV1ValueFactory ev1ValueFactory = new EV1ValueFactory();
         List<Tr> tableHead = getTableHead();
-
 
         //pushing groups to table
 
@@ -140,29 +164,8 @@ public class SelfAssessmentReportBuilder extends TableGenerator {
                     column3Str = getResourceMessage("self.label.isNotRequired");
                 }
 
-                String column4Str;
+
                 Double parameter = ev1FBO.getParameterValues().get(i).get(j);
-                if (parameter.compareTo((-1.0)) == 0) {
-                    column4Str = getResourceMessage("report.values.Value6");
-                } else if (parameter.compareTo((0.0)) == 0) {
-                    column4Str = getResourceMessage("report.values.Value1");
-
-                } else if (parameter.compareTo((0.25)) == 0) {
-                    column4Str = getResourceMessage("report.values.Value2");
-
-                } else if (parameter.compareTo((0.5)) == 0) {
-                    column4Str = getResourceMessage("report.values.Value3");
-
-                } else if (parameter.compareTo((0.75)) == 0) {
-                    column4Str = getResourceMessage("report.values.Value4");
-
-                } else if (parameter.compareTo((1.0)) == 0) {
-                    column4Str = getResourceMessage("report.values.Value5");
-
-                } else {
-                    column4Str = getResourceMessage("report.values.Injection");
-                }
-
 
                 String column5Str = Double.toString(ev1ValueFactory.getParameterWeights()[i][j]);
                 String column6Str;
@@ -180,7 +183,11 @@ public class SelfAssessmentReportBuilder extends TableGenerator {
                 addStyledTableCell(row, column1Str, false, tableFontSize, columnWidths[0]);
                 addStyledTableCell(row, column2Str, false, tableFontSize, columnWidths[1]);
                 addStyledTableCell(row, column3Str, false, tableFontSize, columnWidths[2]);
-                addStyledTableCell(row, column4Str, false, tableFontSize, columnWidths[3]);
+                /*addStyledTableCell(row, column4Str, false, tableFontSize, columnWidths[3]);*/
+
+                row.getContent().addAll(getGroupOfFilledValueCellsBasedOnDoubleValue(parameter));
+
+
                 addStyledTableCell(row, column5Str, false, tableFontSize, columnWidths[4]);
                 addStyledTableCell(row, column6Str, false, tableFontSize, columnWidths[5]);
 
@@ -192,13 +199,12 @@ public class SelfAssessmentReportBuilder extends TableGenerator {
             groupTable.getContent().addAll(groupOfRows);
 
             //add final row
-            //todo stub
             Tr groupFinalRow = objectFactory.createTr();
 
             Tc largeCell = objectFactory.createTc();
             TcPr tcPr = objectFactory.createTcPr();
             TcPrInner.GridSpan gridSpan = objectFactory.createTcPrInnerGridSpan();
-            gridSpan.setVal(new BigInteger("5"));//for 5 cells
+            gridSpan.setVal(new BigInteger("10"));//for 10 cells
             tcPr.setGridSpan(gridSpan);
             tcPr.setGridSpan(gridSpan);
             largeCell.setTcPr(tcPr);
@@ -212,20 +218,45 @@ public class SelfAssessmentReportBuilder extends TableGenerator {
             addStyledTableCell(groupFinalRow, Double.toString(ev1FBO.getmGroupValues().get(i)),
                     true, tableFontSize, columnWidths[5]);
 
-
-            //
-
             groupTable.getContent().add(groupFinalRow);
             addBorders(groupTable);
             packMlPackage.getMainDocumentPart().addObject(groupTable);
             packMlPackage.getMainDocumentPart().getContent().add(createBlankPage());
         }
 
-
-        /*addBorders(docTable);
-        packMlPackage.getMainDocumentPart().addObject(docTable);*/
+    }
 
 
+    protected List<Tc> getGroupOfFilledValueCellsBasedOnDoubleValue(Double value) {
+
+        Double[] values = {0.0, 0.25, 0.5, 0.75, 1.0, -1.0};
+        List<Tc> resultList = new ArrayList<Tc>();
+
+        for (int i = 0; i < 6; i++) {
+            Tc tableCell = objectFactory.createTc();
+            String content = value.compareTo(values[i]) == 0 ? "+" : "-";
+
+            addStyling(tableCell, content, true, tableFontSize, littleCellWidth);
+
+            TcPr tcpr = objectFactory.createTcPr();
+
+            TblWidth tblWidth = objectFactory.createTblWidth();
+            tblWidth.setType("dxa");
+            tblWidth.setW(new BigInteger(littleCellWidth));
+            tcpr.setTcW(tblWidth);
+
+            CTVerticalJc vAlign = objectFactory.createCTVerticalJc();
+            vAlign.setVal(STVerticalJc.CENTER);
+            tcpr.setVAlign(vAlign);
+
+
+            tableCell.setTcPr(tcpr);
+            resultList.add(tableCell);
+
+
+        }
+
+        return resultList;
     }
 
 
@@ -233,46 +264,39 @@ public class SelfAssessmentReportBuilder extends TableGenerator {
         List<Tr> result = new ArrayList<Tr>();
 
         Tr tableHeadUpper = createRow();
-        /*Tr tableHeadLower = createRow();*/
+        Tr tableHeadLower = createRow();
 
+        TcPrInner.GridSpan gridSpan = objectFactory.createTcPrInnerGridSpan();
+        gridSpan.setVal(new BigInteger("6"));
 
-        //fill upper cell
-        /*addStyledTableCell(tableHeadUpper, );*/
-/*        tableHeadUpper.getContent().add(createTableCellVMerge(getResourceMessage("report.column1"), true, tableFontSize, columnWidths[0]));
+        tableHeadUpper.getContent().add(createTableCellVMerge(getResourceMessage("report.column1"), true, tableFontSize, columnWidths[0]));
         tableHeadUpper.getContent().add(createTableCellVMerge(getResourceMessage("report.column2"), true, tableFontSize, columnWidths[1]));
         tableHeadUpper.getContent().add(createTableCellVMerge(getResourceMessage("report.column3"), true, tableFontSize, columnWidths[2]));
-        tableHeadUpper.getContent().add(createTableCellVMerge(getResourceMessage("report.column4"), true, tableFontSize, columnWidths[3]));
-        tableHeadUpper.getContent().add(createTableCellVMerge(getResourceMessage("report.column5"), true, tableFontSize, columnWidths[4]));
-        tableHeadUpper.getContent().add(createTableCellVMerge(getResourceMessage("report.column6"), true, tableFontSize, columnWidths[5]));*/
 
-        addStyledTableCell(tableHeadUpper, getResourceMessage("report.column1"), true, tableFontSize, columnWidths[0]);
-        addStyledTableCell(tableHeadUpper, getResourceMessage("report.column2"), true, tableFontSize, columnWidths[1]);
-        addStyledTableCell(tableHeadUpper, getResourceMessage("report.column3"), true, tableFontSize, columnWidths[2]);
-        addStyledTableCell(tableHeadUpper, getResourceMessage("report.column4"), true, tableFontSize, columnWidths[3]);
-        addStyledTableCell(tableHeadUpper, getResourceMessage("report.column5"), true, tableFontSize, columnWidths[4]);
-        addStyledTableCell(tableHeadUpper, getResourceMessage("report.column6"), true, tableFontSize, columnWidths[5]);
+        Tc large = (addStyledTableCell(tableHeadUpper, getResourceMessage("report.column4"), true, tableFontSize, columnWidths[3]));
+        TcPr largeTcPr = objectFactory.createTcPr();
+        largeTcPr.setGridSpan(gridSpan);
+        large.setTcPr(largeTcPr);
+        tableHeadUpper.getContent().add(createTableCellVMerge(getResourceMessage("report.column4"), true, tableFontSize, columnWidths[4]));
+        tableHeadUpper.getContent().add(createTableCellVMerge(getResourceMessage("report.column5"), true, tableFontSize, columnWidths[5]));
+
+        tableHeadLower.getContent().add(createTableCellVMerge(columnWidths[0]));
+        tableHeadLower.getContent().add(createTableCellVMerge(columnWidths[1]));
+        tableHeadLower.getContent().add(createTableCellVMerge(columnWidths[2]));
+
+        addStyledTableCell(tableHeadLower, getResourceMessage("report.values.Value1"), true, tableFontSize, littleCellWidth);
+        addStyledTableCell(tableHeadLower, getResourceMessage("report.values.Value2"), true, tableFontSize, littleCellWidth);
+        addStyledTableCell(tableHeadLower, getResourceMessage("report.values.Value3"), true, tableFontSize, littleCellWidth);
+        addStyledTableCell(tableHeadLower, getResourceMessage("report.values.Value4"), true, tableFontSize, littleCellWidth);
+        addStyledTableCell(tableHeadLower, getResourceMessage("report.values.Value5"), true, tableFontSize, littleCellWidth);
+        addStyledTableCell(tableHeadLower, getResourceMessage("report.values.Value6"), true, tableFontSize, littleCellWidth);
 
 
-        //fill lower cell
-
-
-
-        /*tableHeadLower.getContent().add(createTableCellVMerge("1623"));
-        tableHeadLower.getContent().add(createTableCellVMerge("4965"));
-        tableHeadLower.getContent().add(createTableCellVMerge("1620"));
-        addStyledTableCell(tableHeadLower, getResourceMessage("report.columnLowerVal1"), true, tableFontSize, "665");
-        addStyledTableCell(tableHeadLower, getResourceMessage("report.columnLowerVal2"), true, tableFontSize, "665");
-        addStyledTableCell(tableHeadLower, getResourceMessage("report.columnLowerVal3"), true, tableFontSize, "665");
-        addStyledTableCell(tableHeadLower, getResourceMessage("report.columnLowerVal4"), true, tableFontSize, "665");
-        addStyledTableCell(tableHeadLower, getResourceMessage("report.columnLowerVal5"), true, tableFontSize, "665");
-        addStyledTableCell(tableHeadLower, getResourceMessage("report.columnLowerVal6"), true, tableFontSize, "665");
-        tableHeadLower.getContent().add(createTableCellVMerge("1410"));
-        tableHeadLower.getContent().add(createTableCellVMerge("1440"));*/
-
+        tableHeadLower.getContent().add(createTableCellVMerge(columnWidths[4]));
+        tableHeadLower.getContent().add(createTableCellVMerge(columnWidths[5]));
 
         result.add(0, tableHeadUpper);
-        /*result.add(1, tableHeadLower);*/
-
+        result.add(1, tableHeadLower);
 
         return result;
     }

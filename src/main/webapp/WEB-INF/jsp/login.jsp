@@ -11,107 +11,39 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/menu_table.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
-
-
     <title><spring2:message code="label.loginPageTitle"/></title>
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/perfect_login.css" media="all">
+
+
 
 </head>
 <body>
 
 
-<%--
-<div id="login_welcome">
-
-    <h2>
-        <spring2:message code="label.loginPageTitle"/>
-    </h2>
-</div>
---%>
-
-<div id="dough"></div>
-
-
-<form action="../../j_spring_security_check" method="post">
-
-
-    <div id="intro">
-        Для осуществления действий в системе необходимо пройти авторизацию.
-        <br>Введите логин и пароль в форме ниже
-    </div>
-
-
-    <div class="accordion">
-        <h3>
-        <label for="j_username"><spring2:message code="label.loginUsername"/></label>
-        <input id="j_username" name="j_username" type="text"/>
-        </h3>
-        <p>
-            Имя пользователя для идентификации в системе
-        </p>
-
-        <h3>
-            <label for="j_password"><spring2:message code="label.loginPassword"/></label>
-            <input id="j_password" name="j_password" type="password"/>
-        </h3>
-
-        <p>
-            Пароль для входа
-        </p>
-
-        <h3>
-            <strong><spring2:message code="label.loginSubmit"/></strong>
-            <br>
-            <spring2:message code="label.loginSubmit" var="loginSubmit"/>
-            <br>
-            <input type="submit" value="${loginSubmit}" style="height: 30px; width: 140px"/>
-        </h3>
 
 
 
-    </div>
+<form class="form-1" action="../../j_spring_security_check" method="post" id="loginform">
+    <spring2:message code="label.loginUsername" var="username"/>
+    <spring2:message code="label.loginPassword" var="password"/>
 
-    <%--<table style="border: 1px solid; width: 500px; text-align:center">
-        <caption>
-            <spring2:message code="label.loginPageTitle"/>
-        </caption>
-        <tbody>
-        <tr>
-            <td>
+    <p class="field">
 
-                <label for="j_username"><spring2:message code="label.loginUsername"/></label>
+        <input type="text" name="j_username" placeholder="${username}" id="j_username">
 
-                <input id="j_username" name="j_username" type="text"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="j_password"><spring2:message code="label.loginPassword"/></label>
-                <input id="j_password" name="j_password" type="password"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="login-error">
-                    <c:choose>
-                        <c:when test="${not empty error}">
-                            <div style="color: red">
-                            <spring2:message code="label.loginError"/>
-                            </div>
-                        </c:when>
-                        &lt;%&ndash;${error}&ndash;%&gt;
-                    </c:choose>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            <spring2:message code="label.loginSubmit" var="loginSubmit"/>
-            <input type="submit" value="${loginSubmit}"/>
-            </td>
-        </tr>
-        </tbody>
-        </table>
---%>
+    </p>
+    <p class="field">
+        <input type="password" name="j_password" placeholder="${password}" id="j_password">
+
+    </p>
+
+    <p class="submit">
+        <button type="submit" name="submit">-></button>
+    </p>
+</form>
+
+
 </form>
 </body>
 </html>

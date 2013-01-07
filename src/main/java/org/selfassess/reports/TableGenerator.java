@@ -34,7 +34,7 @@ public abstract class TableGenerator {
         return paragraph;
     }
 
-    protected static void addBorders(Tbl table) {
+    protected  void addBorders(Tbl table) {
         table.setTblPr(new TblPr());
         CTBorder border = new CTBorder();
         border.setColor("auto");
@@ -100,14 +100,14 @@ public abstract class TableGenerator {
         runProperties.setSzCs(size);
     }
 
-    protected static void addBoldStyle(RPr runProperties) {
+    protected  void addBoldStyle(RPr runProperties) {
         BooleanDefaultTrue b = new BooleanDefaultTrue();
         b.setVal(true);
         runProperties.setB(b);
     }
 
-    protected void addStyledTableCell(Tr tableRow, String content,
-                                      boolean bold, String fontSize, String cellWidth) {
+    protected Tc addStyledTableCell(Tr tableRow, String content,
+                                    boolean bold, String fontSize, String cellWidth) {
         Tc tableCell = objectFactory.createTc();
         addStyling(tableCell, /*getUTF8EncodedString(*/content/*)*/, bold, fontSize, cellWidth);
 
@@ -124,6 +124,8 @@ public abstract class TableGenerator {
 
         tableCell.setTcPr(tcpr);
         tableRow.getContent().add(tableCell);
+
+        return tableCell;//todo ?remove
 
     }
 
