@@ -16,11 +16,22 @@ import java.nio.charset.Charset;
  */
 public abstract class TableGenerator {
 
-    private ObjectFactory objectFactory;
+    protected ObjectFactory objectFactory;
 
 
     public TableGenerator() {
         this.objectFactory = Context.getWmlObjectFactory();
+    }
+
+    protected P createBlankPage() {
+        P paragraph = objectFactory.createP();
+        R run = objectFactory.createR();
+        Br pageBreak = objectFactory.createBr();
+        pageBreak.setType(STBrType.PAGE);
+        run.getContent().add(pageBreak);
+        paragraph.getContent().add(run);
+
+        return paragraph;
     }
 
     protected static void addBorders(Tbl table) {
@@ -41,30 +52,36 @@ public abstract class TableGenerator {
 
     }
 
-    protected void addTableCell(Tr tableRow, WordprocessingMLPackage wordMLPackage, String content) {
+    /*protected void addTableCell(Tr tableRow, WordprocessingMLPackage wordMLPackage, String content) {
         Tc tableCell = objectFactory.createTc();
         tableCell.getContent().add(
                 wordMLPackage.getMainDocumentPart().createParagraphOfText(content));
         tableRow.getContent().add(tableCell);
 
-    }
+    }*/
 
-    protected void addTableHeaders(Tr tableHead,  String... headers) {
+    /*protected void addTableHeaders(Tr tableHead, String... headers) {
         for (String header : headers) {
             //addTableCell(tableHead, packMlPackage, getUTF8EncodedString(header));
             addStyledTableCell(tableHead, getUTF8EncodedString(header), true, "24");
         }
-    }
+    }*/
 
     protected void addStyling(Tc tableCell, String content,
-                            boolean bold, String fontSize) {
+                              boolean bold, String fontSize, String cellWidth) {
         P paragraph = objectFactory.createP();
         Text text = objectFactory.createText();
-        text.setValue(content);
+        text.setValue(/*getUTF8EncodedString(*/content/*)*/);
         R run = objectFactory.createR();
         run.getContent().add(text);
         paragraph.getContent().add(run);
         RPr runProperties = objectFactory.createRPr();
+
+
+        CTLanguage lang = objectFactory.createCTLanguage();
+        lang.setVal("ru-RU");
+        runProperties.setLang(lang);
+
         if (bold) {
             addBoldStyle(runProperties);
         }
@@ -88,28 +105,120 @@ public abstract class TableGenerator {
         b.setVal(true);
         runProperties.setB(b);
     }
+
     protected void addStyledTableCell(Tr tableRow, String content,
-                                    boolean bold, String fontSize) {
+                                      boolean bold, String fontSize, String cellWidth) {
         Tc tableCell = objectFactory.createTc();
-        addStyling(tableCell, getUTF8EncodedString(content), bold, fontSize);
+        addStyling(tableCell, /*getUTF8EncodedString(*/content/*)*/, bold, fontSize, cellWidth);
+
+        TcPr tcpr = objectFactory.createTcPr();
+
+        TblWidth tblWidth = objectFactory.createTblWidth();
+        tblWidth.setType("dxa");
+        tblWidth.setW(new BigInteger(cellWidth));
+        tcpr.setTcW(tblWidth);
+        CTVerticalJc vAlign = objectFactory.createCTVerticalJc();
+        vAlign.setVal(STVerticalJc.CENTER);
+        tcpr.setVAlign(vAlign);
+
+
+        tableCell.setTcPr(tcpr);
         tableRow.getContent().add(tableCell);
 
     }
 
-    protected Tbl createTable(){
+    protected Tbl createTable() {
         return objectFactory.createTbl();
     }
 
-    protected Tr createRow(){
+    protected Tr createRow() {
         return objectFactory.createTr();
     }
-    protected Tc createCell(){
+
+    protected Tc createCell() {
         return objectFactory.createTc();
     }
 
 
-    protected String getUTF8EncodedString(String input) {
-        return new String(input.getBytes(), Charset.forName("UTF-8"));
+    protected P createParagraph() {
+        P p = objectFactory.createP();
+
+        R run = objectFactory.createR();
+        p.getContent().add(run);
+        RPr runProperties = objectFactory.createRPr();
+        CTLanguage lang = objectFactory.createCTLanguage();
+        lang.setVal("ru-RU");
+        runProperties.setLang(lang);
+
+        run.setRPr(runProperties);
+
+        return p;
+    }
+
+
+    public Tc createTableCellVMerge(String cellWidth) {
+        org.docx4j.wml.Tc tc = objectFactory.createTc();
+        org.docx4j.wml.TcPr tcpr = objectFactory.createTcPr();
+        tc.setTcPr(tcpr);
+        CTVerticalJc valign = objectFactory.createCTVerticalJc();
+        valign.setVal(STVerticalJc.TOP);
+        tcpr.setVAlign(valign);
+
+
+        //
+        TblWidth tblWidth = objectFactory.createTblWidth();
+        tblWidth.setW(new BigInteger(cellWidth));
+        tcpr.setTcW(tblWidth);
+        //
+
+
+        org.docx4j.wml.TcPrInner.VMerge vm = objectFactory.createTcPrInnerVMerge();
+        /*vm.setVal("restart);*/
+        tcpr.setVMerge(vm);
+        P p = createParagraph();
+        tc.getContent().add(p);
+        return tc;
+    }
+
+    public Tc createTableCellVMerge(String textString, boolean bold, String fontSize, String cellWidth) {
+        org.docx4j.wml.Tc tc = objectFactory.createTc();
+        org.docx4j.wml.TcPr tcpr = objectFactory.createTcPr();
+        tc.setTcPr(tcpr);
+        //width
+        TblWidth tblWidth = objectFactory.createTblWidth();
+        tblWidth.setW(new BigInteger(cellWidth));
+        tcpr.setTcW(tblWidth);
+        //
+        CTVerticalJc valign = objectFactory.createCTVerticalJc();
+        valign.setVal(STVerticalJc.TOP);
+        tcpr.setVAlign(valign);
+
+        org.docx4j.wml.TcPrInner.VMerge vm = objectFactory.createTcPrInnerVMerge();
+        vm.setVal("restart");
+        tcpr.setVMerge(vm);
+        //
+        P paragraph = createParagraph();
+
+        Text text = objectFactory.createText();
+        text.setValue(/*getUTF8EncodedString(*/textString/*)*/);
+        R run = objectFactory.createR();
+        run.getContent().add(text);
+        paragraph.getContent().add(run);
+        RPr runProperties = objectFactory.createRPr();
+        if (bold) {
+            addBoldStyle(runProperties);
+        }
+        if (fontSize != null && !fontSize.isEmpty()) {
+            setFontSize(runProperties, fontSize);
+        }
+        run.setRPr(runProperties);
+        //
+
+
+        tc.getContent().add(paragraph);
+
+
+        return tc;
     }
 
 

@@ -10,6 +10,8 @@ import org.selfassess.utils.POJO2FBOConverter;
 import org.selfassess.fbo.EV1FormBackingObject;
 import org.selfassess.service.EV1ModelService;
 import org.selfassess.utils.EV1ValueFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,8 +38,8 @@ public class SelfAssessmentController {
     //todo: works when 1 user edits assessment, guess. Use WebFlow instead
 
 
-    private final Integer CREATE_NEW_FLAG = 1;
-    private final Integer UPDATE_EXISTING_FLAG = 0;
+    @Autowired
+    ReloadableResourceBundleMessageSource messageSource;
 
     @Resource(name = "ev1ModelService")
     EV1ModelService ev1ModelService;
@@ -201,8 +204,10 @@ public class SelfAssessmentController {
         if (selfAssessmentModel == null)
             return "redirect:/riskmanager/self-assessment/error?code=1";
 
-        SelfAssessmentReportBuilder reportBuilder = new SelfAssessmentReportBuilder();
+        SelfAssessmentReportBuilder reportBuilder = new SelfAssessmentReportBuilder(messageSource);
         reportBuilder.exportSelfAssessmentToDocxFile(selfAssessmentModel, null, "file.docx");
+
+        /*logger.debug("meessage sors: " + messageSource.getMessage("report.title", null, Locale.getDefault()));*/
 
         return "redirect:/riskmanager/self-assessment/";
     }

@@ -15,6 +15,7 @@
         src='${pageContext.request.contextPath}/js/mootools-core-1.4.5-full-compat.js'></script>
 
 
+
 <script type='text/javascript'>
     window.addEvent('load', function () {
         function prepareData(data, NUM_SECTORS) {
@@ -171,6 +172,17 @@
 
 </script>
 
+<%--
+<script type="text/javascript">
+    function saveAssessment(){
+        var radarCharCanvas = document.getElementById('radar_chart');
+        document.save("ffffile");
+                radarCharCanvas.toDataURL("image/png");
+
+    }
+</script>
+--%>
+
 <style type="text/css" media="all">
     body {
         margin: 10px auto;
@@ -192,10 +204,10 @@
         border: solid 1px #c4c4c4;
     }
 
-    #diagram_h3{
+    #diagram_h3 {
         position: absolute;
         top: 500px;
-        left: 150px;
+        left: 40px;
 
     }
 
@@ -225,18 +237,31 @@
 
     }
 
+    #save_block {
+        position: absolute;
+        bottom: -40px;
+        left: 0px;
+    }
+
+    div#save_block:hover{
+        background-color: #e3e2e2;
+    }
+
+
 
 </style>
 
 </head>
 <body>
 <h3 id="diagram_h3"><i><spring2:message code="self.showpage.diagram"/> </i></h3>
+
 <div id="diagram">
 
-    <canvas width="400" height="400" id="radar_chart">
+    <canvas width="400" height="400" id="radar_chart" onclick="window.location = this.toDataURL('image/jpg')">
         <spring2:message code="self.showpage.errordiagram"/>
     </canvas>
 </div>
+
 <div id="details_block" class="blocks">
     <h3>
         <spring2:message code="self.showpage.name"/>: <i>${selfAssessmentModel.selfAssessmentName}</i>
@@ -259,6 +284,7 @@
             <spring2:message code="self.showpage.EV1description"/>
 
         </h3>
+
         <p>
             EV<sub>1</sub> = ${ev1FBO.ev1Value}
         </p>
@@ -267,9 +293,11 @@
             <spring2:message code="self.showpage.EV2description"/>
 
         </h3>
+
         <p>
             EV<sub>2</sub> = 0.0
         </p>
+
         <h3 id="EV3_h3">
             <spring2:message code="self.showpage.EV3description"/>
 
@@ -278,14 +306,23 @@
         <p>
             EV<sub>3</sub> = 0.0
         </p>
+
         <h3 id="R_h3">
 
         </h3>
+
         <p>
             R = 0.0
         </p>
+
+        <c:url var="saveURL" value="/riskmanager//self-assessment/export?assessmentID=${selfAssessmentModel.id}"/>
+        <div class="blocks" id="save_block" onclick="document.location='${saveURL}'">
+            <%--todo its stub! shouldn't save like that...--%>
+            <spring2:message code="self.showpage.saveButton"/>
+        </div>
     </div>
 </div>
+
 
 </body>
 

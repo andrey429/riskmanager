@@ -55,6 +55,12 @@ public class POJO2FBOConverter {
         ev1FormBackingObject.setmGroupValues(fboGroupValues);
         ev1FormBackingObject.setParameterValues(fboParamValues);
 
+        //todo DANGEROUS perhaps causes arithmetic trouble
+        //todo
+        //todo VERY VERY DANGEROUS :)
+        calculator.recalculateEV1GroupParameters(ev1FormBackingObject);
+
+
         return ev1FormBackingObject;
 
     }

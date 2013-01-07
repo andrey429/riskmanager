@@ -16,8 +16,19 @@ public class Calculator {
 
     private EV1ValueFactory valueFactory;
 
+    private List<ArrayList<Double>> recalculatedParams;
+
     public Calculator() {
         this.valueFactory = new EV1ValueFactory();
+        recalculatedParams = new ArrayList<ArrayList<Double>>();
+        for (int i = 0; i < 10; i++) {
+            ArrayList<Double> tempList = new ArrayList<Double>();
+            for (int j = 0; j < valueFactory.getCounts()[i]; j++) {
+                tempList.add(new Double(0));
+            }
+            recalculatedParams.add(tempList);
+        }
+
     }
 
     protected void recalculateEV1GroupParameters(EV1FormBackingObject ev1FBO) {
@@ -28,18 +39,22 @@ public class Calculator {
         }
         ev1FBO.setmGroupValues(groupValues);
         ev1FBO.setEv1Value(calculateEV1(ev1FBO));
+        ev1FBO.setParameterWeightedRecalculatedValues(recalculatedParams);
     }
 
 
     /*
     *
     groupIdx - starts from 1, not 0
+
+    todo this shit modifies ev1FBO, - recalculatedParams list, so BE CAREFUL
     *
     * */
     private Double calculateGroup(int groupIdx, EV1FormBackingObject ev1FBO) {
         if (groupIdx == 8) {
             return calculateM9Group(ev1FBO);
         }
+
 
         double resultVal = 0.0;
         Double[] parameter_weights = valueFactory.getParameterWeights()[groupIdx];
@@ -54,6 +69,8 @@ public class Calculator {
             double element = ev1FBO.getParameterValues().get(groupIdx).get(j);
             if (element == -1) {
                 sumOfNotEvaluatedParamWeights += parameter_weights[j].doubleValue();
+
+                recalculatedParams.get(groupIdx).add(j, new Double((-1.0)));
             }
         }
 
@@ -64,6 +81,10 @@ public class Calculator {
                 double element = ev1FBO.getParameterValues().get(groupIdx).get(j).doubleValue();
                 if (element != -1) { //use only evaluated parameters
                     resultVal += element * (parameter_weights[j].doubleValue() / denominator);
+                    //todo this piece stores recalculated value
+                    recalculatedParams.get(groupIdx).add(j,
+                            roundToFourDigits(element * (parameter_weights[j].doubleValue() / denominator))
+                    );
                 }
             }
             return roundToFourDigits(resultVal);
@@ -86,6 +107,8 @@ public class Calculator {
                 resultVal = Math.min(resultVal, element);
                 countChanges++;
             }
+
+            recalculatedParams.get(8).add(j, roundToFourDigits(element));//todo for storing recalculated param
         }
         if (countChanges > 0) return roundToFourDigits(resultVal);
         else return -1.0;
