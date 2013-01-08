@@ -21,6 +21,8 @@
         <security:intercept-url pattern="/riskmanager/organisations/**" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="riskmanager/query/**" access="hasRole('ROLE_ADMIN')"/>
 
+        <!--todo stub-->
+        <security:intercept-url pattern="/riskmanager/risk-assessment/**" access="permitAll"/>
 
         <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 
