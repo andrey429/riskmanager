@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.riskassess.domain.basic.AssetType;
 import org.riskassess.domain.basic.MediaType;
+import org.riskassess.domain.complex.RiskDetail;
+import org.riskassess.domain.complex.ScopeObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,18 @@ public class HibernateService {
         return query.list();
     }
 
+    public List<RiskDetail> getAllRiskDetails() {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM RiskDetail ");
+        return query.list();
+    }
+
+    public List<ScopeObject> getAllScopeObjects() {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM ScopeObject ");
+        return query.list();
+    }
+
     /*//get by id*/
 
     public AssetType getAssetType(Integer id) {
@@ -55,17 +69,40 @@ public class HibernateService {
         MediaType mediaType = (MediaType) session.get(MediaType.class, id);
         return mediaType;
     }
+
+    public RiskDetail getRiskDetail(Integer id) {
+        Session session = sessionFactory.getCurrentSession();
+        RiskDetail riskDetail = (RiskDetail) session.get(RiskDetail.class, id);
+        return riskDetail;
+    }
+
+    public ScopeObject getScopeObject(Integer id) {
+        Session session = sessionFactory.getCurrentSession();
+        ScopeObject scopeObject = (ScopeObject) session.get(ScopeObject.class, id);
+        return scopeObject;
+    }
+
     /*//create new*/
 
     public void addAssetType(AssetType assetType) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(assetType);
     }
+
     public void addMediaType(MediaType mediaType) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(mediaType);
     }
 
+    public void addRiskDetail(RiskDetail riskDetail) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(riskDetail);
+    }
+
+    public void addScopeObject(ScopeObject scopeObject) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(scopeObject);
+    }
     /*/edit existing/*/
 
     public void editAssetType(AssetType assetType) {
@@ -82,6 +119,7 @@ public class HibernateService {
         session.saveOrUpdate(storedAssetType);
 
     }
+
     public void editMediaType(MediaType mediaType) {
         Session session = sessionFactory.getCurrentSession();
         MediaType storedMediaType = (MediaType) session.get(MediaType.class, mediaType.getId());
@@ -93,17 +131,66 @@ public class HibernateService {
 
     }
 
+    public void editRiskDetail(RiskDetail riskDetail) {
+        Session session = sessionFactory.getCurrentSession();
+        RiskDetail storedRiskDetail = (RiskDetail) session.get(RiskDetail.class, riskDetail.getId());
+
+        storedRiskDetail.setAposterioryProtectionMeasures(riskDetail.getAposterioryProtectionMeasures());
+        storedRiskDetail.setAprioryProtectionMeasures(riskDetail.getAprioryProtectionMeasures());
+
+        storedRiskDetail.setOtherDataForSTP(riskDetail.getOtherDataForSTP());
+        storedRiskDetail.setOtherDataForSVR(riskDetail.getOtherDataForSVR());
+
+        storedRiskDetail.setStpValue(riskDetail.getStpValue());
+        storedRiskDetail.setSvrValue(riskDetail.getSvrValue());
+
+        storedRiskDetail.setTargetProperty(riskDetail.getTargetProperty());
+
+        storedRiskDetail.setThreatClass(riskDetail.getThreatClass());
+        storedRiskDetail.setThreatImplementation(riskDetail.getThreatImplementation());
+        storedRiskDetail.setThreatSource(riskDetail.getThreatSource());
+
+        session.saveOrUpdate(storedRiskDetail);
+
+    }
+
+    public void editScopeObject(ScopeObject scopeObject) {
+        Session session = sessionFactory.getCurrentSession();
+        ScopeObject storedScopeObject = (ScopeObject) session.get(ScopeObject.class, scopeObject.getId());
+
+        storedScopeObject.setAssetType(scopeObject.getAssetType());
+        storedScopeObject.setMediaType(scopeObject.getMediaType());
+        storedScopeObject.setRiskDetails(scopeObject.getRiskDetails());
+
+        session.saveOrUpdate(storedScopeObject);
+
+    }
+
+
     /*//delete existing*/
 
-    public void deleteAssetType(Integer id){
+    public void deleteAssetType(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         AssetType assetType = (AssetType) session.get(AssetType.class, id);
         session.delete(assetType);
     }
-    public void deleteMediaType(Integer id){
+
+    public void deleteMediaType(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         MediaType mediaType = (MediaType) session.get(MediaType.class, id);
         session.delete(mediaType);
+    }
+
+    public void deleteRiskDetail(Integer id) {
+        Session session = sessionFactory.getCurrentSession();
+        RiskDetail riskDetail = (RiskDetail) session.get(RiskDetail.class, id);
+        session.delete(riskDetail);
+    }
+
+    public void deleteScopeObject(Integer id) {
+        Session session = sessionFactory.getCurrentSession();
+        ScopeObject scopeObject = (ScopeObject) session.get(ScopeObject.class, id);
+        session.delete(scopeObject);
     }
 
 }

@@ -19,7 +19,7 @@ public class RiskDetail {
 
 
     @Column
-    Integer threatClass;
+    private Integer threatClass;
     @Column
     private Integer threatSource;
 
@@ -39,7 +39,7 @@ public class RiskDetail {
     private String otherDataForSVR;
 
     @Column
-    private String getOtherDataForSTP;
+    private String otherDataForSTP;
 
     @Column
     private Integer svrValue;
@@ -114,12 +114,12 @@ public class RiskDetail {
         this.otherDataForSVR = otherDataForSVR;
     }
 
-    public String getGetOtherDataForSTP() {
-        return getOtherDataForSTP;
+    public String getOtherDataForSTP() {
+        return otherDataForSTP;
     }
 
-    public void setGetOtherDataForSTP(String getOtherDataForSTP) {
-        this.getOtherDataForSTP = getOtherDataForSTP;
+    public void setOtherDataForSTP(String getOtherDataForSTP) {
+        this.otherDataForSTP = getOtherDataForSTP;
     }
 
     public Integer getSvrValue() {

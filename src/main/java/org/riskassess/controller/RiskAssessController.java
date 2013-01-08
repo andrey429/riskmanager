@@ -1,5 +1,7 @@
 package org.riskassess.controller;
 
+import org.riskassess.converters.AssetTypePropertyEditor;
+import org.riskassess.converters.MediaTypePropertyEditor;
 import org.riskassess.domain.basic.AssetType;
 import org.riskassess.domain.basic.MediaType;
 import org.riskassess.domain.complex.RiskDetail;
@@ -10,12 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ public class RiskAssessController {
     }
 
     @ModelAttribute("threatSourceFactory")
-    public ThreatSourceFactory getThreatSourceFactory(){
+    public ThreatSourceFactory getThreatSourceFactory() {
         return new ThreatSourceFactory(messageSource);
     }
     /*menues*/
@@ -171,6 +172,38 @@ public class RiskAssessController {
 
         return "risk_assess/description-forms/risk";
 
+    }
+
+    @RequestMapping(value = "/create/risk", method = RequestMethod.POST)
+    public String saveCreatedRiskAndGetBack(Model model,
+                                            @ModelAttribute("scopeObject") ScopeObject scopeObject,
+                                            @ModelAttribute("riskDetail") RiskDetail riskDetail) {
+
+
+        List<RiskDetail> riskDetailList = new ArrayList<RiskDetail>();//create new list
+        riskDetailList.add(riskDetail);
+
+        scopeObject.setRiskDetails(riskDetailList);
+
+
+        hibernateService.addRiskDetail(riskDetail);
+        hibernateService.addScopeObject(scopeObject);
+
+        return "redirect:/riskmanager/risk-assessment/create";
+    }
+
+
+    /*property editors binders*/
+
+
+    @InitBinder
+    public void initMediaTypeIDEditorBinder(WebDataBinder webDataBinder){
+        webDataBinder.registerCustomEditor(MediaType.class, new MediaTypePropertyEditor(hibernateService));
+    }
+
+    @InitBinder
+    public void initAssetTypeIDEditorBinder(WebDataBinder webDataBinder){
+        webDataBinder.registerCustomEditor(AssetType.class, new AssetTypePropertyEditor(hibernateService));
     }
 
 

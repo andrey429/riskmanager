@@ -25,6 +25,13 @@
 
         });
     </script>
+
+    <script type="text/javascript">
+        function sendForms() {
+            document.forms['scopeForm'].submit();
+            document.forms['riskForm'].submit();
+        }
+    </script>
 </head>
 <body>
 
@@ -56,18 +63,33 @@
         <c:otherwise>
 
             <form:form modelAttribute="scopeObject"
-                       id="scopeform">
+                       id="scopeForm">
 
 
-                <form:select path="assetType" items="${storedAssetTypes}"/>
-                <form:select path="mediaType" items="${storedMediaTypes}"/>
+                <h3>
+                        <%--<spring2:message code=""/>--%>
+                    AssetType<br><br>
+                    <form:select path="assetType">
+                    <c:forEach items="${storedAssetTypes}" var="storedAT">
+                        <form:option value="${storedAT.id}" label="${storedAT}"/>
+                    </c:forEach>
+                    </form:select>
+                </h3>
 
+                <h3>
+                    MediaType<br><br>
+                    <form:select path="mediaType" >
+                        <c:forEach items="${storedMediaTypes}" var="storedMT">
+                            <form:option value="${storedMT.id}" label="${storedMT}"/>
+                        </c:forEach>
+                    </form:select>
+                </h3>
 
             </form:form>
             <form:form modelAttribute="riskDetail" id="riskForm">
 
             </form:form>
-
+            <h3 onclick="sendForms()"><spring2:message code="risk.create.submit"/></h3>
         </c:otherwise>
     </c:choose>
 </div>
