@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Andrey
-  Date: 08.01.13
-  Time: 19:46
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -16,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><spring2:message code="self.mainPage"/></title>
+    <title><spring2:message code="risk.pagetitle.mediaType"/></title>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
     <script type="text/javascript">
@@ -35,6 +28,7 @@
 </head>
 <body>
 
+
 <div id="dough"/>
 <div id="intro">
     <p>
@@ -49,28 +43,31 @@
 </div>
 
 
-
-<c:url var="createMenuURL" value="/riskmanager/risk-assessment/create"/>
-<c:url var="showMenuURL" value="/riskmanager//risk-assessment/show"/>
-
 <div class="accordion">
 
-    <h3><spring2:message code="risk.main.welcome"/></h3>
 
-    <p>
-        <spring2:message code="risk.main.welcome.help"/>
-    </p>
+    <form:form modelAttribute="mediaType"
+               id="thisform">
 
-    <h3 onclick="location.href='${createMenuURL}'"><spring2:message code="risk.main.createMenu"/>
-    </h3>
+        <h3><spring2:message code="risk.mediaType.name"/></h3>
+
+        <p>
+            <form:input path="mediaTypeName"/>
+        </p>
+
+        <h3><spring2:message code="risk.mediaType.description"/>
+        </h3>
+
+        <p>
+            <form:input path="description"/>
+        </p>
 
 
-    <h3 onclick="location.href='${showMenuURL}'">
-        <spring2:message code="risk.main.showMenu"/>
-    </h3>
+        <h3 onclick="document.forms['thisform'].submit()">
+            <spring2:message code="risk.create.submit"/>
+        </h3>
 
-
-
+    </form:form>
 </div>
 
 

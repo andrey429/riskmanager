@@ -22,6 +22,9 @@ public class AssetType {
     private String assetTypeName;
 
     @Column
+    private String description;
+
+    @Column
     private Boolean requiresConf;
     @Column
     private Boolean requiresIntegr;
@@ -73,4 +76,16 @@ public class AssetType {
     }
 
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return assetTypeName;
+    }
 }

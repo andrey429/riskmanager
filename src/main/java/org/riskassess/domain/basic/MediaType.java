@@ -19,6 +19,8 @@ public class MediaType {
     @Column
     private String mediaTypeName;
 
+    @Column
+    private String description;
 
     public MediaType() {
     }
@@ -39,5 +41,16 @@ public class MediaType {
         this.mediaTypeName = mediaTypeName;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return mediaTypeName;
+    }
 }

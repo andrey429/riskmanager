@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Andrey
-  Date: 08.01.13
-  Time: 19:46
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -35,6 +28,7 @@
 </head>
 <body>
 
+
 <div id="dough"/>
 <div id="intro">
     <p>
@@ -49,26 +43,58 @@
 </div>
 
 
-
-<c:url var="createMenuURL" value="/riskmanager/risk-assessment/create"/>
-<c:url var="showMenuURL" value="/riskmanager//risk-assessment/show"/>
-
 <div class="accordion">
 
-    <h3><spring2:message code="risk.main.welcome"/></h3>
+    <h3><spring2:message code="risk.show.menu.title"/></h3>
+    <h3><spring2:message code="risk.assetType"/></h3>
 
     <p>
-        <spring2:message code="risk.main.welcome.help"/>
+
+        <c:choose>
+            <c:when test="${not empty storedAssetTypes}">
+                <select size="4">
+
+                    <c:forEach var="storedAssetType" items="${storedAssetTypes}">
+                        <c:url var="editAssetTypeURL"
+                               value="/riskmanager/risk-assessment/edit/asset-type?assetTypeID=${storedAssetType.id}"/>
+                        <option onclick="location.href='${editAssetTypeURL}'">
+                                ${storedAssetType.assetTypeName}
+                        </option>
+                    </c:forEach>
+                </select>
+            </c:when>
+            <c:otherwise>
+                <spring2:message code="risk.error.notExist"/>
+            </c:otherwise>
+        </c:choose>
+
+
     </p>
 
-    <h3 onclick="location.href='${createMenuURL}'"><spring2:message code="risk.main.createMenu"/>
-    </h3>
+    <h3><spring2:message code="risk.mediaType"/></h3>
+
+    <p>
+
+        <c:choose>
+            <c:when test="${not empty storedMediaTypes}">
+                <select size="4">
+
+                    <c:forEach var="storedMediaType" items="${storedMediaTypes}">
+                        <c:url var="editMediaTypeURL"
+                               value="/riskmanager/risk-assessment/edit/media-type?mediaTypeID=${storedMediaType.id}"/>
+                        <option onclick="location.href='${editMediaTypeURL}'">
+                                ${storedMediaType.mediaTypeName}
+                        </option>
+                    </c:forEach>
+                </select>
+            </c:when>
+            <c:otherwise>
+                <spring2:message code="risk.error.notExist"/>
+            </c:otherwise>
+        </c:choose>
 
 
-    <h3 onclick="location.href='${showMenuURL}'">
-        <spring2:message code="risk.main.showMenu"/>
-    </h3>
-
+    </p>
 
 
 </div>
