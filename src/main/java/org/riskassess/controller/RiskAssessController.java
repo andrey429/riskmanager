@@ -1,11 +1,13 @@
 package org.riskassess.controller;
 
+import org.apache.log4j.Logger;
 import org.riskassess.converters.AssetTypePropertyEditor;
 import org.riskassess.converters.MediaTypePropertyEditor;
 import org.riskassess.domain.basic.AssetType;
 import org.riskassess.domain.basic.MediaType;
 import org.riskassess.domain.complex.RiskDetail;
 import org.riskassess.domain.complex.ScopeObject;
+import org.riskassess.factories.RiskValueFactory;
 import org.riskassess.factories.ThreatSourceFactory;
 import org.riskassess.service.HibernateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,7 @@ import java.util.List;
 @RequestMapping(value = "/risk-assessment")
 public class RiskAssessController {
 
+    Logger logger = Logger.getLogger("controller");
 
     /*@RequestMapping(value = "/create", method = RequestMethod.GET)*/
     @Autowired
@@ -45,14 +48,30 @@ public class RiskAssessController {
     }
 
     @ModelAttribute("storedMediaTypes")
-    public List<MediaType> getMediaTypes() {
+    public List<MediaType> getStoredMediaTypes() {
         return hibernateService.getAllMediaTypes();
+    }
+
+    @ModelAttribute("storedScopeObjects")
+    public List<ScopeObject> getStoredScopeObjects() {
+        return hibernateService.getAllScopeObjects();
+    }
+
+    @ModelAttribute("storedRiskDetails")
+    public List<RiskDetail> getStoredRiskDetails() {
+        return hibernateService.getAllRiskDetails();
     }
 
     @ModelAttribute("threatSourceFactory")
     public ThreatSourceFactory getThreatSourceFactory() {
         return new ThreatSourceFactory(messageSource);
     }
+
+    @ModelAttribute("riskValueFactory")
+    public RiskValueFactory getRiskValueFactory() {
+        return new RiskValueFactory(messageSource);
+    }
+
     /*menues*/
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -67,7 +86,8 @@ public class RiskAssessController {
 
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String getShowMenu() {
-        return "risk_assess/show/show_menu";
+
+        return "risk_assess/show/show_assessment";
     }
 
 
@@ -91,6 +111,11 @@ public class RiskAssessController {
     }
 
     /*//edit*/
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String getEditPage() {
+        return "risk_assess/edit-menu/edit-menu";
+    }
 
     @RequestMapping(value = "/edit/asset-type", method = RequestMethod.GET)
     public String getEditAssetTypePage(Model model,
@@ -165,44 +190,163 @@ public class RiskAssessController {
 
     /*//risk evaluations*/
 
-    @RequestMapping(value = "/create/risk", method = RequestMethod.GET)
-    public String getCreateRiskPage(Model model) {
+    @RequestMapping(value = "/create/scope", method = RequestMethod.GET)
+    public String getCreateScopePage(Model model) {
         model.addAttribute("scopeObject", new ScopeObject());
-        model.addAttribute("riskDetail", new RiskDetail());
 
-        return "risk_assess/description-forms/risk";
+
+        return "risk_assess/description-forms/scope_object";
 
     }
+
+    @RequestMapping(value = "/create/scope", method = RequestMethod.POST)
+    public String saveCreatedScopeAndGotoRisk(Model model,
+                                              @ModelAttribute("scopeObject") ScopeObject scopeObject
+    ) {
+
+        if (hibernateService.getScopeObjectByAssetAndMedia(scopeObject.getAssetType().getId(), scopeObject.getMediaType().getId()) == null) {
+            hibernateService.addScopeObject(scopeObject);
+        }
+
+
+        return "redirect:/riskmanager/risk-assessment/create/risk?assetTypeID=" + scopeObject.getAssetType().getId()
+                + "&mediaTypeID=" + scopeObject.getMediaType().getId();
+    }
+
+    /*@RequestMapping(value = "/create/risk", method = RequestMethod.GET)*/
+
+    @RequestMapping(value = "/create/risk")
+    public String getCreateRiskPage(Model model/*,
+                                    @RequestParam(value = "assetTypeID", required = true) Integer assetTypeID,
+                                    @RequestParam(value = "mediaTypeID", required = true) Integer mediaTypeID*/) {
+        /*AssetType assetType = hibernateService.getAssetType(assetTypeID);
+        MediaType mediaType = hibernateService.getMediaType(mediaTypeID);*/
+        /*List<RiskDetail> associatedRisks = hibernateService.getRiskDetailsByAssetAndMedia(assetTypeID, mediaTypeID);*/
+
+
+        /*model.addAttribute("selectedAssetTypeModel", assetType);
+        model.addAttribute("selectedMediaTypeModel", mediaType);
+        model.addAttribute("associatedRisks", associatedRisks);*/
+        model.addAttribute("riskIDAttribute", null);
+        model.addAttribute("newRisk", new RiskDetail());
+        return "risk_assess/description-forms/risk_detail_description";
+    }
+
+    @RequestMapping(value = "/edit/risk", method = RequestMethod.GET)
+    public String getExistingRiskPage(Model model,
+                                      @RequestParam(value = "riskID", required = true) Integer riskID) {
+
+        RiskDetail riskDetail = hibernateService.getRiskDetail(riskID);
+        if (riskDetail == null) return "errorpage";
+
+        model.addAttribute("newRisk", riskDetail);
+        model.addAttribute("riskIDAttribute", riskID);
+
+        return "risk_assess/description-forms/risk_detail_description";
+    }
+
+    @RequestMapping(value = "/edit/risk", method = RequestMethod.POST)
+    public String saveExistingRisk(Model model,
+                                   @RequestParam(value = "riskID", required = true) Integer riskID,
+                                   @ModelAttribute(value = "newRisk") RiskDetail riskDetail) {
+
+        hibernateService.editRiskDetail(riskDetail);
+
+        return "redirect:/riskmanager/risk-assessment/create/";
+
+    }
+
 
     @RequestMapping(value = "/create/risk", method = RequestMethod.POST)
-    public String saveCreatedRiskAndGetBack(Model model,
-                                            @ModelAttribute("scopeObject") ScopeObject scopeObject,
-                                            @ModelAttribute("riskDetail") RiskDetail riskDetail) {
+    public String saveCreatedRiskAndGoto(Model model,
+                                         @RequestParam(value = "assetTypeID", required = true) Integer assetTypeID,
+                                         @RequestParam(value = "mediaTypeID", required = true) Integer mediaTypeID,
+                                         @ModelAttribute("newRisk") RiskDetail newRisk) {
 
 
-        List<RiskDetail> riskDetailList = new ArrayList<RiskDetail>();//create new list
-        riskDetailList.add(riskDetail);
+        List<RiskDetail> listOfAssociatedRisks;
+        ScopeObject scopeObject = hibernateService.getScopeObjectByAssetAndMedia(assetTypeID, mediaTypeID);
 
-        scopeObject.setRiskDetails(riskDetailList);
+        AssetType assetType = hibernateService.getAssetType(assetTypeID);
+        MediaType mediaType = hibernateService.getMediaType(mediaTypeID);
 
 
-        hibernateService.addRiskDetail(riskDetail);
-        hibernateService.addScopeObject(scopeObject);
+        if (scopeObject == null) {
+            scopeObject = new ScopeObject();
+            listOfAssociatedRisks = new ArrayList<RiskDetail>();
+            listOfAssociatedRisks.add(newRisk);
 
-        return "redirect:/riskmanager/risk-assessment/create";
+            scopeObject.setRiskDetails(listOfAssociatedRisks);
+            scopeObject.setMediaType(mediaType);
+            scopeObject.setAssetType(assetType);
+
+            newRisk.setId(null);//todo
+
+            hibernateService.addRiskDetail(newRisk);
+            hibernateService.addScopeObject(scopeObject);
+
+        } else {
+            listOfAssociatedRisks = scopeObject.getRiskDetails();
+            if (listOfAssociatedRisks == null) {
+                listOfAssociatedRisks = new ArrayList<RiskDetail>();
+            }
+            listOfAssociatedRisks.add(newRisk);
+            //save riskdetail
+            newRisk.setId(null);//todo
+            hibernateService.addRiskDetail(newRisk);
+            scopeObject.setRiskDetails(listOfAssociatedRisks);
+            hibernateService.editScopeObject(scopeObject);
+        }
+
+
+        return "redirect:/riskmanager/risk-assessment/create/";
+
+
     }
 
+
+    /*delete risks*/
+
+
+    @RequestMapping(value = "/delete/risk", method = RequestMethod.GET)
+    public String getDeleteRiskPage(Model model,
+                                    @RequestParam(value = "assetTypeID", required = true) Integer assetTypeID,
+                                    @RequestParam(value = "mediaTypeID", required = true) Integer mediaTypeID,
+                                    @RequestParam(value = "riskID", required = true) Integer riskID) {
+
+        //todo no checks made - NOT SAFE
+        ScopeObject scopeObject = hibernateService.getScopeObjectByAssetAndMedia(assetTypeID, mediaTypeID);
+        List<RiskDetail> riskDetailList = scopeObject.getRiskDetails();
+
+        RiskDetail riskDetailFromList = null;
+        for (RiskDetail r : riskDetailList) {
+            if (r.getId().compareTo(riskID) == 0) {
+                riskDetailFromList = r;
+                break;
+            }
+        }
+
+        if (riskDetailFromList == null) return "errorpage";
+
+        riskDetailList.remove(riskDetailFromList);
+        scopeObject.setRiskDetails(riskDetailList);
+        hibernateService.editScopeObject(scopeObject);
+
+        hibernateService.deleteRiskDetail(riskID);
+        return "redirect:/riskmanager/risk-assessment/show";
+
+    }
 
     /*property editors binders*/
 
 
     @InitBinder
-    public void initMediaTypeIDEditorBinder(WebDataBinder webDataBinder){
+    public void initMediaTypeIDEditorBinder(WebDataBinder webDataBinder) {
         webDataBinder.registerCustomEditor(MediaType.class, new MediaTypePropertyEditor(hibernateService));
     }
 
     @InitBinder
-    public void initAssetTypeIDEditorBinder(WebDataBinder webDataBinder){
+    public void initAssetTypeIDEditorBinder(WebDataBinder webDataBinder) {
         webDataBinder.registerCustomEditor(AssetType.class, new AssetTypePropertyEditor(hibernateService));
     }
 

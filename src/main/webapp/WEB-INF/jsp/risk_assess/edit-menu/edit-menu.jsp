@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title><spring2:message code="risk.pagetitle.risk"/></title>
+    <title><spring2:message code="self.mainPage"/></title>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
     <script type="text/javascript">
@@ -26,12 +26,6 @@
         });
     </script>
 
-    <script type="text/javascript">
-        function sendForms() {
-            document.forms['scopeForm'].submit();
-            document.forms['riskForm'].submit();
-        }
-    </script>
 </head>
 <body>
 
@@ -50,48 +44,46 @@
 </div>
 
 
-<c:url var="getBackURL" value="/riskmanager/risk-assessment/create"/>
+<c:url var="editAssetTypeURL" value="/riskmanager/risk-assessment/create/asset-type"/>
+<c:url var="editMediaTypeURL" value="/riskmanager/risk-assessment/create/media-type"/>
+<c:url var="showRisksURL" value="/riskmanager/risk-assessment/show"/>
+
 
 <div class="accordion">
 
-    <c:choose>
-        <c:when test="${empty storedAssetTypes or empty storedMediaTypes}">
-            <h3 onclick="location.href='${getBackURL}'">
-                <spring2:message code="risk.error.notEnoughScope"/>
-            </h3>
-        </c:when>
-        <c:otherwise>
+    <h2><spring2:message code="risk.edit.menu.title"/></h2>
 
-            <form:form modelAttribute="scopeObject"
-                       id="scopeForm">
+    <h3><spring2:message code="risk.assetType"/>
+    </h3>
 
+    <p>
+        <select size="4">
+            <c:forEach items="${storedAssetTypes}" var="assetTypeTmp">
+                <c:set var="editURL"
+                       value="edit/asset-type?assetTypeID=${assetTypeTmp.id}"/>
+                <option onclick="location.href='${editURL}'">
+                    ${assetTypeTmp}
+                </option>
+            </c:forEach>
+        </select>
+    </p>
 
-                <h3>
-                        <%--<spring2:message code=""/>--%>
-                    AssetType<br><br>
-                    <form:select path="assetType">
-                    <c:forEach items="${storedAssetTypes}" var="storedAT">
-                        <form:option value="${storedAT.id}" label="${storedAT}"/>
-                    </c:forEach>
-                    </form:select>
-                </h3>
-
-                <h3>
-                    MediaType<br><br>
-                    <form:select path="mediaType" >
-                        <c:forEach items="${storedMediaTypes}" var="storedMT">
-                            <form:option value="${storedMT.id}" label="${storedMT}"/>
-                        </c:forEach>
-                    </form:select>
-                </h3>
-
-            </form:form>
-            <form:form modelAttribute="riskDetail" id="riskForm">
-
-            </form:form>
-            <h3 onclick="sendForms()"><spring2:message code="risk.create.submit"/></h3>
-        </c:otherwise>
-    </c:choose>
+    <h3><spring2:message code="risk.mediaType"/>
+    </h3>
+    <p>
+    <select size="4">
+        <c:forEach items="${storedMediaTypes}" var="mediaTypeTmp">
+            <c:set var="editURL"
+                   value="edit/media-type?mediaTypeID=${mediaTypeTmp.id}"/>
+            <option onclick="location.href='${editURL}'">
+                    ${mediaTypeTmp}
+            </option>
+        </c:forEach>
+    </select>
+    </p>
+    <h3>
+        <spring2:message code="risk.edit.menu.risk"/>
+    </h3>
 </div>
 
 

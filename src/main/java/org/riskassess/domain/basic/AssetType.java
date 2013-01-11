@@ -24,12 +24,7 @@ public class AssetType {
     @Column
     private String description;
 
-    @Column
-    private Boolean requiresConf;
-    @Column
-    private Boolean requiresIntegr;
-    @Column
-    private Boolean requiresAvail;
+
 
 
     public AssetType() {
@@ -51,7 +46,7 @@ public class AssetType {
         this.assetTypeName = assetTypeName;
     }
 
-    public Boolean getRequiresConf() {
+    /*public Boolean getRequiresConf() {
         return requiresConf;
     }
 
@@ -73,7 +68,7 @@ public class AssetType {
 
     public void setRequiresAvail(Boolean requiresAvail) {
         this.requiresAvail = requiresAvail;
-    }
+    }*/
 
 
     public String getDescription() {

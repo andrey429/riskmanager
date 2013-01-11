@@ -12,19 +12,7 @@
     <title><spring2:message code="risk.pagetitle.mediaType"/></title>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".accordion h3:first").addClass("active");
-            $(".accordion p:not(:first)").hide();
-            $(".accordion h3").click(function () {
-                $(this).next("p").slideToggle("slow")
-                        .siblings("p:visible").slideUp("slow");
-                $(this).toggleClass("active");
-                $(this).siblings("h3").removeClass("active");
-            });
 
-        });
-    </script>
 </head>
 <body>
 
@@ -49,6 +37,7 @@
     <form:form modelAttribute="mediaType"
                id="thisform">
 
+        <h2><spring2:message code="risk.mediaType"/></h2>
         <h3><spring2:message code="risk.mediaType.name"/></h3>
 
         <p>
@@ -59,13 +48,13 @@
         </h3>
 
         <p>
-            <form:input path="description"/>
+            <form:textarea path="description"/>
         </p>
 
 
-        <h3 onclick="document.forms['thisform'].submit()">
+        <h2 onclick="document.forms['thisform'].submit()" id="savebutton">
             <spring2:message code="risk.create.submit"/>
-        </h3>
+        </h2>
 
     </form:form>
 </div>

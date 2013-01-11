@@ -44,5 +44,7 @@ public class RiskValueFactory {
     }
 
 
-
+    public Integer[][] getRiskValueMatrix() {
+        return riskValueMatrix;
+    }
 }

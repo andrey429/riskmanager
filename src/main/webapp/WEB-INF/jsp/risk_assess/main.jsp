@@ -19,19 +19,8 @@
     <title><spring2:message code="self.mainPage"/></title>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".accordion h3:first").addClass("active");
-            $(".accordion p:not(:first)").hide();
-            $(".accordion h3").click(function () {
-                $(this).next("p").slideToggle("slow")
-                        .siblings("p:visible").slideUp("slow");
-                $(this).toggleClass("active");
-                $(this).siblings("h3").removeClass("active");
-            });
 
-        });
-    </script>
+
 </head>
 <body>
 

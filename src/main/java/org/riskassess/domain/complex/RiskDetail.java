@@ -18,8 +18,8 @@ public class RiskDetail {
     private Integer id;
 
 
-    @Column
-    private Integer threatClass;
+    /*@Column
+    private Integer threatClass;*/
     @Column
     private Integer threatSource;
 
@@ -30,16 +30,7 @@ public class RiskDetail {
     private String threatImplementation;
 
     @Column
-    private String aprioryProtectionMeasures;
-
-    @Column
-    private String aposterioryProtectionMeasures;
-
-    @Column
-    private String otherDataForSVR;
-
-    @Column
-    private String otherDataForSTP;
+    private String plannedMeasures;
 
     @Column
     private Integer svrValue;
@@ -58,13 +49,13 @@ public class RiskDetail {
         this.id = id;
     }
 
-    public Integer getThreatClass() {
+    /*public Integer getThreatClass() {
         return threatClass;
     }
 
     public void setThreatClass(Integer threatClass) {
         this.threatClass = threatClass;
-    }
+    }*/
 
     public Integer getThreatSource() {
         return threatSource;
@@ -90,7 +81,7 @@ public class RiskDetail {
         this.threatImplementation = threatImplementation;
     }
 
-    public String getAprioryProtectionMeasures() {
+    /*public String getAprioryProtectionMeasures() {
         return aprioryProtectionMeasures;
     }
 
@@ -121,7 +112,7 @@ public class RiskDetail {
     public void setOtherDataForSTP(String getOtherDataForSTP) {
         this.otherDataForSTP = getOtherDataForSTP;
     }
-
+*/
     public Integer getSvrValue() {
         return svrValue;
     }
@@ -138,4 +129,12 @@ public class RiskDetail {
         this.stpValue = stpValue;
     }
 
+
+    public String getPlannedMeasures() {
+        return plannedMeasures;
+    }
+
+    public void setPlannedMeasures(String plannedMeasures) {
+        this.plannedMeasures = plannedMeasures;
+    }
 }

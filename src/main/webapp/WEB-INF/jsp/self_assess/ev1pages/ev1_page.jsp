@@ -120,6 +120,8 @@
             <c:set var="requirementArray" value="${ev1ValueFactory.requirement[groupIdx]}"/>
             <%--<c:set var="parameterValuesArray" value="${ev1FBO.parameterValues[groupIdx]}"/>--%>
 
+
+
             <c:forEach var="idx" begin="${0}" end="${countArray[groupIdx] - 1}" step="${1}">
                 <c:set var="requirement" value="${requirementArray[idx]}"/>
 

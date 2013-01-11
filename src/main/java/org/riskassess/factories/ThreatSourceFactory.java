@@ -14,26 +14,23 @@ import java.util.Locale;
 public class ThreatSourceFactory {
 
     private ReloadableResourceBundleMessageSource messageSource;
-    private Integer[] countOfParametersInGroups = {7, 5, 6, 6, 9, 6, 2};
+    private int numberOfThreats = 41;
 
 
     public ThreatSourceFactory(ReloadableResourceBundleMessageSource messageSource) {
         this.messageSource = messageSource;
+
     }
 
-    public String getThreatDescription(Integer classNum, Integer threatNum) {
-        return messageSource.getMessage(("class" + classNum + ".threat" + threatNum),
+    public String getThreatDescription(Integer threatNum) {
+        return messageSource.getMessage(("threat" + threatNum),
                 null, Locale.getDefault()
         );
     }
 
 
-    public Integer[] getCountOfParametersInGroups() {
-        return countOfParametersInGroups;
-    }
-
-    public String getTargetPropertyString(Integer propertyType){
-        switch (propertyType.intValue()){
+    public String getTargetPropertyString(Integer propertyType) {
+        switch (propertyType.intValue()) {
             case 0:
                 return messageSource.getMessage("values.property.confidentiality", null, Locale.getDefault());
             case 1:
@@ -46,4 +43,8 @@ public class ThreatSourceFactory {
         }
     }
 
+
+    public int getNumberOfThreats() {
+        return numberOfThreats;
+    }
 }

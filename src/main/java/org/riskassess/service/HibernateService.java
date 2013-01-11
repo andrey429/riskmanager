@@ -99,6 +99,8 @@ public class HibernateService {
         session.saveOrUpdate(riskDetail);
     }
 
+
+
     public void addScopeObject(ScopeObject scopeObject) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(scopeObject);
@@ -111,9 +113,9 @@ public class HibernateService {
         AssetType storedAssetType = (AssetType) session.get(AssetType.class, assetType.getId());
 
         storedAssetType.setAssetTypeName(assetType.getAssetTypeName());
-        storedAssetType.setRequiresAvail(assetType.getRequiresAvail());
+        /*storedAssetType.setRequiresAvail(assetType.getRequiresAvail());
         storedAssetType.setRequiresConf(assetType.getRequiresConf());
-        storedAssetType.setRequiresIntegr(assetType.getRequiresIntegr());
+        storedAssetType.setRequiresIntegr(assetType.getRequiresIntegr());*/
         storedAssetType.setDescription(assetType.getDescription());
 
         session.saveOrUpdate(storedAssetType);
@@ -135,18 +137,19 @@ public class HibernateService {
         Session session = sessionFactory.getCurrentSession();
         RiskDetail storedRiskDetail = (RiskDetail) session.get(RiskDetail.class, riskDetail.getId());
 
-        storedRiskDetail.setAposterioryProtectionMeasures(riskDetail.getAposterioryProtectionMeasures());
+        /*storedRiskDetail.setAposterioryProtectionMeasures(riskDetail.getAposterioryProtectionMeasures());
         storedRiskDetail.setAprioryProtectionMeasures(riskDetail.getAprioryProtectionMeasures());
 
         storedRiskDetail.setOtherDataForSTP(riskDetail.getOtherDataForSTP());
-        storedRiskDetail.setOtherDataForSVR(riskDetail.getOtherDataForSVR());
+        storedRiskDetail.setOtherDataForSVR(riskDetail.getOtherDataForSVR());*/
+        storedRiskDetail.setPlannedMeasures(riskDetail.getPlannedMeasures());
 
         storedRiskDetail.setStpValue(riskDetail.getStpValue());
         storedRiskDetail.setSvrValue(riskDetail.getSvrValue());
 
         storedRiskDetail.setTargetProperty(riskDetail.getTargetProperty());
 
-        storedRiskDetail.setThreatClass(riskDetail.getThreatClass());
+        /*storedRiskDetail.setThreatClass(riskDetail.getThreatClass());*/
         storedRiskDetail.setThreatImplementation(riskDetail.getThreatImplementation());
         storedRiskDetail.setThreatSource(riskDetail.getThreatSource());
 
@@ -193,4 +196,33 @@ public class HibernateService {
         session.delete(scopeObject);
     }
 
+
+    /*special*/
+
+    public ScopeObject getScopeObjectByAssetAndMedia(Integer assetTypeID, Integer mediaTypeID) {
+
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM ScopeObject as scope WHERE scope.assetType.id =:param1 AND scope.mediaType.id = :param2");
+        query.setParameter("param1", assetTypeID);
+        query.setParameter("param2", mediaTypeID);
+
+        List<ScopeObject> result = query.list();
+
+        if (result == null || result.size() == 0) {
+            return null;
+        } else if (result.size() > 1) {
+
+            throw new Error("Not unique scope object!!!!!!");
+        } else {
+            return result.get(0);
+        }
+
+    }
+
+    public List<RiskDetail> getRiskDetailsByAssetAndMedia(Integer assetTypeID, Integer mediaTypeID) {
+
+        ScopeObject scopeObject = getScopeObjectByAssetAndMedia(assetTypeID, mediaTypeID);
+        return scopeObject == null ? null : scopeObject.getRiskDetails();
+
+    }
 }

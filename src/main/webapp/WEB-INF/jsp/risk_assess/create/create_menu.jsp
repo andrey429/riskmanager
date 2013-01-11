@@ -12,19 +12,7 @@
     <title><spring2:message code="self.mainPage"/></title>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".accordion h3:first").addClass("active");
-            $(".accordion p:not(:first)").hide();
-            $(".accordion h3").click(function () {
-                $(this).next("p").slideToggle("slow")
-                        .siblings("p:visible").slideUp("slow");
-                $(this).toggleClass("active");
-                $(this).siblings("h3").removeClass("active");
-            });
 
-        });
-    </script>
 </head>
 <body>
 
@@ -45,12 +33,13 @@
 
 <c:url var="createAssetTypeURL" value="/riskmanager/risk-assessment/create/asset-type"/>
 <c:url var="createMediaTypeURL" value="/riskmanager/risk-assessment/create/media-type"/>
-
+<c:url var="createRiskURL" value="/riskmanager/risk-assessment/create/risk"/>
+<c:url var="showRisksURL" value="/riskmanager/risk-assessment/show"/>
 
 
 <div class="accordion">
 
-    <h3><spring2:message code="risk.create.menu.title"/></h3>
+    <h2><spring2:message code="risk.create.menu.title"/></h2>
 
     <h3 onclick="location.href='${createAssetTypeURL}'"><spring2:message code="risk.assetType"/>
     </h3>
@@ -58,6 +47,9 @@
     <h3 onclick="location.href='${createMediaTypeURL}'"><spring2:message code="risk.mediaType"/>
     </h3>
 
+    <h3 onclick="location.href='${createRiskURL}'">
+        <spring2:message code="risk.create.menu.risk"/>
+    </h3>
 </div>
 
 

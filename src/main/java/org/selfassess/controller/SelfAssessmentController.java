@@ -57,7 +57,7 @@ public class SelfAssessmentController {
         return selfAssessmentModelService.getAll();
     }
 
-    @ModelAttribute("ev1ValueFa4ctory")
+    @ModelAttribute("ev1ValueFactory")
     public EV1ValueFactory getEV1ValueFactory() {
         return new EV1ValueFactory();
     }
