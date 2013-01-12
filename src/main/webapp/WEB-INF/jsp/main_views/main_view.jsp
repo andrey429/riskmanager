@@ -15,7 +15,7 @@
 <head>
 
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/menu_table.css" media="all"/>
+
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="label.appName"/></title>

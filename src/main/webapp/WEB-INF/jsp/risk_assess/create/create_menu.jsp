@@ -31,10 +31,7 @@
 </div>
 
 
-<c:url var="createAssetTypeURL" value="/riskmanager/risk-assessment/create/asset-type"/>
-<c:url var="createMediaTypeURL" value="/riskmanager/risk-assessment/create/media-type"/>
-<c:url var="createRiskURL" value="/riskmanager/risk-assessment/create/risk"/>
-<c:url var="showRisksURL" value="/riskmanager/risk-assessment/show"/>
+
 
 
 <div class="accordion">

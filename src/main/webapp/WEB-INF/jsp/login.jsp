@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/menu_table.css" media="all"/>
+
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
     <title><spring2:message code="label.loginPageTitle"/></title>

@@ -3,17 +3,19 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>
-
+    <spring2:message code="menu.selfAssessment"/>
 </title>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
 <script type='text/javascript'
         src='${pageContext.request.contextPath}/js/mootools-core-1.4.5-full-compat.js'></script>
-
 
 
 <script type='text/javascript'>
@@ -184,145 +186,120 @@
 --%>
 
 <style type="text/css" media="all">
-    body {
-        margin: 10px auto;
-        width: 570px;
-        font: 120%/100% Arial, Helvetica, sans-serif;
-    }
+        /*body {
+            margin: 10px auto;
+            width: 570px;
+            font: 120%/100% Arial, Helvetica, sans-serif;
+        }*/
 
     #diagram {
-        padding: 0;
-        margin: 0;
+        padding: 20px;
+        margin: 10px auto;
         font-size: 11px;
         width: 450px;
         height: 450px;
-        position: absolute;
-        top: 45px;
-        left: 10px;
-        background-color: #fff;
-        color: #444;
-        border: solid 1px #c4c4c4;
-    }
-
-    #diagram_h3 {
-        position: absolute;
-        top: 500px;
-        left: 40px;
-
-    }
-
-    .blocks {
-        width: 480px;
-        /*border-bottom: solid 1px #c4c4c4;*/
-        background: #f7f7f7;
-        padding: 7px 15px;
-        margin: 0;
-        /*font: bold 120%/100% Arial, Helvetica, sans-serif;*/
-        border: solid 1px #c4c4c4;
-
-        cursor: pointer;
-
-    }
-
-    #values_block {
-        position: absolute;
-        bottom: -400px;
-        left: 0px;
-    }
-
-    #details_block {
         position: relative;
-        top: 45px;
-        left: 45px;
-
-    }
-
-    #save_block {
-        position: absolute;
-        bottom: -40px;
+        top: 50%;
         left: 0px;
+        background-color: #fff;
+        /*color: #444;*/
+        /*border: solid 1px #c4c4c4;*/
+
     }
 
-    div#save_block:hover{
-        background-color: #e3e2e2;
+    #diagram h3 {
+        position: inherit;
+        bottom: 20%;
     }
 
+    div#details_block {
+
+        position: absolute;
+        top: 20%;
+        left: 2%;
+        width: 25%;
+
+    }
+
+    #details_block p {
+        margin: auto;
+        top: 10%;
+    }
+
+    div#values_block {
+        position: absolute;
+        top: 20%;
+        right: 1%;
+        width: 25%;
+    }
 
 
 </style>
 
 </head>
 <body>
-<h3 id="diagram_h3"><i><spring2:message code="self.showpage.diagram"/> </i></h3>
+<tags:menu></tags:menu>
+
 
 <div id="diagram">
 
     <canvas width="400" height="400" id="radar_chart" onclick="window.location = this.toDataURL('image/jpg')">
         <spring2:message code="self.showpage.errordiagram"/>
     </canvas>
+    <h3><i><spring2:message code="self.showpage.diagram"/> </i></h3>
 </div>
 
-<div id="details_block" class="blocks">
+<div id="details_block">
     <h3>
-        <spring2:message code="self.showpage.name"/>: <i>${selfAssessmentModel.selfAssessmentName}</i>
+        <spring2:message code="self.showpage.name"/>: ${selfAssessmentModel.selfAssessmentName}
     </h3>
 
     <p>
+        <br>
+        <br>
         <spring2:message code="self.showpage.description"/>: ${selfAssessmentModel.description}
-    </p>
-
-    <p>
+        <br>
+        <br>
         <spring2:message code="self.showpage.auditors"/>: ${selfAssessmentModel.auditors}
-    </p>
-
-    <p>
+        <br>
+        <br>
         <spring2:message code="self.showpage.creator"/>: ${selfAssessmentModel.creator}
+        <br>
+        <br>
+    </p>
+</div>
+<div id="values_block">
+    <p>
+        <spring2:message code="self.showpage.EV1description"/>
+        <br>
+        <br>
+        <b>EV<sub>1</sub> = ${ev1FBO.ev1Value}</b>
+        <br>
+        <br>
+        <spring2:message code="self.showpage.EV2description"/>
+        <br>
+        <br>
+        <b>EV<sub>2</sub> = 0.0</b>
+        <br>
+        <br>
+        <spring2:message code="self.showpage.EV3description"/>
+        <br>
+        <br>
+        <b>EV<sub>3</sub> = 0.0</b>
+        <br>
+        <br>
+        <b>R = 0.0</b>
     </p>
 
-    <div id="values_block" class="blocks">
-        <h3 id="EV1_h3">
-            <spring2:message code="self.showpage.EV1description"/>
+    <c:url var="saveURL" value="/riskmanager//self-assessment/export?assessmentID=${selfAssessmentModel.id}"/>
 
-        </h3>
 
-        <p>
-            EV<sub>1</sub> = ${ev1FBO.ev1Value}
-        </p>
-
-        <h3 id="EV2_h3">
-            <spring2:message code="self.showpage.EV2description"/>
-
-        </h3>
-
-        <p>
-            EV<sub>2</sub> = 0.0
-        </p>
-
-        <h3 id="EV3_h3">
-            <spring2:message code="self.showpage.EV3description"/>
-
-        </h3>
-
-        <p>
-            EV<sub>3</sub> = 0.0
-        </p>
-
-        <h3 id="R_h3">
-
-        </h3>
-
-        <p>
-            R = 0.0
-        </p>
-
-        <c:url var="saveURL" value="/riskmanager//self-assessment/export?assessmentID=${selfAssessmentModel.id}"/>
-        <div class="blocks" id="save_block" onclick="document.location='${saveURL}'">
-            <%--todo its stub! shouldn't save like that...--%>
-            <spring2:message code="self.showpage.saveButton"/>
-        </div>
-    </div>
 </div>
-
+<nav>
+    <ul>
+        <li><a href="${saveURL}"><spring2:message code="self.showpage.saveButton"/></a></li>
+    </ul>
+</nav>
 
 </body>
 

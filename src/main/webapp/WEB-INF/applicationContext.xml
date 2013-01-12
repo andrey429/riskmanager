@@ -18,6 +18,7 @@
 	<context:component-scan base-package="org.riskmanager" />
     <context:component-scan base-package="org.selfassess" />
     <context:component-scan base-package="org.riskassess" />
+    <context:component-scan base-package="org.main"/>
 	
 	<!-- Configures the annotation-driven Spring MVC Controller programming model.
 	Note that, with Spring 3.0, this tag works in Servlet MVC only!  -->
@@ -34,6 +35,7 @@
                 <value>classpath:sa-texts</value>
                 <value>classpath:sa-messages</value>
                 <value>classpath:ra-messages</value>
+                <value>classpath:menu-messages</value>
             </list>
         </property>
 
