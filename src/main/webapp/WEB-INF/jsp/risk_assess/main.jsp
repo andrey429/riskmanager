@@ -49,12 +49,13 @@
                 </li>
             </ul>
         </li>
+
         <li><a href="${showRisksURL}"><spring2:message code="risk.main.showMenu"/></a></li>
+
     </ul>
 </nav>
 
-<c:url var="createMenuURL" value="/riskmanager/risk-assessment/create"/>
-<c:url var="showMenuURL" value="/riskmanager//risk-assessment/show"/>
+
 
 <div>
     <h3><spring2:message code="risk.main.welcome"/></h3>

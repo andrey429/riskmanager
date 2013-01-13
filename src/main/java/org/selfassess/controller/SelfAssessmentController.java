@@ -4,12 +4,12 @@ package org.selfassess.controller;
 import org.apache.log4j.Logger;
 import org.selfassess.domain.EV1Model;
 import org.selfassess.domain.SelfAssessmentModel;
-import org.selfassess.reports.SelfAssessmentReportBuilder;
-import org.selfassess.service.SelfAssessmentModelService;
-import org.selfassess.utils.POJO2FBOConverter;
 import org.selfassess.fbo.EV1FormBackingObject;
+import org.selfassess.reports.SelfAssessmentReportBuilder;
 import org.selfassess.service.EV1ModelService;
+import org.selfassess.service.SelfAssessmentModelService;
 import org.selfassess.utils.EV1ValueFactory;
+import org.selfassess.utils.POJO2FBOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created with IntelliJ IDEA.
@@ -79,19 +78,19 @@ public class SelfAssessmentController {
     public String continueFromNewToMenuPage(Model model, @ModelAttribute("selfAssessmentModel")
     SelfAssessmentModel currentAssessment) {
         selfAssessmentModelService.add(currentAssessment);
-        return "redirect:/riskmanager/self-assessment/menu?assessmentID=" + currentAssessment.getId();
+        return "redirect:/riskmanager/self-assessment/";/*"self_assess/main_page";*//*"redirect:/riskmanager/self-assessment/menu?assessmentID=" + currentAssessment.getId();*/
     }
 
     //after /new -> post a form with selfAssessmentModel -> /new/menu
 
 
-    @RequestMapping(value = "/menu", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/menu", method = RequestMethod.GET)
     public String showMenuPage(Model model, @RequestParam(value = "assessmentID", required = true) Integer assessmentID) {
 
         SelfAssessmentModel currentAssessment = selfAssessmentModelService.get(assessmentID);
         model.addAttribute("selfAssessmentModel", currentAssessment);
         return "self_assess/assessment_menu";
-    }
+    }*/
 
 
     @RequestMapping(value = "/menu/ev1", method = RequestMethod.GET)
@@ -157,7 +156,7 @@ public class SelfAssessmentController {
         currentAssessment.setId(assessmentID);
         selfAssessmentModelService.edit(currentAssessment);
 
-        return "redirect:/riskmanager/self-assessment/menu?assessmentID=" + currentAssessment.getId();
+        return "redirect:/riskmanager/self-assessment/";/*"redirect:/riskmanager/self-assessment/menu?assessmentID=" + currentAssessment.getId();*/
     }
 
     @RequestMapping(value = "/show", method = RequestMethod.GET)

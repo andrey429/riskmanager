@@ -1,3 +1,4 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -10,15 +11,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
-    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>--%>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/perfect_login.css" media="all">
+
+
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <title><spring2:message code="risk.pagetitle.risk"/></title>
-
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliding-elements.js"></script>
+
 
     <script type="text/javascript">
         function iconHandler(url) {
@@ -34,6 +36,35 @@
 
 
 <body>
+
+
+<tags:menu></tags:menu>
+<c:url var="createAssetTypeURL" value="/riskmanager/risk-assessment/create/asset-type"/>
+<c:url var="createMediaTypeURL" value="/riskmanager/risk-assessment/create/media-type"/>
+<c:url var="createRiskURL" value="/riskmanager/risk-assessment/create/risk"/>
+<c:url var="showRisksURL" value="/riskmanager/risk-assessment/show"/>
+
+<nav>
+    <ul>
+        <li>
+            <a><spring2:message code="risk.main.createMenu"/></a>
+            <ul>
+                <li>
+                    <a href="${createAssetTypeURL}"><spring2:message code="menu.submenu.createAssetType"/></a>
+                </li>
+                <li>
+                    <a href="${createMediaTypeURL}"><spring2:message code="menu.submenu.createMenuType"/></a>
+                </li>
+                <li>
+                    <a href="${createRiskURL}"><spring2:message code="menu.submenu.createRiskDetail"/></a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="${showRisksURL}"><spring2:message code="risk.main.showMenu"/></a></li>
+    </ul>
+</nav>
+
+<%--todo MAKE FOR EACH NAV ELEMENT?--%>
 
 <c:choose>
     <c:when test="${(not empty storedScopeObjects) and (not empty storedRiskDetails)}">

@@ -79,10 +79,10 @@ public class RiskAssessController {
         return "risk_assess/main";
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/create", method = RequestMethod.GET)
     public String getCreateMenu() {
         return "risk_assess/create/create_menu";
-    }
+    }*/
 
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String getShowMenu() {
@@ -107,7 +107,7 @@ public class RiskAssessController {
                                              @ModelAttribute("assetType") AssetType assetType) {
 
         hibernateService.addAssetType(assetType);
-        return "redirect:/riskmanager/risk-assessment/create";
+        return "redirect:/riskmanager/risk-assessment/";/*create";*/
     }
 
     /*//edit*/
@@ -137,7 +137,7 @@ public class RiskAssessController {
 
         assetType.setId(assetTypeID);
         hibernateService.editAssetType(assetType);
-        return "redirect:/riskmanager/risk-assessment/create";
+        return "redirect:/riskmanager/risk-assessment/";/*create";*/
     }
 
     /*media objects*/
@@ -157,7 +157,7 @@ public class RiskAssessController {
                                              @ModelAttribute("mediaType") MediaType mediaType) {
 
         hibernateService.addMediaType(mediaType);
-        return "redirect:/riskmanager/risk-assessment/create";
+        return "redirect:/riskmanager/risk-assessment/";/*create";*/
     }
 
 
@@ -184,22 +184,22 @@ public class RiskAssessController {
 
         mediaType.setId(mediaTypeID);
         hibernateService.editMediaType(mediaType);
-        return "redirect:/riskmanager/risk-assessment/create";
+        return "redirect:/riskmanager/risk-assessment/";
     }
 
 
     /*//risk evaluations*/
 
-    @RequestMapping(value = "/create/scope", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/create/scope", method = RequestMethod.GET)
     public String getCreateScopePage(Model model) {
         model.addAttribute("scopeObject", new ScopeObject());
 
 
         return "risk_assess/description-forms/scope_object";
 
-    }
+    }*/
 
-    @RequestMapping(value = "/create/scope", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/create/scope", method = RequestMethod.POST)
     public String saveCreatedScopeAndGotoRisk(Model model,
                                               @ModelAttribute("scopeObject") ScopeObject scopeObject
     ) {
@@ -209,13 +209,13 @@ public class RiskAssessController {
         }
 
 
-        return "redirect:/riskmanager/risk-assessment/create/risk?assetTypeID=" + scopeObject.getAssetType().getId()
-                + "&mediaTypeID=" + scopeObject.getMediaType().getId();
-    }
+        return "redirect:/riskmanager/risk-assessment/"; *//*create/risk?assetTypeID=" + scopeObject.getAssetType().getId()
+                + "&mediaTypeID=" + scopeObject.getMediaType().getId();*//*
+    }*/
 
     /*@RequestMapping(value = "/create/risk", method = RequestMethod.GET)*/
 
-    @RequestMapping(value = "/create/risk")
+    @RequestMapping(value = "/create/risk", method = RequestMethod.GET)
     public String getCreateRiskPage(Model model/*,
                                     @RequestParam(value = "assetTypeID", required = true) Integer assetTypeID,
                                     @RequestParam(value = "mediaTypeID", required = true) Integer mediaTypeID*/) {
@@ -252,7 +252,7 @@ public class RiskAssessController {
 
         hibernateService.editRiskDetail(riskDetail);
 
-        return "redirect:/riskmanager/risk-assessment/create/";
+        return "redirect:/riskmanager/risk-assessment/";/*create/";*/
 
     }
 
@@ -299,7 +299,7 @@ public class RiskAssessController {
         }
 
 
-        return "redirect:/riskmanager/risk-assessment/create/";
+        return "redirect:/riskmanager/risk-assessment/";/*create/";*/
 
 
     }

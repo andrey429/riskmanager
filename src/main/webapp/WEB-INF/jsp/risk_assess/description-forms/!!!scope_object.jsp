@@ -1,3 +1,4 @@
+<%--
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -10,7 +11,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
-    <%--<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>--%>
+    &lt;%&ndash;<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>&ndash;%&gt;
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="risk.pagetitle.risk"/></title>
 
@@ -60,4 +61,4 @@
 
 
 </body>
-</html>
+</html>--%>

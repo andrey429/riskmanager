@@ -90,10 +90,22 @@ div {
     height: 400px;
     width: 60%;
 
-    background: #efefef;
-    background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
-    background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
-    background: -webkit-linear-gradient(top, #efefef 0%,#bbbbbb 100%);
+    background-image: linear-gradient(bottom, rgb(245,196,196) 0%, rgb(247,243,242) 34%, rgb(255,255,255) 82%);
+    background-image: -o-linear-gradient(bottom, rgb(245,196,196) 0%, rgb(247,243,242) 34%, rgb(255,255,255) 82%);
+    background-image: -moz-linear-gradient(bottom, rgb(245,196,196) 0%, rgb(247,243,242) 34%, rgb(255,255,255) 82%);
+    background-image: -webkit-linear-gradient(bottom, rgb(245,196,196) 0%, rgb(247,243,242) 34%, rgb(255,255,255) 82%);
+    background-image: -ms-linear-gradient(bottom, rgb(245,196,196) 0%, rgb(247,243,242) 34%, rgb(255,255,255) 82%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(245,196,196)),
+        color-stop(0.34, rgb(247,243,242)),
+        color-stop(0.82, rgb(255,255,255))
+    );
+
+
     border-radius: 10px;
 
     box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
@@ -113,7 +125,7 @@ h3{
     font-family: Helvetica, sans-serif; font-size: 20px; line-height: 24px;
     border-bottom: solid;
 
-    border-radius: 25px;
+    border-radius: 10px;
 }
 
 p {
@@ -123,7 +135,7 @@ p {
     font-family: Georgia, sans-serif; font-size: 20px; line-height: 20px;
     text-align: justify;
 
-    border-radius: 25px;
+    border-radius: 10px;
 }
 
 
@@ -136,9 +148,21 @@ p {
 /*accordion div specific data*//*accordion div specific data*//*accordion div specific data*//*accordion div specific data*/
 /*accordion div specific data*//*accordion div specific data*//*accordion div specific data*//*accordion div specific data*/
 /*accordion div specific data*//*accordion div specific data*//*accordion div specific data*//*accordion div specific data*/
+
+
 .accordion {
     width: 480px;
-    border-bottom: solid 1px #c4c4c4;
+/*    border-bottom: solid 1px #c4c4c4;*/
+}
+
+div.accordion  {
+    background: #909eab;
+    box-shadow: none;
+    /*border: solid;*/
+    /*width: 50%;
+    padding: 0%;*/
+
+
 }
 .accordion h3 {
     background: #e9e7e7 url(../images/arrow-square.gif) no-repeat right -51px;
@@ -150,6 +174,8 @@ p {
     cursor: pointer;
     vertical-align: middle;
     text-align: center;
+
+
 }
 .accordion h3:hover {
     background-color: #e3e2e2;
@@ -165,6 +191,8 @@ p {
     border-right: solid 1px #c4c4c4;
     vertical-align: middle;
     text-align: center;
+
+
 }
 
 
@@ -270,7 +298,10 @@ select {
 input {
     width: 150px;
     height: 25px;
-
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
 }
 
 .row {
@@ -284,16 +315,19 @@ input {
     vertical-align: middle;
     text-align: center;
 
+
 }
 
 
 
 
 textarea {
-    width: 150px;
-    height: 80px;
+    width: 60%;
+    height: auto;
     text-align: center;
-
+    border-radius: 10px;
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
+    vertical-align: middle;
 }
 
 #riskValue {

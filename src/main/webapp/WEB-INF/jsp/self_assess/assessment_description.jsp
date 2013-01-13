@@ -1,3 +1,4 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -6,9 +7,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <title><spring2:message code="self.mainPage"/></title>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
@@ -27,21 +29,95 @@
     </script>
 </head>
 <body>
+<tags:menu></tags:menu>
+<nav>
+    <ul>
+        <li><a href="new"><spring2:message code="self.mainPage.createNew"/></a>
+        </li>
+        <li><a><spring2:message code="self.mainPage.editExisting"/></a>
+            <ul>
+                <li>
+                    <a><spring2:message code="self.mainPage.assessmentDescription"/></a>
+                    <ul>
+                        <c:choose>
+                            <c:when test="${not empty storedAssessments}">
+                                <c:forEach items="${storedAssessments}" var="assessment">
 
+                                    <li>
+                                        <a href="edit?assessmentID=${assessment.id}">${assessment}</a>
+                                    </li>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="#">
+                                    <spring2:message code="self.mainpage.noAssessmentStored"/></a></li>
+                            </c:otherwise>
+                        </c:choose>
 
-<div id="dough"/>
-<div id="intro">
-    <p>
-        <c:url var="mainUrl" value="/riskmanager/ "/>
-        <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
-    </p>
+                    </ul>
+                </li>
+                <li>
+                    <a><spring2:message code="self.mainPage.evaluate"/></a>
+                    <ul>
+                        <c:choose>
+                            <c:when test="${not empty storedAssessments}">
+                                <c:forEach items="${storedAssessments}" var="assessment">
 
-    <p>
-        <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
-        <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
-    </p>
-</div>
+                                    <li>
+                                        <a>${assessment}</a>
+                                        <ul>
+                                            <li>
+                                                <a href="menu/ev1?assessmentID=${assessment.id}">
+                                                    <spring2:message code="self.menupage.EV1description"/>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <spring2:message code="self.menupage.EV2description"/>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <spring2:message code="self.menupage.EV3description"/>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="#">
+                                    <spring2:message code="self.mainpage.noAssessmentStored"/></a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                </li>
+            </ul>
 
+        </li>
+
+        <li>
+            <a><spring2:message code="self.mainPage.showExisting"/></a>
+            <ul>
+                <c:choose>
+                    <c:when test="${not empty storedAssessments}">
+                        <c:forEach items="${storedAssessments}" var="assessment">
+
+                            <li>
+                                <a href="show?assessmentID=${assessment.id}">${assessment}</a>
+                            </li>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <li><a href="#">
+                            <spring2:message code="self.mainpage.noAssessmentStored"/></a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </li>
+
+    </ul>
+</nav>
 
 <div class="accordion">
 
@@ -52,28 +128,28 @@
         <h3><spring2:message code="self.newAssessment.name"/></h3>
 
         <p>
-            <form:input path="selfAssessmentName"/>
+            <form:textarea path="selfAssessmentName"/>
         </p>
 
         <h3><spring2:message code="self.newAssessment.description"/>
         </h3>
 
         <p>
-            <form:input path="description"/>
+            <form:textarea path="description"/>
         </p>
 
         <h3><spring2:message code="self.newAssessment.auditor"/>
         </h3>
 
         <p>
-            <form:input path="auditors"/>
+            <form:textarea path="auditors"/>
         </p>
 
         <h3><spring2:message code="self.newAssessment.author"/>
         </h3>
 
         <p>
-            <form:input path="creator"/>
+            <form:textarea path="creator"/>
         </p>
 
         <h3 onclick="document.forms['thisform'].submit()">

@@ -1,3 +1,4 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -10,25 +11,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="risk.pagetitle.assetType"/></title>
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".accordion h3:first").addClass("active");
-            $(".accordion p:not(:first)").hide();
-            $(".accordion h3").click(function () {
-                $(this).next("p").slideToggle("slow")
-                        .siblings("p:visible").slideUp("slow");
-                $(this).toggleClass("active");
-                $(this).siblings("h3").removeClass("active");
-            });
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliding-elements.js"></script>
 
-        });
-    </script>
     <script type="text/javascript">
         <c:set var="riskAcceptable"><spring2:message code="values.acceptable"/></c:set>
         <c:set var="riskNotAcceptable"><spring2:message code="values.notAcceptable"/></c:set>
@@ -95,18 +85,31 @@
 </head>
 <body>
 
-<div id="dough"/>
-<div id="intro">
-    <p>
-        <c:url var="mainUrl" value="/riskmanager/ "/>
-        <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
-    </p>
+<tags:menu></tags:menu>
+<c:url var="createAssetTypeURL" value="/riskmanager/risk-assessment/create/asset-type"/>
+<c:url var="createMediaTypeURL" value="/riskmanager/risk-assessment/create/media-type"/>
+<c:url var="createRiskURL" value="/riskmanager/risk-assessment/create/risk"/>
+<c:url var="showRisksURL" value="/riskmanager/risk-assessment/show"/>
 
-    <p>
-        <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
-        <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
-    </p>
-</div>
+<nav>
+    <ul>
+        <li>
+            <a><spring2:message code="risk.main.createMenu"/></a>
+            <ul>
+                <li>
+                    <a href="${createAssetTypeURL}"><spring2:message code="menu.submenu.createAssetType"/></a>
+                </li>
+                <li>
+                    <a href="${createMediaTypeURL}"><spring2:message code="menu.submenu.createMenuType"/></a>
+                </li>
+                <li>
+                    <a href="${createRiskURL}"><spring2:message code="menu.submenu.createRiskDetail"/></a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="${showRisksURL}"><spring2:message code="risk.main.showMenu"/></a></li>
+    </ul>
+</nav>
 
 
 <div class="accordion">

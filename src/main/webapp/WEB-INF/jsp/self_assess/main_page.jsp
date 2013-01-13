@@ -17,24 +17,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".accordion h3:first").addClass("active");
-            $(".accordion p:not(:first)").hide();
-            $(".accordion h3").click(function () {
-                $(this).next("p").slideToggle("slow")
-                        .siblings("p:visible").slideUp("slow");
-                $(this).toggleClass("active");
-                $(this).siblings("h3").removeClass("active");
-            });
-
-        });
-    </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliding-elements.js"></script>
 </head>
 <body>
 
 <tags:menu></tags:menu>
-
 
 
 <nav>
@@ -43,22 +30,66 @@
         </li>
         <li><a><spring2:message code="self.mainPage.editExisting"/></a>
             <ul>
-                <c:choose>
-                    <c:when test="${not empty storedAssessments}">
-                        <c:forEach items="${storedAssessments}" var="assessment">
+                <li>
+                    <a><spring2:message code="self.mainPage.assessmentDescription"/></a>
+                    <ul>
+                        <c:choose>
+                            <c:when test="${not empty storedAssessments}">
+                                <c:forEach items="${storedAssessments}" var="assessment">
 
-                            <li>
-                                <a href="edit?assessmentID=${assessment.id}">${assessment}</a>
-                            </li>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
-                        <li><a href="#">
-                            <spring2:message code="self.mainpage.noAssessmentStored"/></a></li>
-                    </c:otherwise>
-                </c:choose>
+                                    <li>
+                                        <a href="edit?assessmentID=${assessment.id}">${assessment}</a>
+                                    </li>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="#">
+                                    <spring2:message code="self.mainpage.noAssessmentStored"/></a></li>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </ul>
+                </li>
+                <li>
+                    <a><spring2:message code="self.mainPage.evaluate"/></a>
+                    <ul>
+                        <c:choose>
+                            <c:when test="${not empty storedAssessments}">
+                                <c:forEach items="${storedAssessments}" var="assessment">
+
+                                    <li>
+                                        <a>${assessment}</a>
+                                        <ul>
+                                            <li>
+                                                <a href="menu/ev1?assessmentID=${assessment.id}">
+                                                    <spring2:message code="self.menupage.EV1description"/>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <spring2:message code="self.menupage.EV2description"/>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <spring2:message code="self.menupage.EV3description"/>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="#">
+                                    <spring2:message code="self.mainpage.noAssessmentStored"/></a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </ul>
+                </li>
             </ul>
+
         </li>
+
         <li>
             <a><spring2:message code="self.mainPage.showExisting"/></a>
             <ul>
@@ -83,8 +114,9 @@
 </nav>
 <div>
     <h3>
-    <spring2:message code="self.mainPage.welcome"/>
+        <spring2:message code="self.mainPage.welcome"/>
     </h3>
+
     <p>
         <spring2:message code="self.mainPage.help.welcome"/>
     </p>

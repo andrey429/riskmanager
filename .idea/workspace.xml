@@ -5,60 +5,61 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="338d1fd7-0c2e-4f52-8697-4e34b0550501" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/main/SuperMainController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/css/common-style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mainmenu.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/menu-messages_ru.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/menu.tag" />
-      <change type="DELETED" beforePath="C:\Users\Andrey\Desktop\riskmanager\src\main\webapp\css\addpage.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Andrey\Desktop\riskmanager\src\main\webapp\css\demo.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Andrey\Desktop\riskmanager\src\main\webapp\css\jquery-ui.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Andrey\Desktop\riskmanager\src\main\webapp\css\menu_table.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Andrey\Desktop\riskmanager\src\main\webapp\css\page.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Andrey\Desktop\riskmanager\src\main\webapp\css\slide.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/create/create_menu.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/create/create_menu.jsp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/images/arrow-square.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/js/sliding-elements.js" />
+      <change type="MOVED" beforePath="C:\Users\Andrey\Desktop\riskmanager\src\main\webapp\WEB-INF\jsp\risk_assess\create\create_menu.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/create/!!!create_menu.jsp" />
+      <change type="MOVED" beforePath="C:\Users\Andrey\Desktop\riskmanager\src\main\webapp\WEB-INF\jsp\risk_assess\description-forms\scope_object.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/!!!scope_object.jsp" />
+      <change type="MOVED" beforePath="C:\Users\Andrey\Desktop\riskmanager\src\main\webapp\WEB-INF\jsp\self_assess\assessment_menu.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/!!!assessment_menu.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/riskassess/controller/RiskAssessController.java" afterPath="$PROJECT_DIR$/src/main/java/org/riskassess/controller/RiskAssessController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/selfassess/controller/SelfAssessmentController.java" afterPath="$PROJECT_DIR$/src/main/java/org/selfassess/controller/SelfAssessmentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/assessment_description.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/assessment_description.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/asset_type_description.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/asset_type_description.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/css/common-style.css" afterPath="$PROJECT_DIR$/src/main/webapp/css/common-style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/diagram.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/diagram.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/ev1pages/ev1_page.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/ev1pages/ev1_page.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/hibernate.cfg.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/main.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/main_page.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/main_page.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_views/main_view.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main_views/main_view.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/media_type_description.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/media_type_description.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/risk_detail_description.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/risk_detail_description.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/sa-messages_ru.properties" afterPath="$PROJECT_DIR$/src/main/resources/sa-messages_ru.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/show/show_assessment.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/show/show_assessment.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="riskmanager.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358000804010" ignored="false" />
+    <file path="/Dummy.txt" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358020862390" ignored="false" />
     <file path="/NumbersList.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357148971393" ignored="false" />
     <file path="/fragment.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357659171104" ignored="false" />
     <file path="/NumbersListEntry.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1356716457920" ignored="false" />
-    <file path="/hibernate.cfg.xml" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357662255786" ignored="false" />
+    <file path="/hibernate.cfg.xml" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358022490492" ignored="false" />
     <file path="/EV1Model.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357148417294" ignored="false" />
     <file path="/EV1ModelService.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357321765246" ignored="false" />
     <file path="/ListOfList.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357149937409" ignored="false" />
     <file path="/ListOfListEntry.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357149918485" ignored="false" />
-    <file path="/ev1_page.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357748562086" ignored="false" />
+    <file path="/ev1_page.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358026178035" ignored="false" />
     <file path="/web.xml" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357586445279" ignored="false" />
     <file path="/applicationContext.xml" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358005638186" ignored="false" />
     <file path="/EV1FboToDomainIO.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357121203727" ignored="false" />
     <file path="/EV1FormBackingObject.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357556222576" ignored="false" />
     <file path="/a.dummy" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357813346906" ignored="false" />
-    <file path="/SelfAssessmentController.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357573818697" ignored="false" />
+    <file path="/SelfAssessmentController.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358025646040" ignored="false" />
     <file path="/pom.xml" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357115123488" ignored="false" />
     <file path="/DomainToFboIO.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357209901199" ignored="false" />
     <file path="/sa-texts_ru.properties" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357135096970" ignored="false" />
     <file path="/SelfAssessmentModel.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357319663834" ignored="false" />
     <file path="/Calculator.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357557792517" ignored="false" />
     <file path="/POJO2FBOConverter.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357557330420" ignored="false" />
-    <file path="/main_page.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358015471225" ignored="false" />
-    <file path="/sa-messages_ru.properties" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357572107572" ignored="false" />
+    <file path="/main_page.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358025991956" ignored="false" />
+    <file path="/sa-messages_ru.properties" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358022212442" ignored="false" />
     <file path="/new_assessment_page.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357233395787" ignored="false" />
     <file path="/new_assessment_menu.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357233914383" ignored="false" />
     <file path="/SelfAssessmentModelService.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357321782764" ignored="false" />
     <file path="/CurrentOperation.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357299396117" ignored="false" />
-    <file path="/assessment_description.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357315278926" ignored="false" />
+    <file path="/assessment_description.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358024585428" ignored="false" />
     <file path="/assessment_menu.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357308591290" ignored="false" />
     <file path="/errorpage.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357380984188" ignored="false" />
-    <file path="/diagram.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358019378611" ignored="false" />
+    <file path="/diagram.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358022733967" ignored="false" />
     <file path="/SelfAssessmentReportBuilder.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357572202351" ignored="false" />
     <file path="/TableGenerator.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357568072414" ignored="false" />
     <file path="/ffff.xml" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357488837450" ignored="false" />
@@ -77,12 +78,12 @@
     <file path="/ScopeObject.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357659187654" ignored="false" />
     <file path="/RiskValueObject.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357659845820" ignored="false" />
     <file path="/RiskDetail.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357808110655" ignored="false" />
-    <file path="/main.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358020750111" ignored="false" />
-    <file path="/RiskAssessController.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357905425451" ignored="false" />
+    <file path="/main.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358061343806" ignored="false" />
+    <file path="/RiskAssessController.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358057553857" ignored="false" />
     <file path="/HibernateCRUDService.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357662047527" ignored="false" />
     <file path="/HibernateService.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357886573076" ignored="false" />
-    <file path="/asset_type_description.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357882597157" ignored="false" />
-    <file path="/media_type_description.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357882574236" ignored="false" />
+    <file path="/asset_type_description.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358026359159" ignored="false" />
+    <file path="/media_type_description.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358058509609" ignored="false" />
     <file path="/create_menu.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357905306093" ignored="false" />
     <file path="/show_menu.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357667397828" ignored="false" />
     <file path="/risk.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357756450486" ignored="false" />
@@ -93,7 +94,7 @@
     <file path="/scope_object.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357882861314" ignored="false" />
     <file path="/risk_detail.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357892014551" ignored="false" />
     <file path="/risk_detail_description.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357903007348" ignored="false" />
-    <file path="/show_assessment.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357905042087" ignored="false" />
+    <file path="/show_assessment.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358061518099" ignored="false" />
     <file path="/edit-menu.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357907351408" ignored="false" />
     <file path="/MainController.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357931019055" ignored="false" />
     <file path="/mainmenu.jsp" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1357935090964" ignored="false" />
@@ -103,7 +104,7 @@
     <file path="/SuperMainController.java" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358002801067" ignored="false" />
     <file path="/menu-messages_ru.properties" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358005969611" ignored="false" />
     <file path="/msg.tag" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358006606502" ignored="false" />
-    <file path="/common-style.css" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358020371639" ignored="false" />
+    <file path="/common-style.css" changelist="338d1fd7-0c2e-4f52-8697-4e34b0550501" time="1358025863720" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,28 +168,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main_page.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/main_page.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="0" selection-start="3199" selection-end="3199" vertical-scroll-proportion="-17.384615">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="common-style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/css/common-style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="180" column="1" selection-start="4834" selection-end="4834" vertical-scroll-proportion="0.0">
+            <state line="158" column="24" selection-start="4499" selection-end="4499" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assessment_menu.jsp" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/assessment_menu.jsp">
+      <file leaf-file-name="asset_type_description.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/asset_type_description.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="48" column="0" selection-start="987" selection-end="2024" vertical-scroll-proportion="-21.23077">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/main.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="0" selection-start="1943" selection-end="1943" vertical-scroll-proportion="-11.769231">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="risk_detail_description.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/risk_detail_description.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="112" column="0" selection-start="3160" selection-end="4220" vertical-scroll-proportion="-15.346154">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit-menu.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/edit-menu/edit-menu.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="35" selection-start="926" selection-end="926" vertical-scroll-proportion="-9.153846">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show_assessment.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/show/show_assessment.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="66" column="35" selection-start="2346" selection-end="2346" vertical-scroll-proportion="0.20767888">
               <folding />
             </state>
           </provider>
@@ -212,22 +240,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mainmenu.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/assets_views/asset_addpage.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/org/riskassess/controller/RiskAssessController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/main/SuperMainController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/menu-messages_ru.properties" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/msg.tag.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/msg.tag" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/menu.tag" />
-        <option value="$PROJECT_DIR$/src/main/webapp/css/addpage.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/css/menu.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/diagram.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/main_page.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/assessment_menu.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/assessment_description.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/sliding-elements.js" />
+        <option value="$PROJECT_DIR$/src/main/java/org/selfassess/controller/SelfAssessmentController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/css/common-style.css" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/create/create_menu.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/sa-messages_ru.properties" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/main_page.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/create/!!!create_menu.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/ev1pages/ev1_page.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/org/riskassess/controller/RiskAssessController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/asset_type_description.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/media_type_description.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/risk_detail_description.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/scope_object.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/show/show_assessment.jsp" />
       </list>
     </option>
   </component>
@@ -367,6 +395,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="tags" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="jsp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -402,6 +460,282 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="self_assess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="self_assess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ev1pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="risk_assess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="risk_assess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="show" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="risk_assess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="edit-menu" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="risk_assess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="description-forms" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="risk_assess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="create" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -472,6 +806,70 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="selfassess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="selfassess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -612,6 +1010,46 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="webapp">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="riskmanager">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="webapp">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="js">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="riskmanager">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
@@ -627,10 +1065,6 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="org/main">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -674,16 +1108,6 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="riskmanager">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="src/main">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
@@ -714,14 +1138,6 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="WEB-INF">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="jsp">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
@@ -736,26 +1152,6 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="webapp">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="WEB-INF">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="jsp">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="risk_assess">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="description-forms">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
@@ -763,58 +1159,6 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="riskmanager">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="webapp">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="WEB-INF">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="jsp">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="risk_assess">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="riskmanager">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="webapp">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="riskmanager">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src/main">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -835,6 +1179,64 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="riskmanager" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="selfassess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="selfassess" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="riskmanager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="org" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -1208,7 +1610,11 @@
       <created>1357907824339</created>
       <updated>1357907824339</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="some styling">
+      <created>1358020871631</created>
+      <updated>1358020871631</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1233,7 +1639,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1384" height="786" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1244,13 +1650,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924242" sideWeight="0.32398754" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32866043" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924242" sideWeight="0.33956388" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24924242" sideWeight="0.6728972" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924242" sideWeight="0.6728972" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1261,7 +1668,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39875388" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1303,7 +1709,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="riskassessment 80%" />
+    <option name="LAST_COMMIT_MESSAGE" value="some styling" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1324,6 +1730,7 @@
     <MESSAGE value="riskassessment 30%" />
     <MESSAGE value="riskassessment 30% - stopped at filling risk.jsp form for create POST action" />
     <MESSAGE value="riskassessment 80%" />
+    <MESSAGE value="some styling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1333,121 +1740,114 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/perfect_login.css">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/selfassess/controller/SelfAssessmentController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="19" selection-start="372" selection-end="372" vertical-scroll-proportion="0.59401">
+        <state line="81" column="56" selection-start="2872" selection-end="2872" vertical-scroll-proportion="0.6683006">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/css/listing_table.css">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/assessment_description.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="7" selection-start="2623" selection-end="2623" vertical-scroll-proportion="0.9419795">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/!!!assessment_menu.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/main/SuperMainController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/create/!!!create_menu.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="0" selection-start="1128" selection-end="1128" vertical-scroll-proportion="0.74111676">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/assets_views/asset_addpage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="79" selection-start="4869" selection-end="4869" vertical-scroll-proportion="0.4047619">
+        <state line="20" column="0" selection-start="914" selection-end="914" vertical-scroll-proportion="0.55119455">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="46" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.55700326">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mainmenu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/menu-messages_ru.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="42" selection-start="470" selection-end="470" vertical-scroll-proportion="0.33224756">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/spring-security.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="45" selection-start="1592" selection-end="1615" vertical-scroll-proportion="0.8859935">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/diagram.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="tag#script#1;tag#head#0;tag#html#0" expanded="false" />
-            <element signature="tag#div#1;tag#body#0;tag#html#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/riskassess/controller/RiskAssessController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="35" selection-start="2661" selection-end="2661" vertical-scroll-proportion="0.38935107">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="tag#div#0;tag#body#0;tag#html#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/create/create_menu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.24829932">
+        <state line="347" column="7" selection-start="12855" selection-end="12855" vertical-scroll-proportion="0.72156197">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/main_page.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="0" selection-start="3199" selection-end="3199" vertical-scroll-proportion="-17.384615">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/menu.tag">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/ev1pages/ev1_page.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+        <state line="290" column="16" selection-start="11762" selection-end="11876" vertical-scroll-proportion="0.3327645">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/sa-messages_ru.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="35" selection-start="1468" selection-end="1468" vertical-scroll-proportion="0.3496732">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/css/common-style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="180" column="1" selection-start="4834" selection-end="4834" vertical-scroll-proportion="0.0">
+        <state line="158" column="24" selection-start="4499" selection-end="4499" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/self_assess/assessment_menu.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/!!!scope_object.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/asset_type_description.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="987" selection-end="2024" vertical-scroll-proportion="-21.23077">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/media_type_description.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="50" selection-start="0" selection-end="50" vertical-scroll-proportion="-0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="0" selection-start="1943" selection-end="1943" vertical-scroll-proportion="-11.769231">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/description-forms/risk_detail_description.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="112" column="0" selection-start="3160" selection-end="4220" vertical-scroll-proportion="-15.346154">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/edit-menu/edit-menu.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="35" selection-start="926" selection-end="926" vertical-scroll-proportion="-9.153846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/risk_assess/show/show_assessment.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="35" selection-start="2346" selection-end="2346" vertical-scroll-proportion="0.20767888">
           <folding />
         </state>
       </provider>

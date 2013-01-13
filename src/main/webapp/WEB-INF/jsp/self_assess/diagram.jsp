@@ -223,6 +223,7 @@
 
     #details_block p {
         margin: auto;
+        padding: 3%;
         top: 10%;
     }
 
@@ -257,13 +258,13 @@
     <p>
         <br>
         <br>
-        <spring2:message code="self.showpage.description"/>: ${selfAssessmentModel.description}
+        <b><spring2:message code="self.showpage.description"/>:</b> ${selfAssessmentModel.description}
         <br>
         <br>
-        <spring2:message code="self.showpage.auditors"/>: ${selfAssessmentModel.auditors}
+        <b><spring2:message code="self.showpage.auditors"/>:</b> ${selfAssessmentModel.auditors}
         <br>
         <br>
-        <spring2:message code="self.showpage.creator"/>: ${selfAssessmentModel.creator}
+        <b><spring2:message code="self.showpage.creator"/>:</b> ${selfAssessmentModel.creator}
         <br>
         <br>
     </p>
