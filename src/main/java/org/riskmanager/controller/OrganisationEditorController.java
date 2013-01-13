@@ -77,7 +77,7 @@ public class OrganisationEditorController {
 
         model.addAttribute("organisationAttribute", organisationService.get(id));
 
-        return "organisations_views/organisation_editpage";
+        return "organisations_views/organisation_addpage";
 
     }
 

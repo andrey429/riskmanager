@@ -1,3 +1,4 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
@@ -6,75 +7,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="label.addPageTitle"/></title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".accordion h3:first").addClass("active");
-            $(".accordion p:not(:first)").hide();
-            $(".accordion h3").click(function () {
-                $(this).next("p").slideToggle("slow")
-                        .siblings("p:visible").slideUp("slow");
-                $(this).toggleClass("active");
-                $(this).siblings("h3").removeClass("active");
-            });
-
-        });
-    </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliding-elements.js"></script>
 
 </head>
 <body>
 
+<tags:menu></tags:menu>
 
-<div id="dough"/>
-<div id="intro">
-    <p>
-        <c:url var="mainUrl" value="/riskmanager/ "/>
-        <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
-    </p>
 
-    <p>
-        <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
-        <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
-    </p>
-</div>
-<c:url var="saveUrl" value="/riskmanager/organisations/add"/>
-<form:form modelAttribute="organisationAttribute" method="POST" action="${saveUrl}">
-    <div class="accordion">
+<div class="accordion">
+<form:form modelAttribute="organisationAttribute" method="POST" id="thisform">
 
-        <h3><spring2:message code="label.organisation"/> </h3>
-        <p><spring2:message code="help.organisation"/> </p>
+
+        <h2><spring2:message code="label.organisation"/> </h2>
+        <%--<p><spring2:message code="help.organisation"/> </p>--%>
         <h3><spring2:message code="label.organisationName"/>
-            <br><br>
-            <form:textarea path="organisationName"/>
+
         </h3>
 
         <p>
-            <spring2:message code="help.organisationName"/>
+            <form:textarea path="organisationName"/>
+            <%--<spring2:message code="help.organisationName"/>--%>
         </p>
 
 
         <h3>
             <spring2:message code="label.organisationAddress"/>
-            <br><br>
-            <form:textarea path="organisationAddress"/>
+
+
         </h3>
 
-        <p><spring2:message code="help.organisationAddress"/></p>
+        <p><%--<spring2:message code="help.organisationAddress"/>--%>
+            <form:textarea path="organisationAddress"/></p>
 
-        <h3><spring2:message code="label.saveDescription"/>
-            <br><br>
-        <spring2:message code="label.saveButton" var="saveButton"/>
-        <input type="submit" value="${saveButton}">
-        </h3>
-        <p><spring2:message code="help.saveDescription"/> </p>
-    </div>
+    <h2 onclick="document.forms['thisform'].submit()" id="savebutton">
+        <spring2:message code="risk.create.submit"/>
+    </h2>
+
 </form:form>
-
+</div>
 
 
 </body>

@@ -1,3 +1,4 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,87 +6,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/listing_table.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="label.organisationListingPageTitle"/></title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliding-elements.js"></script>
+
+    <script type="text/javascript">
+        function iconHandler(url) {
+            if (confirm('<spring2:message code="risk.confirmDelete"/>')) {
+                location.href = url;
+            }
+        }
+    </script>
 </head>
 <body>
 
-
-<c:url var="addUrl" value="/riskmanager/organisations/add"/>
+<tags:menu></tags:menu>
 
 
 <c:choose>
     <c:when test="${not empty organisations}">
-        <div id="dough"/>
-        <div id="intro">
-            <p>
-                <a href="${addUrl}"><spring2:message code="label.addButton"/></a>
-            </p>
 
-            <p>
-                <c:url var="mainUrl" value="/riskmanager/ "/>
-                <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
-            </p>
 
+        <h3 class="row">
+            <h2 class="cell"><spring2:message code="label.organisationName"/></h2>
+
+            <h2 class="cell"><spring2:message code="label.organisationAddress"/></h2>
+        </h3>
+        <c:forEach items="${organisations}" var="organisation">
+            <c:url var="editUrl" value="/riskmanager/organisations/edit?id=${organisation.id}"/>
+            <c:url var="deleteUrl" value="/riskmanager/organisations/delete?id=${organisation.id}"/><!--main/persons-->
+            <h3 class="row">
+                <h3 class="cell">
+                    <i class="addIcon" onclick="iconHandler('${deleteUrl}')">(-)</i>
+                    <a href="${editUrl}">${organisation}</a>
+                </h3>
+                <h3 class="cell">${organisation.organisationAddress}</h3>
+            </h3>
+        </c:forEach>
+
+    </c:when>
+    <c:otherwise>
+        <div class="accordion">
             <p>
-                <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
-                <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
+                <spring2:message code="label.organisationsNotPresent"/>
             </p>
         </div>
 
-
-        <table style="border: 1px solid; width: 500px; text-align:center">
-            <caption>
-                <spring2:message code="label.organisationListingPageTitle"/>
-            </caption>
-
-            <thead style="background:#f1edff">
-            <tr>
-                <th>№</th>
-                <th><spring2:message code="label.organisationName"/></th>
-                <th><spring2:message code="label.organisationAddress"/></th>
-
-                <th colspan="3"><spring2:message code="label.editOptionsTitles"/></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${organisations}" var="organisation">
-                <c:url var="editUrl" value="/riskmanager/organisations/edit?id=${organisation.id}"/>
-                <c:url var="deleteUrl" value="/riskmanager/organisations/delete?id=${organisation.id}"/><!--main/persons-->
-                <tr>
-                    <td><c:out value="${organisation.id}"/></td>
-                    <td><c:out value="${organisation.organisationName}"/></td>
-                    <td><c:out value="${organisation.organisationAddress}"/></td>
-
-
-                    <td><a href="${editUrl}"><spring2:message code="label.editButton"/></a></td>
-                    <td><a href="${deleteUrl}"><spring2:message code="label.deleteButton"/></a></td>
-
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </c:when>
-    <c:otherwise>
-        <spring2:message code="label.organisationsNotPresent"/>
-        <a href="${addUrl}"><spring2:message code="label.youMayAddLabel"/> </a>.
     </c:otherwise>
 </c:choose>
 
-
-<%--
-<c:url var="mainUrl" value="/riskmanager/ "/>
-<p>
-    <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
-</p>
-
-<p>
-    <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
-    <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
-</p>
---%>
 
 </body>
 </html>

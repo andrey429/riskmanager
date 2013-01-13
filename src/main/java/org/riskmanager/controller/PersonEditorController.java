@@ -123,8 +123,8 @@ public class PersonEditorController {
     	// This is the formBackingOBject
     	model.addAttribute("personAttribute", personService.get(id));
     	
-    	// This will resolve to /WEB-INF/jsp/person_editpage.jsp
-    	return "person_views/person_editpage";
+
+    	return "person_views/person_addpage";
 	}
     
     /**

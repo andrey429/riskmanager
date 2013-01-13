@@ -89,9 +89,9 @@
     </c:when>
     <c:otherwise>
         <div class="accordion">
-            <h1 onclick="location.href='./'">
+            <p>
                 <spring2:message code="label.assetsNotPresent"/>
-            </h1>
+            </p>
         </div>
 
     </c:otherwise>

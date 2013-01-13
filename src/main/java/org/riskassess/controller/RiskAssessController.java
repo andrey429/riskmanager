@@ -112,10 +112,7 @@ public class RiskAssessController {
 
     /*//edit*/
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String getEditPage() {
-        return "risk_assess/edit-menu/!!!edit-menu";
-    }
+
 
     @RequestMapping(value = "/edit/asset-type", method = RequestMethod.GET)
     public String getEditAssetTypePage(Model model,
