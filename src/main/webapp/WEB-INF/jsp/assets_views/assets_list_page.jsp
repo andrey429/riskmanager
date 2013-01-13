@@ -1,3 +1,4 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jstl/fmt" %>
@@ -9,123 +10,90 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/listing_table.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="label.assetListingPageTitle"></spring2:message></title>
-    <%--<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliding-elements.js"></script>
+
     <script type="text/javascript">
-        $(document).ready(function(){
+        function iconHandler(url) {
+            if (confirm('<spring2:message code="risk.confirmDelete"/>')) {
+                location.href = url;
+            }
+        }
+    </script>
 
-            $(".btn-slide").click(function(){
-                $("#panel").slideToggle("slow");
-                $(this).toggleClass("active"); return false;
-            });
-
-
-        });
-    </script>--%>
 </head>
 <body>
-
+<tags:menu></tags:menu>
 
 <c:url var="addUrl" value="/riskmanager/assets/add"/>
 
 
-
-<div id="dough"></div>
 <c:choose>
     <c:when test="${not empty assets}">
-        <div id="intro">
-            <p>
-                <a href="${addUrl}"><spring2:message code="label.addButton"/></a>
-            </p>
 
-            <p>
-                <c:url var="mainUrl" value="/riskmanager/ "/>
-                <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
-            </p>
+        <h3 class="row">
+            <h2 class="cell"><spring2:message code="label.assetName"/></h2>
 
-            <p>
-                <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
-                <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
-            </p>
-        </div>
+            <h2 class="cell"><spring2:message code="label.assetDescription"/></h2>
 
+            <h2 class="cell"><spring2:message code="label.assetOwner"/></h2>
 
-        <table style="border: 1px solid; width: 500px; text-align:center">
-            <caption>
-                <spring2:message code="label.assetList"/>
+            <h2 class="cell"><spring2:message code="label.assetRequirements"/></h2>
 
-            </caption>
-            <thead style="background:#f1edff">
-            <tr>
-                <th>№</th>
-                <th><spring2:message code="label.assetName"/></th>
-                <th><spring2:message code="label.assetDescription"/></th>
-                <th><spring2:message code="label.assetOwner"/></th>
-                <th colspan="3"><spring2:message code="label.assetRequirements"/></th>
+            <h2 class="cell"><spring2:message code="label.assetBusinessProcessType"/></h2>
 
-                <th><spring2:message code="label.assetBusinessProcessType"/></th>
-                <th><spring2:message code="label.assetLocation"/></th>
+            <h2 class="cell"><spring2:message code="label.assetLocation"/></h2>
+        </h3>
+        <c:forEach items="${assets}" var="asset">
+            <c:url var="editUrl" value="/riskmanager/assets/edit?id=${asset.id}"/>
+            <c:url var="deleteUrl" value="/riskmanager/assets/delete?id=${asset.id}"/>
+            <h3 class="row">
+                <h3 class="cell">
+                    <i class="addIcon" onclick="iconHandler('${deleteUrl}')">(-)</i>
+                    <a href="${editUrl}">${asset.name}</a></h3>
 
+                <h3 class="cell">${asset.description}</h3>
 
-                <th colspan="3"><spring2:message code="label.editOptionsTitles"/></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${assets}" var="asset">
-                <c:url var="editUrl" value="/riskmanager/assets/edit?id=${asset.id}"/>
-                <c:url var="deleteUrl" value="/riskmanager/assets/delete?id=${asset.id}"/>
-                <tr>
-                    <td><c:out value="${asset.id}"/></td>
-                    <td><c:out value="${asset.name}"/></td>
-                    <td><c:out value="${asset.description}"/></td>
+                <h3 class="cell">${asset.personOwner}</h3>
 
-                    <td><c:out value="${asset.personOwner}"/></td>
+                <h3 class="cell">
+                    <c:if test="${asset.requiresConfidentiality}">C</c:if>
+                    &nbsp;
+                    <c:if test="${asset.requiresIntegrity}">I</c:if>
+                    &nbsp;
+                    <c:if test="${asset.requiresAvailability}">A</c:if>
+                </h3>
 
-                    <td><c:if test="${asset.requiresConfidentiality}">C</c:if></td>
-                    <td><c:if test="${asset.requiresIntegrity}">I</c:if></td>
-                    <td><c:if test="${asset.requiresAvailability}">A</c:if></td>
+                <h3 class="cell">
+                    <c:choose>
+                        <c:when test="${asset.businessProcessType == 1}">
+                            <spring2:message code="label.assetPaymentBusinessProcess"/>
+                        </c:when>
+                        <c:when test="${asset.businessProcessType == 2}">
+                            <spring2:message code="label.assetInformationBusinessProcess"/>
+                        </c:when>
+                    </c:choose>
+                </h3>
+
+                <h3 class="cell">${asset.assetLocation}</h3>
+            </h3>
 
 
-                    <td>
-                        <c:choose>
-                            <c:when test="${asset.businessProcessType == 1}">
-                                <spring2:message code="label.assetPaymentBusinessProcess"/>
-                            </c:when>
-                            <c:when test="${asset.businessProcessType == 2}">
-                                <spring2:message code="label.assetInformationBusinessProcess"/>
-                            </c:when>
-                        </c:choose>
-                    </td>
-
-                    <td>
-                        <c:out value="${asset.assetLocation}"/>
-                    </td>
-
-                    <td><a href="${editUrl}"><spring2:message code="label.editButton"/></a></td>
-                    <td><a href="${deleteUrl}"><spring2:message code="label.deleteButton"/></a></td>
-
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+        </c:forEach>
     </c:when>
     <c:otherwise>
-        <div id="intro">
-            <spring2:message code="label.assetsNotPresent"/>. <a href="${addUrl}">
-            <spring2:message code="label.youMayAddLabel"/></a>.
-            <p>
-                <c:url var="mainUrl" value="/riskmanager/ "/>
-                <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
-            </p>
-
-            <p>
-                <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
-                <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
-            </p>
+        <div class="accordion">
+            <h1 onclick="location.href='./'">
+                <spring2:message code="label.assetsNotPresent"/>
+            </h1>
         </div>
+
     </c:otherwise>
 </c:choose>
 

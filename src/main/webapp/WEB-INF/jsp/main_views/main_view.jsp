@@ -1,61 +1,56 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="spring2" uri="http://www.springframework.org/tags" %>
-
-
-<!--security-->
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@taglib uri="http://www.site.com/myTlds" prefix="func" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
-
-
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="label.appName"/></title>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".accordion h3:first").addClass("active");
-            $(".accordion p:not(:first)").hide();
-            $(".accordion h3").click(function () {
-                $(this).next("p").slideToggle("slow")
-                        .siblings("p:visible").slideUp("slow");
-                $(this).toggleClass("active");
-                $(this).siblings("h3").removeClass("active");
-            });
 
-        });
-    </script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliding-elements.js"></script>
 
 </head>
 <body>
+<tags:menu></tags:menu>
 
+<div>
+    <h3>
+        Добро пожаловать в систему RiskManager, ${loggedInUsername}
+    </h3>
 
+    <p>
+        Система RiskManager создана для автоматизации менеджмента информационной безопасности в соответствии
+        с требованиями стандарта Банка Росии СТО БР ИББС
+    </p>
+    <br>
 
+    <p>
+        Воспользуйтесь навигационным меню для доступа к соответствующим модулям
+    </p>
+</div>
+
+<%--
 <c:url var="assetsUrl" value="/riskmanager/assets/"/>
 <c:url var="personsUrl" value="/riskmanager/persons/"/>
 <c:url var="organisationsUrl" value="/riskmanager/organisations/"/>
 <c:url var="queryURL" value="/riskmanager/query"/>
 <c:url var="downloadReportURL" value="/riskmanager/report/"/>
+--%>
 
-<div id="dough">
-
-</div>
-
-
-
-<div id="intro">
-    <h2>Добро пожаловать в систему RiskManager 0x1</h2>
-</div>
-
+<%--
     <table style="border: 1px solid; width: 500px; text-align:center">
         <caption>
             <spring2:message code="label.menu"></spring2:message>
@@ -112,8 +107,9 @@
     </table>
 
 
-<%--</div>
-    </div>--%>
+&lt;%&ndash;</div>
+    </div>&ndash;%&gt;
+--%>
 
 </body>
 </html>

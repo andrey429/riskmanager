@@ -247,15 +247,17 @@
     <canvas width="400" height="400" id="radar_chart" onclick="window.location = this.toDataURL('image/jpg')">
         <spring2:message code="self.showpage.errordiagram"/>
     </canvas>
-    <h3><i><spring2:message code="self.showpage.diagram"/> </i></h3>
+    <h3><spring2:message code="self.showpage.diagram"/></h3>
 </div>
 
 <div id="details_block">
     <h3>
-        <spring2:message code="self.showpage.name"/>: ${selfAssessmentModel.selfAssessmentName}
+        Описание оценки
     </h3>
 
     <p>
+        <br><br>
+        <b><spring2:message code="self.showpage.name"/>:</b> ${selfAssessmentModel.selfAssessmentName}
         <br>
         <br>
         <b><spring2:message code="self.showpage.description"/>:</b> ${selfAssessmentModel.description}
@@ -270,6 +272,7 @@
     </p>
 </div>
 <div id="values_block">
+    <h3>Детали оценки</h3>
     <p>
         <spring2:message code="self.showpage.EV1description"/>
         <br>

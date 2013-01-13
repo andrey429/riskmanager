@@ -84,6 +84,11 @@ nav ul ul ul {
     position: absolute; left: 100%; top:0;
 }
 
+nav ul li a input[type="checkbox"]{
+    position: relative;
+
+}
+
 div {
 
     margin: auto;
@@ -128,11 +133,16 @@ h3{
     border-radius: 10px;
 }
 
+input[type="checkbox"]{
+    position: absolute;
+    left: 10px;
+}
+
 p {
     margin: auto;
     position: inherit;
     top: 20%;
-    font-family: Georgia, sans-serif; font-size: 20px; line-height: 20px;
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
     text-align: justify;
 
     border-radius: 10px;
@@ -168,7 +178,7 @@ div.accordion  {
     background: #e9e7e7 url(../images/arrow-square.gif) no-repeat right -51px;
     padding: 7px 15px;
     margin: 0;
-    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
     border: solid 1px #c4c4c4;
     border-bottom: none;
     cursor: pointer;
@@ -200,7 +210,7 @@ div.accordion  {
     background: #b0c4de url(../images/arrow-square.gif) no-repeat right -51px;
     padding: 7px 15px;
     margin: 0;
-    font: bold 120%/100% Arial, Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
     border: solid 1px #c4c4c4;
     border-bottom: none;
     cursor: pointer;
@@ -239,52 +249,94 @@ div.accordion  {
 /*table specific data*//*table specific data*//*table specific data*/
 
 /*table specific data*//*table specific data*//*table specific data*/
-.divtable{
-    width: 480px;
-    border-bottom: solid 1px #c4c4c4;
-}
 
-.divtable h3 {
-    background: #f5f5f5/*#e9e7e7*/;
-    padding: 7px 15px;
+div h3 {
     margin: 0;
-    font:  120%/100% Arial, Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
+    font-size: 20px;
     border: solid 1px #c4c4c4;
     border-bottom: none;
     cursor: pointer;
+
+    background: #efefef;
+    background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    background: -webkit-linear-gradient(top, #efefef 0%,#bbbbbb 100%);
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+
+    border-radius: 10px;
+    list-style: none;
+    position: relative;
 }
 
-.divtable h3.active {
-    background-position: right 5px;
-}
+h3 {
 
-.divtable h2 {
-    background: #e9e7e7;
-    padding: 7px 15px;
     margin: 0;
-    font:  bold 120%/100% Arial, Helvetica, sans-serif;
-    border: solid 1px #000000;
-    border-bottom: solid;
-
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
+    font-size: 12px;
+    border: solid 1px #c4c4c4;
+    border-bottom: none;
     cursor: pointer;
-    vertical-align: middle;
-    text-align: center;
+
+    background: #efefef;
+    background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    background: -webkit-linear-gradient(top, #efefef 0%,#bbbbbb 100%);
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+
+    border-radius: 10px;
+    list-style: none;
+    position: relative;
+
+}
+
+
+h2{
+    margin: 0;
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
+    color: white;
+    font-size: 12px;
+    border: solid 1px #c4c4c4;
+    border-bottom: none;
+    cursor: pointer;
+
+    background: #000;
+
+    /*background: linear-gradient(top, #000 25%, #bbbbbb 100%);
+    background: -moz-linear-gradient(top, #000 25%, #bbbbbb 100%);
+    background: -webkit-linear-gradient(top, #000 25%,#bbbbbb 100%);*/
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+
+    border-radius: 10px;
+    list-style: none;
+    position: relative;
+
 }
 
 
 
 
-.addIcon{
+
+/*.addIcon{
     position: absolute;
     top: 10px;
     left: 10px;
     text-align: start;
     background: #b0e0e6;
 
+}*/
+
+i {
+    visibility: hidden;
+}
+a {
+    text-decoration: none;
+    color: #000;
 }
 
-i:hover{
+h3:hover i{
     background-color: #e3e2a0;
+    visibility: visible;
 }
 
 
@@ -294,6 +346,7 @@ select {
     border-radius: 20px;
     text-align: center;
     -moz-border-radius: 20px;
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
 }
 input {
     width: 150px;
@@ -302,6 +355,7 @@ input {
     text-align: center;
     vertical-align: middle;
     font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
+    font-family: Helvetica, sans-serif; font-size: 18px; line-height: 24px;
 }
 
 .row {
@@ -309,12 +363,15 @@ input {
 
 }
 
+
+
 .cell {
     position: relative;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-
+    padding: 10px;
+    width: 20%;
 
 }
 

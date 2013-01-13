@@ -93,7 +93,7 @@ public class AssetEditorController {
 
         model.addAttribute("assetAttribute", assetService.get(id));
 
-        return "assets_views/asset_editpage";
+        return "assets_views/asset_addpage";
 
     }
 

@@ -18,6 +18,8 @@
 <c:set var="assetInventoryURL" value="/riskmanager/riskmanager/assets/"/>
 <c:set var="addAssetInventoryURL" value="/riskmanager/riskmanager/assets/add"/>
 <c:set var="listAssetInventoryURL" value="/riskmanager/riskmanager/assets/"/>
+<c:set var="queryAssetInventoryURL" value="/riskmanager/riskmanager/query/"/>
+
 
 <c:set var="riskAssessmentURL" value="/riskmanager/riskmanager/risk-assessment/"/>
 <c:set var="createRiskAssessmentURL" value="${riskAssessmentURL}create"/>
@@ -31,10 +33,11 @@
 <c:set var="createAssessmentSelfAssessmentURL" value="${selfAssessmentURL}new"/>
 
 <c:set var="logoutURL" value="/riskmanager/riskmanager/auth/logout"/>
-
+<c:set var="rootURL" value="/riskmanager/riskmanager/"/>
 
 <nav>
     <ul>
+        <li><a href="${rootURL}">Главная</a></li>
         <li><a href="${usersURL}"><spring2:message code="menu.users"/></a>
             <ul>
                 <li><a href="${addUsersURL}"><spring2:message code="menu.submenu.add"/></a></li>
@@ -52,6 +55,7 @@
                     <a href="${listOrganisationsURL}"><spring2:message code="menu.submenu.list"/></a>
                 </li>
 
+
             </ul>
         </li>
         <li>
@@ -61,12 +65,15 @@
                 <li>
                     <a href="${listAssetInventoryURL}"><spring2:message code="menu.submenu.list"/></a>
                 </li>
+                <li>
+                    <a href="${queryAssetInventoryURL}">Выборка активов</a>
+                </li>
             </ul>
         </li>
         <li>
             <a href="${riskAssessmentURL}"><spring2:message code="menu.riskAssessment"/></a>
             <ul>
-                <li><a href="${createRiskAssessmentURL}"><spring2:message code="menu.submenu.add"/></a>
+                <li><a <%--href="${createRiskAssessmentURL}"--%>href="#"><spring2:message code="menu.submenu.add"/></a>
                     <ul>
                         <li>
                             <a href="${createAssetTypeRiskAssessmentURL}"><spring2:message code="menu.submenu.createAssetType"/></a>

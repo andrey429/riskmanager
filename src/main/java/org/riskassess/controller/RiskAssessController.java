@@ -114,7 +114,7 @@ public class RiskAssessController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String getEditPage() {
-        return "risk_assess/edit-menu/edit-menu";
+        return "risk_assess/edit-menu/!!!edit-menu";
     }
 
     @RequestMapping(value = "/edit/asset-type", method = RequestMethod.GET)
@@ -137,7 +137,7 @@ public class RiskAssessController {
 
         assetType.setId(assetTypeID);
         hibernateService.editAssetType(assetType);
-        return "redirect:/riskmanager/risk-assessment/";/*create";*/
+        return "redirect:/riskmanager/risk-assessment/show";/*create";*/
     }
 
     /*media objects*/
@@ -184,7 +184,7 @@ public class RiskAssessController {
 
         mediaType.setId(mediaTypeID);
         hibernateService.editMediaType(mediaType);
-        return "redirect:/riskmanager/risk-assessment/";
+        return "redirect:/riskmanager/risk-assessment/show";
     }
 
 
@@ -252,7 +252,7 @@ public class RiskAssessController {
 
         hibernateService.editRiskDetail(riskDetail);
 
-        return "redirect:/riskmanager/risk-assessment/";/*create/";*/
+        return "redirect:/riskmanager/risk-assessment/show";/*create/";*/
 
     }
 

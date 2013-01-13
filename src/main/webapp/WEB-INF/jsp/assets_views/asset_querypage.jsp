@@ -1,3 +1,4 @@
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://java.sun.com/jstl/fmt" %>
@@ -9,27 +10,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/listing_table.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" media="all"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/addpage.css" media="all"/>
+
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><spring2:message code="label.assetListingPageTitle"></spring2:message></title>
 
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.2.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".accordion h3:first").addClass("active");
-            $(".accordion p:not(:first)").hide();
-            $(".accordion h3").click(function () {
-                $(this).next("p").slideToggle("slow")
-                        .siblings("p:visible").slideUp("slow");
-                $(this).toggleClass("active");
-                $(this).siblings("h3").removeClass("active");
-            });
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/sliding-elements.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common-style.css" type="text/css"/>
 
-        });
-    </script>
 
 </head>
 <body>
@@ -45,29 +34,152 @@
 <spring2:message code="label.queryFilter" var="queryFilter"/>
 
 
-
 <c:url var="processRequest" value="/riskmanager/query"/>
 <c:url var="resetURL" value="/riskmanager/query/reset"/>
+<tags:menu></tags:menu>
+
+<form:form method="post" action="${processRequest}" modelAttribute="queryAttribute" id="thisform">
+    <nav>
+        <ul>
+            <li><a>По организации</a>
+                <ul>
+                    <c:choose>
+                        <c:when test="${not empty existingOrganisations}">
+                            <c:forEach items="${existingOrganisations}" var="existingOrganisation">
+                                <li>
+                                    <a>
+                                        <form:radiobutton path="organisation" value="${existingOrganisation.id}"/>
+                                            ${existingOrganisation}
+                                    </a></li>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a>Организации не добавлены</a></li>
+                        </c:otherwise>
+                    </c:choose>
+
+                </ul>
+            </li>
+            <li><a>По владельцу</a>
+                <ul>
+                    <c:choose>
+                        <c:when test="${not empty existingPersons}">
+                            <c:forEach items="${existingPersons}" var="existingPerson">
+                                <li>
+                                    <a>
+                                        <form:radiobutton path="person" value="${existingPerson.id}"/>
+                                            ${existingPerson}
+                                    </a></li>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a>Сотрудники отсутствуют</a></li>
+                        </c:otherwise>
+                    </c:choose>
+
+                </ul>
+            </li>
+            <li><a>По типу бизнес процесса</a>
+                <ul>
+                    <li><a>
+                        <form:radiobutton path="businessProcessType" value="${null}"/>${optionMenuValueNotSelected}
+                    </a></li>
+                    <li><a>
+                        <form:radiobutton path="businessProcessType" value="${1}"/>${paymentProcessLabel}
+                    </a></li>
+                    <li><a>
+                        <form:radiobutton path="businessProcessType" value="${2}"/>${informationalProcessLabel}
+                    </a></li>
+
+                </ul>
+            </li>
+            <li><a>По свойствам ИБ</a>
+                <ul>
+                    <li>
+                        <a><form:checkbox path="requiresConfidentiality"/>Конфиденциальность</a>
+                    </li>
+                    <li>
+                        <a><form:checkbox path="requiresIntegrity"/>Целостность</a>
+                    </li>
+                    <li>
+                        <a><form:checkbox path="requiresAvailability"/>Доступность</a>
+                    </li>
+                </ul>
+            </li>
+                <%--<li><a>Сброс критериев</a></li>--%>
+            <li><a onclick="document.forms['thisform'].submit()">Применить фильтр</a></li>
+        </ul>
+    </nav>
+</form:form>
+
+<%--results--%>
+<c:choose>
+    <c:when test="${not empty queriedAssetsList}">
+
+        <h3 class="row">
+            <h2 class="cell"><spring2:message code="label.assetName"/></h2>
+
+            <h2 class="cell"><spring2:message code="label.assetDescription"/></h2>
+
+            <h2 class="cell"><spring2:message code="label.assetOwner"/></h2>
+
+            <h2 class="cell"><spring2:message code="label.assetRequirements"/></h2>
+
+            <h2 class="cell"><spring2:message code="label.assetBusinessProcessType"/></h2>
+
+            <h2 class="cell"><spring2:message code="label.assetLocation"/></h2>
+        </h3>
+        <c:forEach items="${queriedAssetsList}" var="asset">
+            <c:url var="editUrl" value="/riskmanager/assets/edit?id=${asset.id}"/>
+            <c:url var="deleteUrl" value="/riskmanager/assets/delete?id=${asset.id}"/>
+            <h3 class="row">
+                <h3 class="cell">
+                    <i class="addIcon" onclick="iconHandler('${deleteUrl}')">(-)</i>
+                    <a href="${editUrl}">${asset.name}</a></h3>
+
+                <h3 class="cell">${asset.description}</h3>
+
+                <h3 class="cell">${asset.personOwner}</h3>
+
+                <h3 class="cell">
+                    <c:if test="${asset.requiresConfidentiality}">C</c:if>
+                    &nbsp;
+                    <c:if test="${asset.requiresIntegrity}">I</c:if>
+                    &nbsp;
+                    <c:if test="${asset.requiresAvailability}">A</c:if>
+                </h3>
+
+                <h3 class="cell">
+                    <c:choose>
+                        <c:when test="${asset.businessProcessType == 1}">
+                            <spring2:message code="label.assetPaymentBusinessProcess"/>
+                        </c:when>
+                        <c:when test="${asset.businessProcessType == 2}">
+                            <spring2:message code="label.assetInformationBusinessProcess"/>
+                        </c:when>
+                    </c:choose>
+                </h3>
+
+                <h3 class="cell">${asset.assetLocation}</h3>
+            </h3>
+
+
+        </c:forEach>
+    </c:when>
+    <c:otherwise>
+        <div class="accordion">
+            <h1>
+                Нет активов, удовлетворяющих заданным критериям
+            </h1>
+        </div>
+
+    </c:otherwise>
+</c:choose>
+<%--
+<div class="accordion">
 
 
 
-<div id="intro">
-
-
-    <p>
-        <c:url var="mainUrl" value="/riskmanager/ "/>
-        <a href="${mainUrl}"><spring2:message code="label.gotoMainURL"/> </a>
-    </p>
-
-    <p>
-        <c:url var="logoutURL" value="/riskmanager/auth/logout"/>
-        <a href="${logoutURL}"><spring2:message code="label.loginLogoutSubmit"/></a>
-    </p>
-</div>
-
-<form:form method="post" action="${processRequest}" modelAttribute="queryAttribute">
-
-    <div class="accordion">
         <h3>
             <spring2:message code="label.queryFilter"/>
         </h3>
@@ -173,68 +285,58 @@
 
 </form:form>
 
-<%--query results--%>
+&lt;%&ndash;todo query results&ndash;%&gt;
 
-<br>
+<h3 class="row">
+    <h2 class="cell"><spring2:message code="label.assetName"/></h2>
 
+    <h2 class="cell"><spring2:message code="label.assetDescription"/></h2>
 
+    <h2 class="cell"><spring2:message code="label.assetOwner"/></h2>
 
-<table style="border: 1px solid; width: 500px; text-align:center">
-    <caption>
-        <br>
-        <spring2:message code="label.queryResults"/>
-    </caption>
+    <h2 class="cell"><spring2:message code="label.assetRequirements"/></h2>
 
-    <thead style="background:#fcf">
-    <tr>
-        <th><spring2:message code="label.assetName"/></th>
-        <th><spring2:message code="label.assetDescription"/></th>
-        <th><spring2:message code="label.assetOwner"/></th>
-        <th colspan="3"><spring2:message code="label.assetRequirements"/></th>
+    <h2 class="cell"><spring2:message code="label.assetBusinessProcessType"/></h2>
 
-        <th><spring2:message code="label.assetBusinessProcessType"/></th>
-        <th><spring2:message code="label.assetLocation"/></th>
+    <h2 class="cell"><spring2:message code="label.assetLocation"/></h2>
+</h3>
+<c:forEach items="${queriedAssetsList}" var="asset">
+<c:url var="editUrl" value="/riskmanager/assets/edit?id=${asset.id}"/>
+<c:url var="deleteUrl" value="/riskmanager/assets/delete?id=${asset.id}"/>
+<h3 class="row">
+    <h3 class="cell">
+        <i class="addIcon" onclick="iconHandler('${deleteUrl}')">(-)</i>
+        <a href="${editUrl}">${asset.name}</a></h3>
 
+    <h3 class="cell">${asset.description}</h3>
 
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${queriedAssetsList}" var="asset">
+    <h3 class="cell">${asset.personOwner}</h3>
 
-        <tr>
-            <td><c:out value="${asset.name}"/></td>
-            <td><c:out value="${asset.description}"/></td>
+    <h3 class="cell">
+        <c:if test="${asset.requiresConfidentiality}">C</c:if>
+        &nbsp;
+        <c:if test="${asset.requiresIntegrity}">I</c:if>
+        &nbsp;
+        <c:if test="${asset.requiresAvailability}">A</c:if>
+    </h3>
 
-            <td><c:out value="${asset.personOwner}"/></td>
+    <h3 class="cell">
+        <c:choose>
+            <c:when test="${asset.businessProcessType == 1}">
+                <spring2:message code="label.assetPaymentBusinessProcess"/>
+            </c:when>
+            <c:when test="${asset.businessProcessType == 2}">
+                <spring2:message code="label.assetInformationBusinessProcess"/>
+            </c:when>
+        </c:choose>
+    </h3>
 
-            <td><c:if test="${asset.requiresConfidentiality}">C</c:if></td>
-            <td><c:if test="${asset.requiresIntegrity}">I</c:if></td>
-            <td><c:if test="${asset.requiresAvailability}">A</c:if></td>
-
-
-            <td>
-                <c:choose>
-                    <c:when test="${asset.businessProcessType == 1}">
-                        <spring2:message code="label.assetPaymentBusinessProcess"/>
-                    </c:when>
-                    <c:when test="${asset.businessProcessType == 2}">
-                        <spring2:message code="label.assetInformationBusinessProcess"/>
-                    </c:when>
-                </c:choose>
-            </td>
-
-            <td>
-                <c:out value="${asset.assetLocation}"/>
-            </td>
-        </tr>
-
-
-    </c:forEach>
-    </tbody>
-</table>
+    <h3 class="cell">${asset.assetLocation}</h3>
+</h3>
 
 
 
+--%>
 
 
 </body>
