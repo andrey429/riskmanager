@@ -1,13 +1,12 @@
 package org.riskmanager.controller;
 
-import org.apache.log4j.Logger;
+
 import org.riskmanager.converters.OrganisationPropertyEditor;
 import org.riskmanager.converters.PersonPropertyEditor;
 import org.riskmanager.domain.Asset;
 import org.riskmanager.domain.AssetQuery;
 import org.riskmanager.domain.Organisation;
 import org.riskmanager.domain.Person;
-import org.riskmanager.reports.RiskEvaluationReportBuilder;
 import org.riskmanager.service.AssetService;
 import org.riskmanager.service.OrganisationService;
 import org.riskmanager.service.PersonService;
@@ -16,7 +15,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ import java.util.List;
 @RequestMapping("/")
 public class AssetQueryController {
 
-    protected static Logger logger = Logger.getLogger("service");
+
     @Resource
     private PersonService personService;
     @Resource
@@ -46,16 +48,10 @@ public class AssetQueryController {
 
     @RequestMapping(value = "/query", method = RequestMethod.GET)
     public String getQuery(Model model) {
-        logger.debug("showing assets query page");
-
-        //
-        //
-
         model.addAttribute("queryAttribute", assetQuery != null ? assetQuery : new AssetQuery());//todo change to new AQ()
         model.addAttribute("existingPersons", getExistingPersons());
         model.addAttribute("existingOrganisations", getExistingOrganisations());
         model.addAttribute("queriedAssetsList", queriedAssetsList);
-
         return "assets_views/asset_querypage";
     }
 
@@ -71,13 +67,7 @@ public class AssetQueryController {
     @RequestMapping(value = "/query", method = RequestMethod.POST)
     public String postQueryResults(@ModelAttribute("queryAttribute") AssetQuery assetQuery, Model model) {
 
-        logger.debug("ASSET PERSON: " + assetQuery.getPerson());
-        logger.debug("ASSET fds: " + assetQuery.getRequiresAvailability());
-        logger.debug("query object" + assetQuery);
-
         this.assetQuery = assetQuery;
-
-
         StringBuffer customQuery = new StringBuffer("FROM Asset");
         ArrayList<String> conditions = new ArrayList<String>();//gather conditions together
 
@@ -112,15 +102,9 @@ public class AssetQueryController {
             }
         }
 
-
-        logger.debug(customQuery);
-
         List<Asset> queriedAssetsList = assetService.executeCustomQuery(customQuery.toString());
-
         this.queriedAssetsList = queriedAssetsList;
-
         model.addAttribute("queriedAssetsList", queriedAssetsList);
-
         return "redirect:/riskmanager/query";
 
     }

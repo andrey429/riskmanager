@@ -39,7 +39,7 @@ public class AssetEditorController {
 
     @RequestMapping("/")
     public String getAssets(Model model) {
-        logger.debug("Received request to list assets");
+        /*logger.debug("Received request to list assets");*/
 
         Person currentUser = getLoggedInAuthority();
 
@@ -60,10 +60,8 @@ public class AssetEditorController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String getAdd(Model model) {
-        logger.debug("Received request to view add page");
-
+        /*logger.debug("Received request to view add page");*/
         model.addAttribute("assetAttribute", new Asset());
-
         return "assets_views/asset_addpage";
 
 
@@ -71,8 +69,7 @@ public class AssetEditorController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@ModelAttribute("assetAttribute") Asset asset) {
-        logger.debug("Received request to add asset");
-
+        logger.debug(getLoggedInAuthority().getLogin() + ":add  asset: " + asset.getId() + "." + asset.getName());
         assetService.add(asset);
         return "redirect:/riskmanager/assets/";
 
@@ -80,7 +77,8 @@ public class AssetEditorController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String delete(@RequestParam(value = "id", required = true) Integer id, Model model) {
-        logger.debug("Received  request to delete organisation");
+        Asset asset = assetService.get(id);//todo
+        logger.debug(getLoggedInAuthority().getLogin() + ":deletes  asset: " + asset.getId() + "." + asset.getName());
         assetService.delete(id);
         model.addAttribute("id", id);
         return "redirect:/riskmanager/assets/";
@@ -89,10 +87,8 @@ public class AssetEditorController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String getEdit(@RequestParam(value = "id", required = true) Integer id, Model model) {
-        logger.debug("Received request to view edit page");
-
+        /*logger.debug("Received request to view edit page");*/
         model.addAttribute("assetAttribute", assetService.get(id));
-
         return "assets_views/asset_addpage";
 
     }
@@ -100,18 +96,12 @@ public class AssetEditorController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@ModelAttribute(value = "assetAttribute") Asset asset,
                        @RequestParam(value = "id", required = true) Integer id, Model model) {
-        logger.debug("Received request to saveOrUpdate asset");
-
+        logger.debug(getLoggedInAuthority().getLogin() + ":edits  asset: " + asset.getId() + "." + asset.getName());
         asset.setId(id);
         assetService.edit(asset);
-
         return "redirect:/riskmanager/assets/";
 
     }
-
-
-
-
 
 
     @ModelAttribute("existingPersons")

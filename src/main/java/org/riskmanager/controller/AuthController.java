@@ -23,7 +23,6 @@ public class AuthController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam(value = "error", required = false) boolean error,
                                ModelMap modelMap){
-        logger.debug("request to show login page");
         if(error == true){
             modelMap.put("error", "Wrong username or password");
         }
@@ -37,7 +36,6 @@ public class AuthController {
 
     @RequestMapping(value = "/denied", method = RequestMethod.GET)
     public String getAccessDeniedPage(){
-        logger.debug("request to show access denied page");
         return "denied";
     }
 }

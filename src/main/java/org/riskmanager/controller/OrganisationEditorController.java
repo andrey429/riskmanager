@@ -30,8 +30,8 @@ public class OrganisationEditorController {
     private OrganisationService organisationService;
 
     @RequestMapping("/")
-    public String  getOrganisations(Model model){
-        logger.debug("Received request to list organisations");
+    public String getOrganisations(Model model) {
+        /*logger.debug("Received request to list organisations");*/
 
         List<Organisation> organisations = organisationService.getAll();
 
@@ -42,29 +42,25 @@ public class OrganisationEditorController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String getAdd(Model model){
-       logger.debug("Received request to view add page");
-
+    public String getAdd(Model model) {
+        /*logger.debug("Received request to view add page");*/
         model.addAttribute("organisationAttribute", new Organisation());
-
         return "organisations_views/organisation_addpage";
 
 
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("organisationAttribute") Organisation organisation)
-    {
-        logger.debug("Received request to add organisation");
-
+    public String add(@ModelAttribute("organisationAttribute") Organisation organisation) {
+        /*logger.debug("Received request to add organisation");*/
         organisationService.add(organisation);
         return "redirect:/riskmanager/organisations/";
 
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String delete(@RequestParam(value = "id", required = true) Integer id, Model model){
-        logger.debug("Received  request to delete organisation");
+    public String delete(@RequestParam(value = "id", required = true) Integer id, Model model) {
+        /*logger.debug("Received  request to delete organisation");*/
         organisationService.delete(id);
         model.addAttribute("id", id);
         return "redirect:/riskmanager/organisations/";
@@ -72,23 +68,19 @@ public class OrganisationEditorController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String getEdit(@RequestParam(value = "id", required = true) Integer id, Model model){
-        logger.debug("Received request to view edit page");
-
+    public String getEdit(@RequestParam(value = "id", required = true) Integer id, Model model) {
+        /*logger.debug("Received request to view edit page");*/
         model.addAttribute("organisationAttribute", organisationService.get(id));
-
         return "organisations_views/organisation_addpage";
 
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@ModelAttribute(value = "organisationAttribute") Organisation organisation,
-                       @RequestParam(value = "id", required =true) Integer id, Model model ){
-        logger.debug("Received request to saveOrUpdate organisation");
-
+                       @RequestParam(value = "id", required = true) Integer id, Model model) {
+        /*logger.debug("Received request to saveOrUpdate organisation");*/
         organisation.setId(id);
         organisationService.edit(organisation);
-
         return "redirect:/riskmanager/organisations/";
 
     }
