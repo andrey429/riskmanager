@@ -19,7 +19,7 @@
 <c:set var="addAssetInventoryURL" value="/riskmanager/riskmanager/assets/add"/>
 <c:set var="listAssetInventoryURL" value="/riskmanager/riskmanager/assets/"/>
 <c:set var="queryAssetInventoryURL" value="/riskmanager/riskmanager/query/"/>
-
+<c:set var="downloadAssetReportURL" value="/riskmanager/riskmanager/report/"/>
 
 <c:set var="riskAssessmentURL" value="/riskmanager/riskmanager/risk-assessment/"/>
 <c:set var="createRiskAssessmentURL" value="${riskAssessmentURL}create"/>
@@ -67,6 +67,9 @@
                 </li>
                 <li>
                     <a href="${queryAssetInventoryURL}">Выборка активов</a>
+                </li>
+                <li>
+                    <a href="${downloadAssetReportURL}">Выгрузить перечень активов</a>
                 </li>
             </ul>
         </li>
