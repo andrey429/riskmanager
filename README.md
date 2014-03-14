@@ -1,7 +1,7 @@
 riskmanager
 ===========
 
-**riskmanager** was an application I created as my graduation work from university. 
+**riskmanager** is an application I wrote for my graduation work from university. 
 Purpose of the project was to develop a solution,that would be capable of performing some common tasks
 of information security management tasks as per Standart of Bank of Russia: STO BR IBBS.
 
